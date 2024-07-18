@@ -1,0 +1,112 @@
+---
+title: Raspberry Pi Dog Monitor
+date: '2019-05-13'
+slug: raspberry-pi-dog-monitor
+categories:
+  - Python
+image: harper.jpg
+---
+
+Crate-training a puppy can be tough and a total surprise when you come home to find that they've torn up their bed, had an accident, or worse, broken free and vandalized your apartment. My dog, Harper, has done all three, but has since learned to love her cozy den. As I teased in my ["Hello World"](/posts/2019-05-07-hello_world/) post, I built a dog monitor using a Raspberry Pi to see what she was up to while I was gone. She didn't break out this time, but she was a bit mischievous.
+
+The hardware requirements for this project are a [Raspberry Pi](https://www.amazon.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/dp/B07BDR5PDW/ref=sr_1_3?keywords=raspberry+pi+3&qid=1557794649&s=electronics&sr=1-3) and [camera](https://www.amazon.com/gp/product/B01ER2SKFS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1). If you need help setting up the camera, [PyImageSearch](https://www.pyimagesearch.com/) is a great resource and can help you [set it up](https://www.pyimagesearch.com/2015/03/30/accessing-the-raspberry-pi-camera-with-opencv-and-python/). If you've never read it before, I highly recommend the blog. It has tons of posts and resources for learning OpenCV and applying deep learning computer vision techniques. It's where I caught the computer vision bug and found inspiration for several projects.
+
+I still haven't figured out how to edit mp4/mov files into timelapse videos, so instead I took still photos at set time intervals and stitched them together into a gif with a brief delay. To do this, I used ImageMagick. On the Raspberry Pi, it was as simple as:
+
+``` bash
+sudo apt-get update
+sudo apt-get install imagemagick
+```
+
+Once I set up my RPi and camera, I switched over to Python. Below are the necessary packages for this project. Something worth calling out is that with the *smtplib* package, Gmail can get mad about "less secure apps" trying to sign in. Although not a good long-term solution, the workaround for this is to go into your Google security settings and allowing these apps.
+
+``` python
+# General use packages
+import os
+import time
+import getpass
+# Packages needed for RPi Camera
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+# Packages for emailing the video captured
+import smtplib
+from email import encoders
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+```
+
+Next, I set the email address from which I wanted to send the timelapse gif as well as the list of addresses to which I wanted to send it. I also initialized the SMTP connection and authenticated in this step.
+
+``` python
+# Set email address to send from,
+#   email address (list) to send to, and 
+#   initialize SMTP connection to Gmail
+fromaddr = "beebe.mitch@gmail.com"
+emailTo = ["beebe.mitch@gmail.com"]
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(fromaddr, getpass.getpass("Enter password: "))
+```
+
+Now that the email connection was set up, I cleared out any files associated with previous executions. I then initialized the RPi camera and begain taking still photos at 60 second intervals for 60 minutes \* 4 hours, saving each photo in the same directory as image0000.jpg, image0001.jpg, image0002.jpg, and so on.
+
+``` python
+# Delete old gifs
+if os.path.isfile("harperMonitor.gif"):
+    os.remove("harperMonitor.gif")
+
+# Delete old jpg images saved
+filelist = [ f for f in os.listdir(".") if f.endswith(".jpg") ]
+for f in filelist:
+    os.remove(f)
+
+# Initialize camera
+camera = PiCamera()
+camera.resolution = (1024, 768)
+
+# Take a still jpg picture every minute for 4 hours
+#   and save image with 4-digit suffix with image index
+for i in range(60*4):
+    camera.capture('image{0:04d}.jpg'.format(i))
+    time.sleep(60)
+```
+
+When that loop finished, I then executed the code below from Python via the command line. Convert is a command from ImageMagick that allows you to manipulate image formats. I told it to convert every file with the .jpg extension into a gif with a tenth of a second delay between each image and no loop.
+
+``` python
+# Convert jpg to gif with 0.1 second delay
+os.system('convert -delay 10 -loop 0 image*.jpg harperMonitor.gif')
+```
+
+Next, I initialized a `MIMEMultipart` message with proper to and from emails, subject, and body. Lastly, I opened the gif and attached it using the `MIMEImage` subclass. Now the email was ready to send and close the connection.
+
+``` python
+# Initialize a multipart email (one with body, attachments, etc) 
+msg = MIMEMultipart()
+
+# Add From, To, Subject, and Body of email
+msg['From'] = fromaddr
+msg['To'] = ", ".join(toaddr)
+msg['Subject'] = "Harper Monitor for " + time.strftime("%m/%d/%y")
+body = "Here is your daily Harper video! Woof."
+msg.attach(MIMEText(body, 'plain'))
+
+# Attach the gif to the email
+fp = open("harperMonitor.gif","rb")
+msgImg = MIMEImage(fp.read())
+fp.close()
+msg.attach(msgImg)
+
+# Send the email and close the connection
+server.sendmail(fromaddr, toaddr, msg.as_string())
+server.quit()
+```
+
+That's it! It takes \~ 4 hours to run (duh), but you can alter the frequency and number of images taken depending on how long Harper is in her crate. Below is a cropped version of the end result that I received in my Gmail inbox. Someone got ornery while I was away! Thanks for reading.
+
+<video width="100%" controls>
+
+<source src="harper_crate.mov" type="video/mp4" align="center" border="5">
+
+</video>

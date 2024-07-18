@@ -1,0 +1,201 @@
+---
+title: "Inaugural Mastery Quest - Summer Olympics"
+description: "Learn more on [Bletchley.org!](https://www.bletchley.org/blog/mastery-quest-the-summer-olympics-data-science)"
+date: "2024-07-16"
+image: https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w1460/f_auto/primary/ufimmifputd3kkkvdgmb
+---
+
+This week's challenge was to find a dataset on the Summer Olympics and create a visualization, model, app, or other data-related output using the tool of your choice.
+
+I'll jump right to it and show my output.
+
+![It's widely known that the United States was in a Space Race with the Soviet Union throughout the Cold War, but it turns out we were also in a foot race. The USSR accumulated 1,005 golds, silvers, and bronzes starting in the 1952 Games in Helsinki through the 1988 Games in Seoul. The next closest countries were the USA and Germany with 957 and 755 medals tallied, respectively.](by-country.svg){fig-align="center"}
+
+## How I Made It
+
+I started with the research question, *what countries have been the most dominant all-time?*
+
+To start, I found this [data](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results/data) from an old Kaggle contest. In order to manipulate and visualize it, I'm loading the `tidyverse` of packages and the `emoji` package for fun graphics.
+
+```{r PackagesAndData}
+#| message: FALSE
+library(tidyverse)
+library(emoji)
+library(ggrepel)
+library(ggtext)
+library(ggimage)
+
+olympics <- readr::read_csv('athlete_events.csv') %>% rename_with(tolower)
+noc <- readr::read_csv("noc_regions.csv") %>% rename_with(tolower)
+```
+
+Taking a peek at the data, I can see it's one row per athlete per year per event. I also see it has the Winter Olympics included. I'll want to filter these out considering the Summer Olympics theme. I'll also need to count only one medal per event so team sports like basketball and relays don't skew the counts.
+
+```{r Peek}
+#| echo: FALSE
+head(olympics) %>%
+  knitr::kable(caption="{.striped .hover}")
+```
+
+I'd like to visualize cumulative medal counts by country to see if there are stretches of dominance. To do this, I'll need to aggregate the athlete-event data by country and year. I also need a reference table for the country flag emojis.
+
+```{r DataManipulation}
+#| message: FALSE
+cumulative_medals <- 
+  olympics %>% 
+  left_join(
+    noc,
+    by = "noc"
+  ) %>% 
+  filter(season == "Summer", !is.na(medal)) %>% 
+  # Rename UK and USA for emoji match later
+  mutate(
+    team = case_when(
+      noc == "GBR" ~ "United Kingdom",
+      noc == "USA" ~ "United States",
+      TRUE ~ region
+    )
+  ) %>% 
+  # Aggregate medals by country and year
+  group_by(team, year, medal) %>% 
+  summarise(n = n_distinct(event), .groups = "drop") %>% 
+  pivot_wider(names_from = medal, values_from = n, values_fill = 0) %>% 
+  mutate(Total = Gold + Silver + Bronze) %>% 
+  group_by(team) %>% 
+  arrange(team, year) %>% 
+  # Create a cumulative sum
+  mutate(across(Bronze:Total, ~ cumsum(replace_na(.x, 0))))
+
+country_flags <- 
+  emojis %>% 
+  filter(subgroup == "country-flag") %>% 
+  mutate(country = str_extract(name, "(?<=flag: ).*"))
+```
+
+With these aggregate tables, I'm ready to plot. See inline comments for detail.
+
+```{r ByCountry}
+#| warning: FALSE
+by_country <-
+  cumulative_medals %>% 
+  # Only show countries with at least 500 total medals
+  filter(max(Total) >= 500) %>% 
+  left_join(country_flags, by = c("team" = "country")) %>% 
+  group_by(team) %>% 
+  # Only label the last year with the flag emoji to avoid noise
+  mutate(label = if_else(year == max(year), emoji, NA_character_)) %>% 
+  ggplot(aes(x = year, y = Total)) + 
+  # Highlight Russia/USSR in red during Cold War years
+  geom_line(
+    aes(
+      group = team,
+      color = if_else(
+        team == "Russia" & year >= 1947 & year <= 1991,
+        "#FF3C28",
+        "grey60"
+      )
+    )
+  ) +
+  scale_color_identity() +
+  geom_text_repel(
+    aes(label = label), 
+    family = "DIN Alternate",
+    hjust = 0,
+    vjust = 0.5,
+    nudge_y = 15,
+    segment.size = 0.2,
+    xlim = c(2016, NA)
+  ) +
+  # Set ticks to years divisible by four to align with years in which Summer Games were held
+  scale_x_continuous(limits = c(1896, 2024), breaks = seq(1896, 2024, by = 16)) +
+  scale_y_continuous(
+    limits = c(0, 3000),
+    labels = scales::comma,
+    position = "right") +
+  labs(
+    title = "<b>The Cold War: A Space Race or Foot Race?</b><br>The <span style='color: #ff3c28'>USSR<sup>1</sup></span> wins over 1,000 medals -- the most of any country in this period",
+    subtitle = "Cumulative Summer Olympics medal count by country for countries with at least 500 medals",
+    x = NULL,
+    y = NULL,
+    caption = "Data source: Kaggle<br><sup>1</sup> We lumped the USSR/Russia and Germany/East Germany together for this analysis") +
+  # Add Cold War annotation
+  geom_errorbarh(
+    inherit.aes = FALSE,
+    data = tibble(xmin = 1947, xmax = 1991, y = 2600),
+    aes(xmin = xmin, xmax = xmax, y = y),
+    height = 100
+  ) +
+  annotate(
+    "text", x = 1969, y = 2700, 
+    label = "The Cold War (1947-1991)", 
+    family = "DIN Alternate",
+    hjust = 0.5, vjust = 0
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_markdown(margin = margin(l = 100, b = 5), vjust = 0.5),
+    plot.subtitle = element_markdown(margin = margin(l = 100, b = 10)),
+    plot.caption = element_markdown(),
+    text = element_text(family = "DIN Alternate"),
+    axis.line = element_line(color = "grey20"),
+    strip.text = element_text(size = 48)
+    )  +
+  coord_cartesian(clip = 'off') +
+  # Add Olympic Rings logo
+  annotation_custom(
+    magick::image_read("olympic_rings.svg") %>% grid::rasterGrob(interpolate = TRUE), 
+    x = 1890, xmax = 1914, y = 3300, ymax = 4100)
+
+ggsave(by_country, file = "by-country.svg", width = 8, height = 4)
+```
+
+```{r ByMedal}
+#| include: false
+#| eval: false
+medal_emojis <-
+  emojis %>% 
+  filter(str_detect(name, "place medal")) %>% 
+  transmute(
+    medal_emoji = emoji,
+    medal_name = case_when(
+    name == "1st place medal" ~ "Gold",
+    name == "2nd place medal" ~ "Silver",
+    name == "3rd place medal" ~ "Bronze"
+  ))
+
+by_medal <- cumulative_medals %>% 
+  filter(max(total) > 500) %>% 
+  pivot_longer(cols = golds:bronzes,
+               names_to = "medal",
+               values_to = "count") %>% 
+  mutate(medal = fct_relevel(medal, c("golds", "silvers", "bronzes"))) %>% 
+  left_join(country_flags, by = c("team" = "country")) %>% 
+  left_join(medal_emojis, by = c("medal" = "medal_name")) %>% 
+  group_by(team) %>% 
+  mutate(label = if_else(year == max(year), emoji, NA_character_)) %>% 
+  ggplot() + 
+  geom_line(aes(year, count, group = team),
+            color = "grey80") +
+  geom_text(
+    aes(year, count, label = label), 
+    family = "DIN Alternate",
+    hjust = -0.25
+  ) +
+  facet_wrap(. ~ medal_emoji, scales = "free_y") +
+  scale_x_continuous(limits = c(1896, 2024), breaks = seq(1896, 2024, by = 16)) +
+  labs(
+    title = "Cumulative Medal Count by Country",
+    subtitle = "for countries with at least 500 cumulative medals",
+    x = NULL,
+    y = NULL) +
+  theme_minimal() +
+  theme(
+    text = element_text(family = "DIN Alternate"),
+    axis.line = element_line(color = "grey20"),
+    strip.text = element_text(size = 48)
+    ) +
+  scale_y_continuous(labels = scales::comma,
+                     position = "right") 
+  
+ggsave(by_medal, file = "by-medal.svg", width = 12, height = 4)
+```

@@ -1,0 +1,11 @@
+![](mitch.jpg){class="col-6 pro-pic" fig-align="center" width=250px}
+
+:::{.text-center}
+Welcome to my personal site.
+
+Find me @mitchbeebe on most platforms or shoot me an [email](mailto:beebe.mitch@gmail.com).
+:::
+
+:::{.text-center .fixed-bottom .small}
+Powered by [Quarto](https://quarto.org)
+:::

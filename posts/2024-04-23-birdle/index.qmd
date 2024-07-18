@@ -1,0 +1,10 @@
+---
+title: "Creating Birdle"
+description: "A brief write-up about developing Birdle"
+date: 2024-04-23
+categories:
+  - Python
+  - R
+image: play-birdle-logo.png
+draft: true
+---

@@ -1,0 +1,235 @@
+---
+title: "Webscraping NHL Data with RSelenium, Part 1"
+date: '2019-05-08'
+categories: R
+---
+
+I love hockey. I also love data science. What's better than merging the two and learn how to use RSelenium in the process?
+
+A while ago, I wrote some web-scraping [code](https://github.com/mitchbeebe/nhlStandings) to find the NHL standings as of Novermber 1st (roughly one month into the season). I was doing this in order to determine if a strong start to the season was related to end-of-season success. Fortunately, the website *dropyourgloves.com* had convenient and uniform URLs to simply combine season and date strings to create a valid URL to scrape the corresponding HTML table. Unfortunately, the website no longer exists!
+
+After some Google-Fu, I was unable to find a replacement website, however, I found [shrpsports.com](http://www.shrpsports.com), which has an easy-to-use dropdown UI, submit bottons, and resulting HTML table. This isn't as easy as find and replace in the code, so I needed to load RSelenium for automating the browser to populate dropdowns and click submit.
+
+I found that the preferred way to run RSelenium is via a headless browser running in Docker. This was the first case I found myself needing either technology. I still have work to do to write more robust code, but I got this working, so I wanted to post about it.
+
+**Set up Docker**
+
+-   First, I downloaded Docker [here](https://www.docker.com/products/docker-desktop)
+-   To start a headless browser, I ran `docker run -d -p 4445:4444 selenium/standalone-chrome` (the first time pulls the Docker image from DockerHub)
+
+**Connecting to the browser**
+
+The R code below begins the webscraping journey.
+
+```{r}
+#| eval: false
+# Import packages
+library(RSelenium)
+library(rvest)
+library(tidyverse)
+library(glue)
+library(knitr)
+library(kableExtra)
+
+# Start a docker container with Google Chrome on port 4444 on
+#   the server side inside the container and 4445 on my local machine
+system("docker run -d -p 4445:4444 selenium/standalone-chrome")
+
+# Access the remote browser
+remDr <- RSelenium::remoteDriver(remoteServerAddr = "localhost",
+                                 port = 4445L,
+                                 browserName = "chrome")
+
+# Initialize a browsing session
+remDr$open(silent = TRUE)
+
+# Navigate to the website to scrape
+remDr$navigate("http://www.shrpsports.com/nhl/stand.htm") 
+
+# Save a screenshot and display below
+remDr$screenshot(file = "screenshot.png")
+```
+
+------------------------------------------------------------------------
+
+Here's what the website looks like:
+
+------------------------------------------------------------------------
+
+![](./screenshot.png){width="100%" height="100%"}
+
+------------------------------------------------------------------------
+
+**Scrape NHL Standings**
+
+Now for the fun part. I wrote this function to fetch standings from the remote browser for any season and date or for season-end standings. There are a few pitfalls of this function regarding the NHL changing playoff format, conference assignments, etc. that will take quite a bit of elbow grease for a truly robust function, so I'll save that for another time. I also noticed a few data consistency issues, but hey, it's a free site from which I'm pulling data.
+
+For the timebeing, this function simply returns the Eastern, Western, and, if pulling season-end standings, the Stanley Cup match-up. In a future post, I hope to try the analysis of "Does a strong start to the season predict not only a playoff berth, but also playoff success?" Having this function will allow for that to happen with far less repetitive programming.
+
+```{r}
+#| eval: false
+getStandings <- function(season, month, date) {
+  # Gets the NHL standings for any season on any date or final conference standings
+  #
+  # Args:
+  #   season: Four-character string representing the NHL season (year in which Stanley
+  #     Cup is played for the season, e.g. "2018" is for the 2017-18 season)
+  #   month (optional): Three-character month abbreviation
+  #   date (optional): Character representing day of the month (e.g. "1", "12", "27")
+  #
+  # Returns:
+  #   The NHL standings in a dataframe
+  
+  # Enter the URL for the browser
+  remDr$navigate("http://www.shrpsports.com/nhl/stand.htm") 
+  
+  # Save the homepage HTML to reuse in several 
+  homepage <- read_html(remDr$getPageSource()[[1]])
+  
+  # Get seasons from dropdown
+  valid_seasons <- homepage %>% 
+    html_nodes("select[name='season']") %>% 
+    html_children() %>% 
+    html_attr("value")
+  
+  # Get months from dropdown
+  valid_mos <- homepage %>% 
+    html_nodes("select[name='month']") %>% 
+    html_children() %>% 
+    html_attr("value")
+  
+  # Get days of month from dropdown
+  valid_dates <- homepage %>% 
+    html_nodes("select[name='date']") %>% 
+    html_children() %>% 
+    html_attr("value")
+  
+  # Verify season input
+  if (!(season %in% valid_seasons)) stop("Invalid season")
+  
+  # Determine if user wants final standings or standings as of a date
+  if (missing(month) | missing(date)) {
+    div_conf <- "latefincnf"
+    month <- ""
+    date <- ""
+    message("Getting season-end standings...")
+  } else {
+    if (!(month %in% valid_mos)) stop("Invalid month")
+    if (!(date %in% valid_dates)) stop("Invalid date")
+    div_conf <- "cnf"
+    message(glue("Getting standings as of {month}-{date}..."))
+  }
+  
+  # Select season input in dropdown
+  season <- remDr$findElement(using = 'css selector', 
+                              glue("select[name='season'] option[value='{season}']"))
+  season$clickElement()
+  
+  # Select division/conference in dropdown
+  divcnf <- remDr$findElement(using = 'css selector', 
+                              glue("select[name='divcnf'] option[value='{div_conf}']"))
+  divcnf$clickElement()
+  
+  # Select month in dropdown
+  month <- remDr$findElement(using = 'css selector', 
+                             glue("select[name='month'] option[value='{month}']"))
+  month$clickElement()
+  
+  # Select day of month in dropdown
+  dom <- remDr$findElement(using = 'css selector', 
+                           glue("select[name='date'] option[value='{date}']"))
+  dom$clickElement()
+  
+  # Click submit botton
+  submit <- remDr$findElement(using = 'css selector', "input[type='submit']")
+  submit$clickElement()
+  
+  # NOT RUN: This will take a screenshot of the current remote browser
+  #   screen and display it in the RStudio viewer
+  # remDr$screenshot(display = TRUE) 
+  
+  # Read the HTML table from resulting webpage
+  raw_table <- read_html(remDr$getPageSource()[[1]]) %>% 
+    html_table(fill = TRUE) %>% 
+    .[[3]]
+  
+  # Names are stored in the second row, so rename the table accordingly
+  names(raw_table) <- raw_table[2,]
+  
+  # Clean up column name holding the NHL team name and remove excess rows
+  raw_table <- raw_table %>% 
+    rename(Team = "") %>% 
+    filter(Team != "") %>% 
+    rename_all(~str_replace_all(.,"\\-", "\\_"))
+  
+  # Index the rows of the table holding Conference subheadings
+  conf_idx <- raw_table$Team %>% 
+    grep("conf", ., ignore.case = TRUE)
+  
+  # Store all Eastern conference results in a dataframe
+  east <- raw_table %>% 
+    slice(1:(conf_idx[2] - 1)) %>% 
+    filter(!str_detect(Team, regex("conf", ignore_case = TRUE))) %>% 
+    mutate(place = row_number(),
+           Team = str_trim(str_replace(Team, "\\*|\\d", "")),
+           playoffs = if_else(place <= 8, TRUE, FALSE))
+  
+  # Store all Western conference results in another dataframe
+  west <- raw_table %>% 
+    slice(conf_idx[2]:n()) %>% 
+    filter(!str_detect(Team, regex("conf", ignore_case = TRUE))) %>% 
+    mutate(place = row_number(),
+           Team = str_trim(str_replace(Team, "\\*|\\d", "")),
+           playoffs = if_else(place <= 8, TRUE, FALSE))
+  
+  # If user wants final conference standings, also get Stanley Cup match
+  if (div_conf == "latefincnf") {
+    
+    sc_match <- read_html(remDr$getPageSource()[[1]]) %>%
+      html_table(fill = TRUE) %>%
+      tail(1) %>%
+      .[[1]] %>% 
+      filter(!str_detect(X1, regex("cup", ignore_case = TRUE))) %>%
+      mutate(X1 = str_remove_all(X1, "[\\d\\-]") %>% 
+               str_remove("\\w+$") %>% 
+               str_trim()) %>%
+      separate(X1, c("Winner", "Loser"), "  ")
+    
+  }
+  
+  return(
+    list(eastern = east,
+         western = west,
+         stanley_cup = if (exists("sc_match")) sc_match else NA)
+  )
+  
+}
+```
+
+Below are sample results of running the function. Looks like it works for season-end standings!
+
+```{r}
+#| eval: false
+# Let's get the season-end Eastern standings for the 2016 season
+getStandings("2016")$eastern %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                full_width = FALSE, font_size = 12)
+```
+
+Let's see how my Detroit Red Wings were doing on the day I was born...
+
+```{r}
+#| eval: false
+drw <- getStandings("1993", "Feb", "14")$western %>% 
+  filter(Team == "Detroit")
+
+drw %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                full_width = FALSE, font_size = 12)
+```
+
+A record of 31-21-7...not bad. Fun fact, Montreal won the cup that year.
+
+That's it for now, thanks for reading. Hopefully more to come on this.

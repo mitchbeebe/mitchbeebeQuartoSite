@@ -1,0 +1,15 @@
+{
+  "hash": "757bc1c9991da59d8f94514e3de72cfe",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Webscraping NHL Data with RSelenium, Part 2\"\ndate: 2019-05-15\ndraft: true\ntags:\n  - R\n  - webscraping\n  - Selenium\n  - NHL\ncategories: R\noutput: html_document\n---\n\n\n### NHL-WHA merger\n\nWith the absorption of four teams from the World Hockey Association in the 1979–1980 season, a new playoff system was introduced where 16 of the league's 21 teams would qualify for postseason play. The four division winners would qualify for the playoffs while twelve wildcard positions rounded out the sixteen teams. At the beginning of each round the teams were seeded based on their regular season point totals, with the preliminary round being a best-of-five series while all other playoff series were best-of-seven.\n\n------------------------------------------------------------------------\n\n[place holder]\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

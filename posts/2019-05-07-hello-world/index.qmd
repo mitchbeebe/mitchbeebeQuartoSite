@@ -1,0 +1,36 @@
+---
+title: "Hello World"
+date: 2019-05-07
+categories: ["R"]
+---
+
+## Quarto
+
+This is my first post! This website is developed with Quarto and served via Netlify. I tried hosting this on GitHub Pages, but had too much difficulty customizing. Having used Blogdown, I'm making the transition to Quarto.
+
+So far this is great. I can embed R code like this:
+
+```{r cars}
+summary(cars)
+```
+
+Or include plots:
+
+```{r sky}
+pie(
+  c(280, 60, 20),
+  c('Sky', 'Sunny side of pyramid', 'Shady side of pyramid'),
+  col = c('#0292D8', '#F7EA39', '#C4B632'),
+  init.angle = -50, border = NA
+)
+```
+
+------------------------------------------------------------------------
+
+I don't anticipate blogging a lot, but I hope to make this a platform to showcase some of my pet projects. Fair warning, a lot of my projects revolve on my dog, Harper, so I literally mean "pet". Below are a few examples I hope to post about soon:
+
+-   Raspberry Pi timelapse video of Harper crate-training
+-   Harper/Not Harper image classification mobile app
+-   Harper autoencoder to generate new, "fake" Harper images
+
+Thanks for reading!

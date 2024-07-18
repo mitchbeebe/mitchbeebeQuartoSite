@@ -1,0 +1,19 @@
+/*-- scss:defaults --*/
+$primary: #66aa55 !default;
+$navbar-fg: #fff !default;
+$navbar-hl: #000000 !default;
+$link-color: #548b46;
+
+$card-spacer-y: 0;
+$card-title-spacer-y: 0;
+
+.pro-pic {
+    border-radius: 50%;
+}
+
+.gallery-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}

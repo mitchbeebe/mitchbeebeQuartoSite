@@ -1,0 +1,37 @@
+project:
+  type: website
+  preview:
+    port: 4947
+
+website:
+  title: "{{< fa chart-line >}} Mitch Beebe"
+  navbar:
+    right:
+      - text: "Home"
+        href: index.qmd
+      - text: "Posts"
+        href: posts/index.qmd
+      - text: "Gallery"
+        href: gallery/index.qmd
+      - text: "About"
+        href: about.qmd
+      - icon: linkedin
+        href: https://linkedin.com/in/mitchbeebe
+        target: _blank
+      - icon: github
+        href: https://github.com/mitchbeebe
+        target: _blank
+      - text: "{{< fa dove >}} Birdle"
+        href: https://play-birdle.com
+        target: _blank
+  favicon: favicon.svg
+format:
+  html:
+    theme: 
+      - Flatly
+      - styles.scss
+    page-layout: full
+
+editor: visual
+
+link-external-newwindow: true
