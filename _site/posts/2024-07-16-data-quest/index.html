@@ -201,8 +201,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This week’s challenge was to find a dataset on the Summer Olympics and create a visualization, model, app, or other data-related output using the tool of your choice.</p>
-<p>I’ll jump right to it and show my output.</p>
+<p>This week’s <a href="https://www.bletchley.org/blog/mastery-quest-the-summer-olympics-data-science">Data Science Mastery Quest</a>, or Data Quest, was to find a dataset on the Summer Olympics and create a visualization, model, app, or other data-related output using the tool of your choice.</p>
+<p>Below is my contribution followed by the how-to, for those interested.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="by-country.svg" class="img-fluid figure-img"></p>
@@ -441,11 +441,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>comma,</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;The Cold War: A Space Race or Foot Race?&lt;/b&gt;&lt;br&gt;The &lt;span style='color: #ff3c28'&gt;USSR&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt; wins over 1,000 medals -- the most of any country in this period"</span>,</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;The Cold War: A Space Race or Foot Race?&lt;/b&gt;&lt;br&gt;The &lt;span style='color: #ff3c28'&gt;USSR&lt;/span&gt;&lt;sup&gt;1&lt;/sup&gt; wins over 1,000 medals -- the most of any country in this period"</span>,</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Cumulative Summer Olympics medal count by country for countries with at least 500 medals"</span>,</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data source: Kaggle&lt;br&gt;&lt;sup&gt;1&lt;/sup&gt; We lumped the USSR/Russia and Germany/East Germany together for this analysis"</span>) <span class="sc">+</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data source: Kaggle&lt;br&gt;&lt;sup&gt;1&lt;/sup&gt; USSR/Russia are combined as are Germany/East Germany for this analysis"</span>) <span class="sc">+</span></span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add Cold War annotation</span></span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(</span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>

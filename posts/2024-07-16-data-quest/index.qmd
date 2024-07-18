@@ -5,9 +5,9 @@ date: "2024-07-16"
 image: https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w1460/f_auto/primary/ufimmifputd3kkkvdgmb
 ---
 
-This week's challenge was to find a dataset on the Summer Olympics and create a visualization, model, app, or other data-related output using the tool of your choice.
+This week's [Data Science Mastery Quest](https://www.bletchley.org/blog/mastery-quest-the-summer-olympics-data-science), or Data Quest, was to find a dataset on the Summer Olympics and create a visualization, model, app, or other data-related output using the tool of your choice.
 
-I'll jump right to it and show my output.
+Below is my contribution followed by the how-to, for those interested.
 
 ![It's widely known that the United States was in a Space Race with the Soviet Union throughout the Cold War, but it turns out we were also in a foot race. The USSR accumulated 1,005 golds, silvers, and bronzes starting in the 1952 Games in Helsinki through the 1988 Games in Seoul. The next closest countries were the USA and Germany with 957 and 755 medals tallied, respectively.](by-country.svg){fig-align="center"}
 
@@ -113,11 +113,11 @@ by_country <-
     labels = scales::comma,
     position = "right") +
   labs(
-    title = "<b>The Cold War: A Space Race or Foot Race?</b><br>The <span style='color: #ff3c28'>USSR<sup>1</sup></span> wins over 1,000 medals -- the most of any country in this period",
+    title = "<b>The Cold War: A Space Race or Foot Race?</b><br>The <span style='color: #ff3c28'>USSR</span><sup>1</sup> wins over 1,000 medals -- the most of any country in this period",
     subtitle = "Cumulative Summer Olympics medal count by country for countries with at least 500 medals",
     x = NULL,
     y = NULL,
-    caption = "Data source: Kaggle<br><sup>1</sup> We lumped the USSR/Russia and Germany/East Germany together for this analysis") +
+    caption = "Data source: Kaggle<br><sup>1</sup> USSR/Russia are combined as are Germany/East Germany for this analysis") +
   # Add Cold War annotation
   geom_errorbarh(
     inherit.aes = FALSE,
