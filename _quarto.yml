@@ -24,6 +24,8 @@ website:
       - text: "{{< fa dove >}} Birdle"
         href: https://play-birdle.com
         target: _blank
+  repo-url: https://github.com/mitchbeebe/mitchbeebeQuartoSite
+  repo-actions: [source, issue]
   favicon: favicon.svg
 format:
   html:
