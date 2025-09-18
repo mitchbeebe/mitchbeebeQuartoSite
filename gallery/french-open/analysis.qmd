@@ -1,0 +1,471 @@
+---
+title: "Quantifying Rafael Nadal's Dominance with French Open Data"
+description: "A blog post written for Flatiron School"
+date: 2024-05-07
+image: "https://flatironschool.com/wp-content/uploads/2024/06/Resized-blog-thumbnail-5-900x599.jpg.webp"
+format:
+  html:
+    page-layout: article
+    toc: true
+execute: 
+  eval: false
+  include: false
+---
+
+::: callout-note
+## This article was originally posted to [Flatiron School's Blog](https://flatironschool.com/blog/quantifying-rafael-nadals-dominance-with-french-open-data/), but has since been moved
+:::
+
+```{r Libraries-and-data}
+library(tidyverse)
+library(glue)
+library(scales)
+library(ggthemes)
+library(ggridges)
+library(ggtext)
+library(ggimage)
+library(gt)
+library(gtExtras)
+library(showtext)
+library(svglite)
+library(webshot2)
+library(cowplot)
+
+font_add_google("Fira Sans")
+showtext_auto()
+showtext_opts(dpi = 300)
+
+tournament_df <- read_csv("./data/Big Three Data - Tournament-level.csv")
+match_serve_df <- read_csv("./data/Big Three Data - Match-level-serve.csv")
+match_return_df <- read_csv("./data/Big Three Data - Match-level-return.csv")
+match_df <- 
+  match_serve_df %>% 
+  full_join(
+    match_return_df %>% select(Player:Rd, TPW:BPCnv, -Surface),
+    by = c("Player", "Date", "Tournament", "Rd")) %>% 
+  mutate(
+    across(c(DR:`2nd%`, TPW:`v2nd%`), ~ str_remove(.x, "%") %>% as.numeric),
+    won = if_else(
+      str_locate(...8, Player)[,"start"] < str_locate(...8, 'd\\.')[,"start"],
+      1, 0
+    ),
+    Tournament = fct_relevel(Tournament, "Australian Open", "Roland Garros", "Wimbledon", "US Open")
+  )
+dict_df <- read_csv("./data/Big Three Data - Dict.csv")
+
+tours <- match_df$Tournament %>% unique()
+players <- match_df$Player %>% unique()
+
+tour_logos <- 
+  setNames(
+    paste0("<img src='imgs/", str_replace(str_to_lower(tours), " ", "-"), ".png' width='50' />"), 
+    tours
+  )
+headshots <- 
+  setNames(
+    paste0("<img src='imgs/", str_to_lower(players), ".png' width='30' /><br>",
+           "<span style='text-align: center'> ", players, "</span>"), 
+    players
+  )
+```
+
+# Rafael Nadal’s French Open Dominance
+
+The French Open, also known as Roland Garros, began this week in Paris, France and will culminate in championships held on June 8th and 9th. It is the second of four major tennis tournaments collectively known as the Grand Slam—the Australian Open, Wimbledon, and U.S. Open being the other three. A big question heading into the tournament was whether Rafael Nadal would compete. He has won it 14 times in his career, the most of any individual player, male or female. In this blog, we try to identify the *je ne sais quoi* that earned him the nickname, "King of Clay", and explore the data behind his record-breaking French Open success.
+
+## French Open Titles
+
+In 18 career appearances, Rafael Nadal has won the French Open 14 times. The next closest male is Björn Borg with six titles. On the female side, Chris Evert holds the record with seven.
+
+Taking our scope beyond just the French Open, no player, male or female, has 14 singles titles at any one Grand Slam tournament. Aside from Nadal, the only active player in the table below is Novak Djokovic, who holds the closest active record with 10 Australian Open titles. Already playing the tournament 19 times, career longevity becomes a challenge if he were to unseat Nadal as the winningest player at a single major tournament.
+
+Among these tennis greats, Nadal's stretch of success at the French Open is truly eye-catching.
+
+```{r Fig-1}
+#| fig-cap: "Caption: The table above comes from Flatiron’s analysis of individual titles at a single Grand Slam tournament in the Open Era (1968 to present)."
+
+title_record_gt <-
+  tribble(
+  ~tournament, ~player, ~titles, ~appearances, ~outcomes,
+  "Roland Garros", "Nadal", 14, 19, c(NA,NA,1,1,1,1,0,1,1,1,1,1,0,0,1,1,1,1,0,1,NA,0),
+  "Roland Garros", "Evert", 7, 13, c(NA,NA,0,1,1,NA,NA,NA,1,1,0,0,1,0,1,1,0,0,NA),
+  "Australian Open", "Djokovic", 10, 19, c(0,0,0,1,0,0,1,1,1,0,1,1,0,0,1,1,1,NA,1,0),
+  "Australian Open", "Williams", 7, 20, c(0,0,0,0,NA,1,NA,1,0,1,0,1,1,NA,0,0,0,1,0,1,NA,0,0,0,NA),
+  "Wimbledon", "Navratilova", 9, 23, c(0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,NA,0),
+  "Wimbledon", "Federer", 8, 22, c(0,0,0,0,1,1,1,1,1,0,1,0,0,1,0,0,0,0,1,0,0,NA,0),
+  "US Open", "Evert", 6, 19, c(0,0,0,0,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0),
+  "US Open", "Williams", 6, 21, c(0,1,0,0,1,NA,0,0,0,0,1,0,NA,0,1,1,1,0,0,NA,0,0,0,NA,0),
+  "US Open", "Federer", 5, 20, c(0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,NA,0,0,0,NA,NA)
+) %>% 
+  gt(groupname_col = "tournament") %>% 
+  text_transform(
+    fn = function(x) {
+      lapply(x, function(x) {
+        surface <- case_when(
+          x == "Roland Garros" ~ "(Clay)",
+          x == "Wimbledon" ~ "(Grass)",
+          TRUE ~ "(Hard)",
+        )
+        html(paste0(
+           "<div style='display: flex; align-items:center;'>",
+          local_image(
+            paste0("imgs/", str_replace(str_to_lower(x)," ", "-"), ".png")
+          ),
+          "<span style='align-items:center; margin-left:0.5rem;'> ", paste(x, surface), "</span></div>"
+        ))
+      })
+    },
+    locations = cells_row_groups()
+  ) %>% 
+  text_transform(
+    fn = function(x) {
+      lapply(x, function(x) {
+        html(paste0(
+           "<div style='display: flex; align-items:center;'>",
+          local_image(
+            paste0("imgs/", str_to_lower(x), ".png")
+          ),
+          "<span style='margin-left:0.5rem;'>", x, "</span>"
+        ))
+      })
+    },
+    locations = cells_body(player)
+  ) %>% 
+  gt_plt_winloss(outcomes, type = "pill", max_wins = 22) %>% 
+  gt_theme_nytimes() %>%
+  opt_all_caps() %>% 
+  tab_header(
+    title = "Most Titles Won at a Single Major (in the Open Era)",
+    subtitle = "Rafael Nadal's French Open Record Compared to Other Grand Slam Records"
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_fill(color = "gold", alpha = 0.2)
+    ),
+    locations = cells_body(rows = player == "Nadal")
+  )
+
+title_record_gt %>% gtsave("plots/fig1-title-records.png")
+```
+
+![The table above comes from Flatiron’s analysis of individual titles at a single Grand Slam tournament in the Open Era (1968 to present).](plots/fig1-title-records.png){width="500"}
+
+## What makes him so dominant?
+
+A unique aspect of the French Open is its surface. Rather than the traditional blue or green hard court (typically concrete) you're likely to find at a nearby park or sports complex, Roland Garros features an orange-red surface made of densely packed clay. This surface results in a distinct gameplay that rewards defensive play and makes the ball behave differently off the bounce compared to other surfaces. Another challenge posed by clay is the reduced friction between the shoe and the surface, requiring players to slide into position to strike the ball as they move around the court.
+
+![An image of Rafael Nadal on the clay court at the French Open. Source: rolandgarros.com](imgs/pic1-roland-garros-clay.png){fig-align="center" width="80%"}
+
+Many experts attribute Nadal's success at the French Open to his athleticism and emphasis on power and spin off the racket. These characteristics, accentuated by the clay court, allow him to hit returns other players cannot and to remain on the offensive even while his opponent is serving.
+
+The "Big Three"—comprised of Novak Djokovic, Roger Federer, and Rafael Nadal—is the nickname for the trio considered the greatest male tennis players of all time. Even among this group Nadal's return statistics stand out. In French Open matches, he wins an average of 49% of return points compared to Djokovic's 44% and Federer's 41%. Winning nearly 50% of return points is unheard of, especially when top players are expected to win 70% or more of the points in which they are serving.
+
+Additionally, Nadal's median Ace Rate Against—a measure of how often a player is unable to touch their opponent's serve—is just 2.7% at the French Open, the lowest among all three athletes at any Grand Slam. To take the opponent's serving advantage away this dramatically, it's clear evidence of Nadal's impressive upper hand on the clay court.
+
+The figure below compares match statistics for Djokovic, Federer, and Nadal at Grand Slam tournaments across their respective careers.
+
+```{r Fig-2}
+#| include: false
+#| fig-height: 8
+#| fig-width: 10
+#| fig-cap: "The chart above comes from Flatiron’s analysis of career matches at Grand Slam tournaments for Rafael Nadal, Roger Federer, and Novak Djokovic, collectively known as the 'Big Three'."
+
+return_metrics <- dict_df %>% filter(Abbr %in% c("RPW", "vA%", "v1st%", "v2nd%"))
+
+big_three_match_stats_plot <-
+  match_df %>% 
+  pivot_longer(
+    cols = c(DR:`2nd%`, TPW:`v2nd%`), 
+    names_to = "metric") %>% 
+  mutate(
+    highlight = if_else(Player == "Nadal" & Tournament == "Roland Garros", "yes", "no")
+  ) %>% 
+  filter(str_detect(metric, "(RPW)|(^v)")) %>%
+  ggplot(
+    aes(x = value, 
+        y = Player, 
+        fill = highlight,
+        alpha = highlight)
+  ) +
+  geom_rect(
+    inherit.aes = F,
+    data = . %>%
+      count(Tournament, Player) %>%
+      filter(Tournament == "Roland Garros"),
+    xmin = -Inf, ymin = -Inf, xmax = Inf, ymax = Inf,
+    fill = "gold", color = NA, alpha = 0.1
+  ) +
+  annotate(geom = 'segment', 
+           y = -Inf, 
+           yend = -Inf, 
+           x = -Inf, 
+           xend = Inf, 
+           col = "grey",
+           linewidth = 1.5) +
+  geom_density_ridges(
+    scale = 0.9,
+    quantiles = 2,
+    quantile_lines = TRUE,
+    vline_color = "grey30",
+    jittered_points = TRUE,
+    position = position_points_jitter(width = 0.05, height = 0.05),
+    point_size = 0.4, point_alpha = 0.5) +
+  scale_fill_manual(values = c("yes" = "#c64e4b", 
+                               "no" = "grey")) +
+  scale_alpha_manual(values = c("yes" = 0.75, 
+                                "no" = 0.5)) +
+  scale_x_continuous(labels = percent_format(scale = 1),
+                     sec.axis = dup_axis()) +
+  scale_y_discrete(
+    name = NULL,
+    labels = headshots,
+    #expand = c(0.01, 0)
+  ) +
+  facet_grid(
+    Tournament ~ metric,
+    switch = "y",
+    scales = "free_x",
+    labeller = as_labeller(
+      c(tour_logos, 
+        setNames(return_metrics %>% 
+                   pluck("Definition") %>% 
+                   str_to_title() %>% 
+                   str_wrap(width = 20),
+                 return_metrics %>% pluck("Abbr"))
+      )
+    )
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(family = "Fira Sans"),
+    plot.title = element_text(face = "bold"),
+    axis.text.y = element_markdown(), # face = "bold", hjust = 0.5, vjust = 0.25
+    strip.text.y.left = element_markdown(angle = 0),
+    strip.text.x.top = element_text(size = 12),
+    strip.text = element_text(face = "bold"),
+    strip.placement = "outside",
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    panel.spacing = unit(0, "lines")
+  ) +
+  labs(
+    title = "Rafael Nadal's Impressive Return Statistics in the French Open",
+    subtitle = "Distribution of Career Match Statistics for the Big Three in Grand Slam Tournaments. Vertical Line represents median.",
+    x = NULL, y = NULL
+  ) +
+  geom_label(
+    data = tibble(
+      Player = "Nadal",
+      Tournament = "Roland Garros",
+      highlight = "yes",
+      metric = "RPW",
+      value = 55,
+      lab = "Nearly 50%!"),
+    aes(label = lab), vjust = -1.3, hjust = 0, fontface = "bold", fill = "gold"
+  ) +
+  geom_label(
+    data = tibble(
+      Player = "Nadal",
+      Tournament = "Roland Garros",
+      highlight = "yes",
+      metric = "vA%",
+      value = 10,
+      lab = "Lowest among\nthe Big Three"),
+    aes(label = lab), vjust = -0.2, hjust = 0, fontface = "bold", fill = "gold"
+  )
+```
+
+![The chart above comes from Flatiron’s analysis of career matches at Grand Slam tournaments for Rafael Nadal, Roger Federer, and Novak Djokovic, collectively known as the 'Big Three'.](plots/fig2-big-three-match-stats.png)
+
+```{r Tables}
+#| include: false
+match_df %>% 
+  group_by(Tournament, Player) %>% 
+  summarise(across(c(`1st%`, `2nd%`, return_metrics$Abbr), ~ median(., na.rm=T)))
+
+match_df %>% 
+  select(Tournament, Player, RPW, `vA%`) %>% 
+  nest(RPW = RPW,
+       `vA%` = `vA%`) %>% 
+  group_by(Tournament) %>% 
+  arrange(Tournament) %>% 
+  gt() %>% 
+  cols_nanoplot(
+    columns = RPW, 
+    new_col_name = "test1",
+    plot_type = "boxplot") %>% 
+  cols_nanoplot(
+    columns = `vA%`, 
+    new_col_name = "test2",
+    plot_type = "boxplot")
+```
+
+```{r Model}
+#| include: false
+match_df %>% 
+  glm(
+    data = .,
+    formula = won ~ DR + Surface:Player,
+    family = binomial()
+  ) -> mod
+
+mod %>% summary()
+
+modelr::add_predictions(match_df, mod, type = "response")
+```
+
+## The Greatest Records of All Time
+
+The data so far shows that no tennis player has dominated one of the majors the way Nadal has at the French Open, but how does his record compare to non-tennis records? What methodology could we use to compare apples and oranges, or perhaps, tennis balls, basketballs, and hockey pucks?
+
+There are a number of ways to approach any given problem in the field of Data Science. In fact, for a field known for its quantitative rigor, there are many aspects that allow for creativity. Designing data visualizations, weaving insights into a cohesive story, or, in our case, developing a methodology for comparing athletic achievements are all ways in which creative thinking is an asset.
+
+For our problem, we could visualize the difference relative to the next best record-holder or compare the length of time previous records were held. These are interesting ideas, but really only compare two data points head-to-head. With sample size in mind, let's try to contextualize how far out of the ordinary Nadal's 14 championship wins are and do the same for a couple other sports achievements.
+
+The number of wins at a tennis tournament are of a different magnitude than, say, the number of career points in basketball. To make things fair, we need to standardize. The "standard score", sometimes called a "Z-score", is a way for us to compare data measured on different scales. It can be calculated by taking each data point, $x$, subtracting the average, $\bar{x}$, of data points from the same sample, and dividing by the standard deviation, $S$, a measure of how much variability there is in our data. Written in equation form, we have: $z = \frac{x - \bar x}{S}$.
+
+```{r Zscore-Example}
+#| eval: true
+grand_slam_titles <- readr::read_csv("./data/TournamentGrandSlamTitles-v2.csv")
+grand_slam_avg <- grand_slam_titles |> purrr::pluck("value") |> mean() |> round(digits = 1)
+grand_slam_sd <- grand_slam_titles |> purrr::pluck("value") |> sd() |> round(digits = 1)
+(14-grand_slam_avg)/grand_slam_sd
+```
+
+As an example, on the top 50 list of most grand slam titles at a single tournament, the average is `r grand_slam_avg` with a standard deviation of `r grand_slam_sd`. Therefore, the z-score for Rafael Nadal's French Open record is:
+
+$$
+z = \frac{14 \space titles - 2.2 \space average}{standard \space deviation \space of \space 2.1} = 5.6
+$$
+
+Z-scores are unitless, meaning we can calculate and compare these for records from different categories, even different sports. It is important, however, to know that z-scores can be susceptible to skewed data and to confidently say if one is more extreme than another, we may need to account for distributional characteristics before standardizing them. We will save those techniques for another time, but for now, we can say with certainty that a positive z-score means a data point is atypically high relative to the population from which it comes. Conversely, a negative one means it is unusually low compared to its population. In summary, the further a z-score is from zero, the further it is from average.
+
+In the chart below, we compare Nadal's record with three notable records. Namely, the National Hockey League career points record set by Wayne Gretzky, the recently-set women's college basketball scoring record by Caitlin Clark, and Katie Ledecky's ever-growing count of gold medals at the Olympics and World Championships.
+
+It's clear that all four athletes' achievements stand far beyond the competition. Nadal's 14 titles put him farthest from average of these four records, but the right-skewed distributions make this an imperfect comparison. Further analysis could include exploring measures that are more robust to skew and outliers.
+
+```{r OtherRecords}
+#| fig-cap: "Caption: The chart above comes from Flatiron’s analysis comparing Nadal's 14 French Open titles to other athletic records."
+
+nhl <- read_csv("data/QuantHockeyTop50.csv")
+swimming <- read_csv("data/swimming.csv") %>% 
+  rename_all(~ str_replace(., "\\n", " ")) %>% 
+  mutate(Name = str_trim(str_remove(Name, "\\*")))
+wncaa <- read_csv("data/wncaa.csv")
+
+record_comparision_plot <-
+  grand_slam_titles %>% 
+  mutate(
+    record = "Most Grand Slam Titles at a Single Major",
+    name,
+    z = scale((value)),
+    img = if_else(name == "Rafael Nadal" & value == 14, "nadal", NA),
+    .keep = "none") %>% 
+  rbind(
+    nhl %>% 
+      mutate(
+        record = "Most NHL Career Points",
+        name = Name,
+        z = scale((P)),
+        img = if_else(name == "Wayne Gretzky", "gretzky", NA),
+        .keep = "none"
+      ),
+    swimming %>%
+      mutate(
+        record = "Most Gold Medals at the Olympics and World Aquatics Championships",
+        name = Name,
+        z = scale((`Total titles`)),
+        img = if_else(name == "Katie Ledecky", "ledecky", NA),
+        .keep = "none"
+      ),
+    wncaa %>% 
+      mutate(
+        record = "Women's College Basketball All-Time Scoring Leaders",
+        name = Player,
+        z = scale((PTS)),
+        img = if_else(name == "Caitlin Clark", "clark", NA),
+        .keep = "none"
+      )
+  ) %>% 
+  mutate(
+    record = fct_relevel(
+      record, 
+      "Most Grand Slam Titles at a Single Major",
+      "Most NHL Career Points",
+      "Women's College Basketball All-Time Scoring Leaders"
+    ),
+    img = if_else(!is.na(img), md(glue(
+      "<span>{str_to_title(img)}</span><br><img src='imgs/{img}.png' width='30'/>"
+    )), NA)) %>% 
+  # Excluding Ledecky due to skew
+  #filter(record != "Most Gold Medals at the Olympics and World Aquatics Championships") %>% 
+  ggplot(aes(x = z)) +
+  geom_histogram(boundary = 0) +
+  geom_richtext(
+    aes(label = img),
+    family = "Fira Sans",
+    color = "grey20",
+    y = 0,
+    vjust = 0.075,
+    hjust = 0.5,
+    # remove label background and outline
+    fill = NA, label.color = NA,
+    # remove label padding, since we have removed the label outline
+    label.padding = grid::unit(rep(0, 4), "pt") 
+  ) +
+  facet_wrap(
+    ~ record,
+    nrow = 4,
+    scales = "free_y"
+  ) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  scale_x_continuous(limits = c(NA, 6)) +
+  theme_minimal() +
+  labs(
+    title = "Is Nadal's Record the Most Impressive of All-Time?...Maybe",
+    subtitle = "Z-Scores for Top 50 Record-Holders Across Three Other Athletic Achievements",
+    x = NULL
+  ) +
+  annotate(geom = 'segment', 
+           y = -Inf, 
+           yend = -Inf, 
+           x = -Inf, 
+           xend = Inf, 
+           col = "grey80",
+           linewidth = 1) +
+  theme(
+    text = element_text(family = "Fira Sans"),
+    strip.background = element_rect(fill = alpha("grey90", 0.5), color = NA), 
+    strip.text = element_text(size = 12),
+    axis.text.x.bottom = element_text(size = 12)
+  )
+
+record_comparision_plot %>% 
+  ggsave(filename = "plots/fig3-record-comparisons.png")
+```
+
+![The chart above comes from Flatiron’s analysis comparing Nadal's 14 French Open titles to other athletic records.](plots/fig3-record-comparisons.png)
+
+## What’s next?
+
+Is Nadal's record of 14 titles at a single Grand Slam tournament the most impressive athletic feat of all time? One could certainly argue it is. Can it be broken? Only time will tell. As we've seen, even among tennis legends like Serena Williams, Roger Federer, and Novak Djokovic, Rafael Nadal stands alone more than 5.6 standard deviations above the average. Perhaps if a young, up-and-coming player can perfect power, spin, and mobility on clay, they could make a run for his French Open record. That is, if they can also remain at the top of their game over a multi-decade career, the way Rafael "The King of Clay" Nadal has. ¡Vamos Rafa!
+
+## Learn Data Science at Flatiron
+
+Unlocking the power of data goes beyond basic visualizations. Our [Data Science Bootcamp](https://flatironschool.com/courses/data-science-bootcamp/) dives deep into data visualization techniques, alongside machine learning, data analysis, and much more. Equip yourself with the skills to transform data into insightful stories that drive results. Visit our website to learn more about [our courses](https://flatironschool.com/our-courses/) and how you can become a data scientist.
+
+```{r Appendix}
+#| include: false
+read_csv("data/m-swimming.csv", name_repair = ~ str_replace(., "\\n", " ")) %>% 
+  mutate(cat = "m") %>% 
+  rbind(
+    read_csv("data/swimming.csv", name_repair = ~ str_replace(., "\\n", " ")) %>% 
+      mutate(cat = "w")) %>% 
+  mutate(Name = str_trim(str_remove(Name, "\\*"))) %>% 
+  group_by(cat) %>% 
+  mutate(z = scale(`Total titles`)) %>% 
+  ungroup() %>% 
+  slice_max(cat, n = 50) %>% 
+  ggplot(aes(x = z)) +
+  geom_histogram()
+```

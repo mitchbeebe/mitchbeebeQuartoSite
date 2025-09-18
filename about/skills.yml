@@ -1,0 +1,11 @@
+- skills: [R, SQL]
+  stars: 5
+    
+- skills: [Python, Airflow, 'AWS: S3, Lambda, SageMaker, Glue, API Gateway, CloudWatch']
+  stars: 4
+
+- skills: [Bash, Git, Hive, Impala]
+  stars: 3
+  
+- skills: [Django, JavaScript, HTML, CSS]
+  stars: 2

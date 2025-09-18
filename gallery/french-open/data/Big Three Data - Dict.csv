@@ -1,0 +1,31 @@
+Abbr,Definition
+DR,Dominance Ratio (% of return points won\ndivided by % of serve points lost)
+TPW,Total points won
+RPW,Return points won
+vA%,Ace rate against
+v1st%,1st serve return points won
+v2nd%,2nd serve return points won
+BPCnv,Break point opportunities converted
+BPSvd,Break point opportunities saved
+A%,Ace rate
+Ace%,Ace rate
+DF%,Double fault rate
+1st In,First serve percentage
+1st%,First serve points won
+2nd%,Second serve points won
+Rk,Player's ATP Ranking when the tournament began
+Ranks,Player's and partner's ATP Rankings when the tournament began
+vRk,Opponent's ATP Ranking when the tournament began
+vRanks,Opponents' ATP Rankings when the tournament began
+TP,Total Points
+DFs,Double faults
+SP,Service points
+1SP,1st serve points
+2SP,2nd serve points
+vA,Opponent aces
+SPW,Service points won
+BPSvd%,Percentage of break points saved
+BPCnv%,Percentage of break points converted
+MS,Number of H2H matches with stats\nincluded in the totals to the right
+M,Matches played
+Yrs,Number of years entered

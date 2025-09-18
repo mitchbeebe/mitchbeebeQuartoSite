@@ -1,0 +1,16 @@
+---
+draft: true
+---
+
+```{r}
+library(tidyverse)
+
+raw_data <- jsonlite::fromJSON("watch-history.json")
+
+raw_data %>% 
+  filter(activityControls == "YouTube watch history",
+         time > '2024-01-01' & time < '2024-12-31') %>% 
+  unnest(subtitles) %>% 
+  select(title, channel = name, time) %>%
+  count(channel, sort = T)
+```

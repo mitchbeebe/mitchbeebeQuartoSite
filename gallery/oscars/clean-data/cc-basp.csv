@@ -1,0 +1,136 @@
+Year,Film,Nominee,Winner
+1995,Sense and Sensibility,Emma Thompson,TRUE
+1996,The English Patient,Anthony Minghella,TRUE
+1997,L.A. Confidential,Brian Helgeland and Curtis Hanson,TRUE
+1998,A Simple Plan,Scott Smith,TRUE
+1999,The Green Mile,Frank Darabont,TRUE
+2000,Traffic,Stephen Gaghan (TIE),TRUE
+2000,Wonder Boys,Steve Kloves (TIE),TRUE
+2001,Memento,Christopher Nolan,TRUE
+2001,The Man Who Wasn't There,Joel Coen and Ethan Coen,FALSE
+2001,A Beautiful Mind,Akiva Goldsman,FALSE
+2002,Adaptation. and Confessions of a Dangerous Mind,Charlie Kaufman,TRUE
+2002,About Schmidt,Alexander Payne and Jim Taylor,FALSE
+2002,My Big Fat Greek Wedding,Nia Vardalos,FALSE
+2003,In America,"Jim Sheridan, Naomi Sheridan, and Kirsten Sheridan",TRUE
+2003,Big Fish,John August,FALSE
+2003,Lost in Translation,Sofia Coppola,FALSE
+2003,Mystic River,Brian Helgeland,FALSE
+2003,Seabiscuit,Gary Ross,FALSE
+2004,Sideways,Alexander Payne and Jim Taylor,TRUE
+2004,Kinsey,Bill Condon,FALSE
+2004,Eternal Sunshine of the Spotless Mind,Charlie Kaufman,FALSE
+2004,The Aviator,John Logan,FALSE
+2004,Finding Neverland,David Magee,FALSE
+2005,Crash,Paul Haggis and Bobby Moresco,TRUE
+2005,The Squid and the Whale,Noah Baumbach,FALSE
+2005,"Good Night, and Good Luck.",George Clooney and Grant Heslov,FALSE
+2005,Capote,Dan Futterman,FALSE
+2005,Brokeback Mountain,Larry McMurtry and Diana Ossana,FALSE
+2006,Little Miss Sunshine,Michael Arndt,TRUE
+2006,Babel,Guillermo Arriaga,FALSE
+2006,Little Children,Todd Field and Tom Perrotta,FALSE
+2006,Stranger than Fiction,Zach Helm,FALSE
+2006,The Departed,William Monahan,FALSE
+2006,The Queen,Peter Morgan,FALSE
+2007,Juno,Diablo Cody,TRUE
+2007,No Country for Old Men,Joel Coen and Ethan Coen,FALSE
+2007,Michael Clayton,Tony Gilroy,FALSE
+2007,Lars and the Real Girl,Nancy Oliver,FALSE
+2007,Into the Wild,Sean Penn,FALSE
+2007,Charlie Wilson's War,Aaron Sorkin,FALSE
+2008,Slumdog Millionaire,Simon Beaufoy,TRUE
+2008,Milk,Dustin Lance Black,FALSE
+2008,Frost/Nixon,Peter Morgan,FALSE
+2008,The Curious Case of Benjamin Button,Eric Roth,FALSE
+2008,Doubt,John Patrick Shanley,FALSE
+2009,Up in the Air,Jason Reitman and Sheldon Turner,TRUE
+2009,Fantastic Mr. Fox,Wes Anderson and Noah Baumbach,FALSE
+2009,District 9,Neill Blomkamp and Terri Tatchell,FALSE
+2009,Precious,Geoffrey Fletcher,FALSE
+2009,A Single Man,Tom Ford and David Scearce,FALSE
+2009,An Education,Nick Hornby,FALSE
+2010,The Social Network,Aaron Sorkin,TRUE
+2010,The Town,"Ben Affleck, Peter Craig, and Aaron Stockard",FALSE
+2010,Toy Story 3,"Michael Arndt, John Lasseter, Andrew Stanton, and Lee Unkrich",FALSE
+2010,127 Hours,Danny Boyle and Simon Beaufoy,FALSE
+2010,True Grit,Joel Coen and Ethan Coen,FALSE
+2010,Winter's Bone,Debra Granik and Anne Rosellini,FALSE
+2011,Moneyball,"Steven Zaillian, Aaron Sorkin, and Stan Chervin",TRUE
+2011,Hugo,John Logan,FALSE
+2011,The Descendants,"Alexander Payne, Nat Faxon, and Jim Rash",FALSE
+2011,Extremely Loud & Incredibly Close,Eric Roth,FALSE
+2011,The Help,Tate Taylor,FALSE
+2012,Lincoln,Tony Kushner,TRUE
+2012,The Perks of Being a Wallflower,Stephen Chbosky,FALSE
+2012,Life of Pi,David Magee,FALSE
+2012,Silver Linings Playbook,David O. Russell,FALSE
+2012,Argo,Chris Terrio,FALSE
+2013,12 Years a Slave,John Ridley,TRUE
+2013,Philomena,Steve Coogan and Jeff Pope,FALSE
+2013,August: Osage County,Tracy Letts,FALSE
+2013,Before Midnight,"Richard Linklater, Ethan Hawke, and Julie Delpy",FALSE
+2013,Captain Phillips,Billy Ray,FALSE
+2013,The Wolf of Wall Street,Terence Winter,FALSE
+2014,Gone Girl,Gillian Flynn,TRUE
+2014,Inherent Vice,Paul Thomas Anderson,FALSE
+2014,Unbroken,"Joel Coen, Ethan Coen, Richard LaGravenese, and William Nicholson",FALSE
+2014,Wild,Nick Hornby,FALSE
+2014,The Theory of Everything,Anthony McCarten,FALSE
+2014,The Imitation Game,Graham Moore,FALSE
+2015,The Big Short,Adam McKay and Charles Randolph,TRUE
+2015,Room,Emma Donoghue,FALSE
+2015,The Martian,Drew Goddard,FALSE
+2015,Brooklyn,Nick Hornby,FALSE
+2015,Steve Jobs,Aaron Sorkin,FALSE
+2016,Arrival,Eric Heisserer,TRUE
+2016,Lion,Luke Davies,FALSE
+2016,Nocturnal Animals,Tom Ford,FALSE
+2016,Sully,Todd Komarnicki,FALSE
+2016,Hidden Figures,Allison Schroeder and Theodore Melfi,FALSE
+2016,Fences,August Wilson (posthumous),FALSE
+2017,Call Me by Your Name,James Ivory,TRUE
+2017,The Disaster Artist,Scott Neustadter and Michael H. Weber,FALSE
+2017,Mudbound,Dee Rees and Virgil Williams,FALSE
+2017,Molly's Game,Aaron Sorkin,FALSE
+2017,Wonder,"Jack Thorne, Steven Conrad, and Stephen Chbosky",FALSE
+2018,If Beale Street Could Talk,Barry Jenkins,TRUE
+2018,Black Panther,Ryan Coogler and Joe Robert Cole,FALSE
+2018,Can You Ever Forgive Me?,Nicole Holofcener and Jeff Whitty,FALSE
+2018,A Star Is Born,"Eric Roth, Bradley Cooper, and Will Fetters",FALSE
+2018,First Man,Josh Singer,FALSE
+2018,BlacKkKlansman,"Charlie Wachtel, David Rabinowitz, Kevin Willmott, and Spike Lee",FALSE
+2019,Little Women,Greta Gerwig,TRUE
+2019,A Beautiful Day in the Neighborhood,Noah Harpster and Micah Fitzerman-Blue,FALSE
+2019,The Two Popes,Anthony McCarten,FALSE
+2019,Joker,Todd Phillips and Scott Silver,FALSE
+2019,Jojo Rabbit,Taika Waititi,FALSE
+2019,The Irishman,Steven Zaillian,FALSE
+2020,Nomadland,Chloé Zhao,TRUE
+2020,News of the World,Paul Greengrass and Luke Davies,FALSE
+2020,One Night in Miami...,Kemp Powers,FALSE
+2020,First Cow,Jonathan Raymond and Kelly Reichardt,FALSE
+2020,Ma Rainey's Black Bottom,Ruben Santiago-Hudson,FALSE
+2020,The Father,Florian Zeller and Christopher Hampton,FALSE
+2021,The Power of the Dog,Jane Campion,TRUE
+2021,The Lost Daughter,Maggie Gyllenhaal,FALSE
+2021,CODA,Sian Heder,FALSE
+2021,West Side Story,Tony Kushner,FALSE
+2021,Dune,"Jon Spaihts, Denis Villeneuve, and Eric Roth",FALSE
+2022,Women Talking,Sarah Polley,TRUE
+2022,The Whale,Samuel D. Hunter,FALSE
+2022,Living,Kazuo Ishiguro,FALSE
+2022,Glass Onion: A Knives Out Mystery,Rian Johnson,FALSE
+2022,She Said,Rebecca Lenkiewicz,FALSE
+2023,American Fiction,Cord Jefferson,TRUE
+2023,"Are You There God? It's Me, Margaret.",Kelly Fremon Craig,FALSE
+2023,All of Us Strangers,Andrew Haigh,FALSE
+2023,Poor Things,Tony McNamara,FALSE
+2023,Oppenheimer,Christopher Nolan,FALSE
+2023,Killers of the Flower Moon,Eric Roth and Martin Scorsese,FALSE
+2024,Conclave,Peter Straughan,TRUE
+2024,Emilia Pérez,Jacques Audiard,FALSE
+2024,Wicked,Winnie Holzman and Dana Fox,FALSE
+2024,Sing Sing,Clint Bentley and Greg Kwedar,FALSE
+2024,Nickel Boys,RaMell Ross and Joslyn Barnes,FALSE
+2024,Dune: Part Two,Denis Villeneuve and Jon Spaihts,FALSE

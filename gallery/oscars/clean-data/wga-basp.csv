@@ -1,0 +1,329 @@
+Year,Film,Nominee,Winner
+1969,Midnight Cowboy,Waldo Salt,TRUE
+1969,Anne of the Thousand Days,"John Hale, and Bridget Boland",FALSE
+1969,The Prime of Miss Jean Brodie,Jay Presson Allen,FALSE
+1969,"They Shoot Horses, Don't They?","James Poe, and Robert E. Thompson",FALSE
+1969,True Grit,Marguerite Roberts,FALSE
+1969,"Goodbye, Columbus",Arnold Schulman,TRUE
+1969,Cactus Flower,I.A.L. Diamond,FALSE
+1969,"Gaily, Gaily",Abram S. Ginnes,FALSE
+1969,John and Marty,John Mortimer,FALSE
+1969,The Reivers,"Irving Ravetch, and Harriet Frank Jr.",FALSE
+1970,I Never Sang for My Father,Robert Anderson,TRUE
+1970,Airport,George Seaton,FALSE
+1970,Catch-22,Buck Henry,FALSE
+1970,The Great White Hope,Howard Sackler,FALSE
+1970,Little Big Man,Calder Willingham,FALSE
+1970,M*A*S*H,Ring Lardner Jr.,TRUE
+1970,Lovers and Other Strangers,"Renée Taylor, Joseph Bologna, David Zelag Goodman",FALSE
+1970,The Owl and the Pussycat,Buck Henry,FALSE
+1970,The Twelve Chairs,Mel Brooks,FALSE
+1970,Where's Poppa,Robert Klane,FALSE
+1971,The French Connection,Ernest Tidyman,TRUE
+1971,A Clockwork Orange,Stanley Kubrick,FALSE
+1971,Johnny Got His Gun,Dalton Trumbo,FALSE
+1971,The Last Picture Show,"Larry McMurtry, and Peter Bodganovich",FALSE
+1971,McCabe & Mrs. Miller,"Robert Altman, and Brian McKay",FALSE
+1971,Kotch,John Paxton,TRUE
+1971,The Boy Friend,Ken Russell,FALSE
+1971,Fiddler on the Roof,Joseph Stein,FALSE
+1971,Little Murders,Jules Feiffer,FALSE
+1971,A New Leaf,Elaine May,FALSE
+1972,The Godfather,"Mario Puzo, and Francis Ford Coppola",TRUE
+1972,Deliverance,James Dickey,FALSE
+1972,Pete 'n' Tillie,Julius J. Epstein,FALSE
+1972,Slaughterhouse-Five,Stephen Geller,FALSE
+1972,Sounder,Lonne Elder III,FALSE
+1972,Cabaret,Jay Presson Allen,TRUE
+1972,Avanti!,"Billy Wilder, and I.A.L. Diamond",FALSE
+1972,Butterflies Are Free,Leonard Gershe,FALSE
+1972,The Heartbreak Kid,Neil Simon,FALSE
+1972,Travels with My Aunt,"Jay Presson Allen, and Hugh Wheeler",FALSE
+1973,Serpico,"Waldo Salt, and Norman Wexler",TRUE
+1973,Cinderella Liberty,Darryl Ponicsan,FALSE
+1973,The Exorcist,William Peter Blatty,FALSE
+1973,The Last Detail,Robert Towne,FALSE
+1973,The Paper Chase,James Bridges,FALSE
+1973,Paper Moon,Alvin Sargent,TRUE
+1973,40 Carats,Leonard Gershe,FALSE
+1973,Godspell,"David Greenne, and John-Michael Tebelak",FALSE
+1974,The Godfather Part II,"Francis Ford Coppola, and Mario Puzo",TRUE
+1974,Conrack,"Irving Ravetch, and Harriet Frank Jr.",FALSE
+1974,Lenny,Julian Barry,FALSE
+1974,The Parallax View,David Giler and Lorenzo Sempler Jr.,FALSE
+1974,The Talking of Pelham One Two Three,Peter Stone,FALSE
+1974,The Apprenticeship of Duddy Kravitz,"Mordecai Richler, and Lionel Chetwynd",TRUE
+1974,The Front Page,"Billy Wilder, and I.A.L. Diamond",FALSE
+1974,Young Frankenstein,"Gene Wilder, and Mel Brooks",FALSE
+1975,One Flew Over the Cuckoo's Nest,"Lawrence Hauben, and Bo Goldman",TRUE
+1975,Barry Lyndon,Stanley Kubrick,FALSE
+1975,Jaws,"Peter Benchley, and Carl Gottlieb",FALSE
+1975,The Man in the Glass Booth,Edward Anhalt,FALSE
+1975,The Man Who Would Be King,"John Huston, and Gladys Hill",FALSE
+1975,The Sunshine Boys,Neil Simon,TRUE
+1975,Hester Street,Joan Micklin Silver,FALSE
+1975,The Prisoner of Second Avenue,Neil Simon,FALSE
+1976,All the President's Men,William Goldman,TRUE
+1976,Bound for Glory,Robert Getchell,FALSE
+1976,Marathon Man,William Goldman,FALSE
+1976,The Seven-Per-Cent Solution,Nicholas Meyer,FALSE
+1976,The Shootist,"Miles Hood Swarthout, and Scott Hale",FALSE
+1976,The Pink Panther Strikes Again,"Frank Waldman, and Blake Edwards",TRUE
+1976,The Bingo Long Traveling All-Stars & Motor Kings,"Hal Barwood, and Matthew Robbins",FALSE
+1976,Family Plot,Ernest Lehman,FALSE
+1976,The Ritz,Terrence McNally,FALSE
+1976,Stay Hungry,"Charles Gaines, and Bob Rafelson",FALSE
+1977,Julia,Alvin Sargent,TRUE
+1977,I Never Promised You a Rose Garden,"Gavin Lambert, and Lewis John Carlino",FALSE
+1977,Islands in the Stream,Denne Bart Petitclerc,FALSE
+1977,Looking for Mr. Goodbar,Richard Brooks,FALSE
+1977,"Oh, God!",Larry Gelbart,TRUE
+1977,Semi-Tough,Walter Bernstein,FALSE
+1977,The Spy Who Loved Me,"Christopher Wood, and Richard Maibaum",FALSE
+1978,Midnight Express,Oliver Stone,TRUE
+1978,Bloodbrothers,Walter Newman,FALSE
+1978,Go Tell the Spartans,Wendell Mayes,FALSE
+1978,Invasion of the Body Snatchers,W.D. Richter,FALSE
+1978,Who'll Stop the Rain,"Judith Rascoe, and Robert Stone",FALSE
+1978,Heaven Can Wait,"Elaine May, and Warren Beatty",TRUE
+1978,California Suite,Neil Simon,FALSE
+1978,"Same Time, Next Year",Bernard Slade,FALSE
+1978,Superman,"Mario Puzo, David Newman, Leslie Newman, and Robert Benton",FALSE
+1978,Who Is Killing the Great Chefs of Europe?,Peter Stone,FALSE
+1979,Kramer vs. Kramer,Robert Benton,TRUE
+1979,Norma Rae,"Irving Ravetch, and Harriet Frank Jr.",FALSE
+1979,Being There,Jerzy Kosinski,TRUE
+1979,A Little Romance,Allan Burns,FALSE
+1979,Starting Over,James L. Brooks,FALSE
+1980,Ordinary People,Alvin Sargent,TRUE
+1980,Coal Miner's Daughter,Thomas Rickman,FALSE
+1980,The Elephant Man,"Christopher De Vore, Eric Bergren, and David Lynch",FALSE
+1980,The Great Santini,Lewis John Carlino,FALSE
+1980,The Stunt Man,"Lawrence B. Marcus, Richard Rush",FALSE
+1980,Airplane!,"Jim Abrahams, David Zucker, and Jerry Zucker",TRUE
+1980,Hopscotch,"Brian Garfield, and Bryan Forbes",FALSE
+1980,Star Wars: Episode V - The Empire Strikes Back,"Leigh Brackett, and Lawrence Kasdan",FALSE
+1981,On Golden Pond,"Ernest Thompson, and Donald E. Stewart",TRUE
+1981,Cutter's Way,Jeffrey Alan Fiskin,FALSE
+1981,Prince of the City,"Jay Presson Allen, and Sidney Lumet",FALSE
+1981,Ragtime,Michael Weller,FALSE
+1981,Rich and Famous,Gerald Ayres,TRUE
+1981,For Your Eyes Only,"Richard Maibaum, and Michael G. Wilson",FALSE
+1981,First Monday in October,"Jerome Lawrence, and Robert E. Lee",FALSE
+1982,Missing,"Costa-Gavras, and Donald E. Stewart",TRUE
+1982,Sophie's Choice,Alan J. Pakula,FALSE
+1982,The Verdict,David Mamet,FALSE
+1982,The World According to Garp,Steve Tesich,FALSE
+1982,Victor Victoria,Blake Edwards,TRUE
+1982,Fast Times at Ridgemont High,Cameron Crowe,FALSE
+1983,"Reuben, Reuben",Julius J. Epstein,TRUE
+1983,The Year of Living Dangerously,"David Williamson, Peter Weir and C.J. Koch",FALSE
+1983,The Right Stuff,Philip Kaufman,FALSE
+1983,Terms of Endearment,James L. Brooks,TRUE
+1983,A Christmas Story,"Jean Shepherd, Leigh Brown, and Bob Clark",FALSE
+1983,To Be or Not to Be,"Thomas Meehan, and Ronny Graham",FALSE
+1984,The Killing Fields,Bruce Robinson,TRUE
+1984,"Greystoke: The Legend of Tarzan, Lord of the Apes",Robert Towne and Michael Austin,FALSE
+1984,The Natural,Roger Towne and Phil Dusenberry,FALSE
+1984,A Passage to India,David Lean,FALSE
+1984,A Soldier's Story,Charles Fuller,FALSE
+1985,Prizzi's Honor,Richard Condon and Janet Roach,TRUE
+1985,Agnes of God,John Pielmeier,FALSE
+1985,The Color Purple,Menno Meyjes,FALSE
+1985,Out of Africa,Kurt Luedtke,FALSE
+1985,The Trip to Bountiful,Horton Foote,FALSE
+1986,A Room with a View,Ruth Prawer Jhabvala,TRUE
+1986,Children of a Lesser God,Hesper Anderson and Mark Medoff,FALSE
+1986,Down and Out in Beverly Hills,Paul Mazursky and Leon Capetanos,FALSE
+1986,Little Shop of Horrors,Howard Ashman,FALSE
+1986,Stand by Me,Bruce A. Evans and Raynold Gideon,FALSE
+1987,Roxanne,Steve Martin,TRUE
+1987,Fatal Attraction,James Dearden,FALSE
+1987,Full Metal Jacket,"Stanley Kubrick, Michael Herr, and Gustav Hasford",FALSE
+1987,The Princess Bride,William Goldman,FALSE
+1987,The Untouchables,David Mamet,FALSE
+1988,Dangerous Liaisons,Christopher Hampton,TRUE
+1988,The Accidental Tourist,Frank Galati and Lawrence Kasdan,FALSE
+1988,Gorillas in the Mist: The Story of Dian Fossey,Anna Hamilton Phelan and Tab Murphy,FALSE
+1988,The Unbearable Lightness of Being,Jean-Claude Carrière and Philip Kaufman,FALSE
+1988,Who Framed Roger Rabbit,Jeffrey Price and Peter S. Seaman,FALSE
+1989,Driving Miss Daisy,Alfred Uhry,TRUE
+1989,Born on the Fourth of July,Oliver Stone and Ron Kovic,FALSE
+1989,Field of Dreams,Phil Alden Robinson,FALSE
+1989,Glory,Kevin Jarre,FALSE
+1989,My Left Foot,Jim Sheridan and Shane Connaughton,FALSE
+1990,Dances with Wolves,Michael Blake,TRUE
+1990,Awakenings,Steven Zaillian,FALSE
+1990,Goodfellas,Martin Scorsese and Nicholas Pileggi,FALSE
+1990,The Grifters,Donald E. Westlake,FALSE
+1990,Reversal of Fortune,Nicholas Kazan,FALSE
+1991,The Silence of the Lambs,Ted Tally,TRUE
+1991,The Commitments,"Dick Clement, Ian La Frenais and Roddy Doyle",FALSE
+1991,Fried Green Tomatoes,Fannie Flagg and Carol Sobieski,FALSE
+1991,JFK,Oliver Stone and Zachary Sklar,FALSE
+1991,The Prince of Tides,Pat Conroy and Becky Johnston,FALSE
+1992,The Player,Michael Tolkin,TRUE
+1992,Enchanted April,Peter Barnes,FALSE
+1992,Glengarry Glen Ross,David Mamet,FALSE
+1992,Howards End,Ruth Prawer Jhabvala,FALSE
+1992,Scent of a Woman,Bo Goldman,FALSE
+1993,Schindler's List,Steven Zaillian,TRUE
+1993,The Fugitive,Jeb Stuart and David Twohy,FALSE
+1993,In the Name of the Father,Terry George and Jim Sheridan,FALSE
+1993,The Joy Luck Club,Amy Tan and Ronald Bass,FALSE
+1993,The Remains of the Day,Ruth Prawer Jhabvala,FALSE
+1994,Forrest Gump,Eric Roth,TRUE
+1994,Little Women,Robin Swicord,FALSE
+1994,The Madness of King George,Alan Bennett,FALSE
+1994,Quiz Show,Paul Attanasio,FALSE
+1994,The Shawshank Redemption,Frank Darabont,FALSE
+1995,Sense and Sensibility,Emma Thompson,TRUE
+1995,Apollo 13,William Broyles Jr. and Al Reinert,FALSE
+1995,Babe,George Miller and Chris Noonan,FALSE
+1995,Get Shorty,Scott Frank,FALSE
+1995,Leaving Las Vegas,Mike Figgis,FALSE
+1996,Sling Blade,Billy Bob Thornton,TRUE
+1996,The Birdcage,Elaine May,FALSE
+1996,Emma,Douglas McGrath,FALSE
+1996,The English Patient,Anthony Minghella,FALSE
+1996,Trainspotting,John Hodge,FALSE
+1997,L.A. Confidential,Curtis Hanson and Brian Helgeland,TRUE
+1997,Donnie Brasco,Paul Attanasio,FALSE
+1997,The Ice Storm,James Schamus,FALSE
+1997,Wag the Dog,Hilary Henkin and David Mamet,FALSE
+1997,The Wings of the Dove,Hossein Amini,FALSE
+1998,Out of Sight,Scott Frank,TRUE
+1998,A Civil Action,Steven Zaillian,FALSE
+1998,Gods and Monsters,Bill Condon,FALSE
+1998,Primary Colors,Elaine May,FALSE
+1998,A Simple Plan,Scott B. Smith,FALSE
+1999,Election,Alexander Payne and Jim Taylor,TRUE
+1999,The Cider House Rules,John Irving,FALSE
+1999,The Insider,Eric Roth and Michael Mann,FALSE
+1999,October Sky,Lewis Colick,FALSE
+1999,The Talented Mr. Ripley,Anthony Minghella,FALSE
+2000,Traffic,Stephen Gaghan,TRUE
+2000,Chocolat,Robert Nelson Jacobs,FALSE
+2000,"Crouching Tiger, Hidden Dragon","Hui-Ling Wang, James Schamus, and Tsai Kuo Jung",FALSE
+2000,High Fidelity,"D. V. DeVincentis, Steve Pink, John Cusack, and Scott Rosenberg",FALSE
+2000,Wonder Boys,Steve Kloves,FALSE
+2001,A Beautiful Mind,Akiva Goldsman,TRUE
+2001,Black Hawk Down,Ken Nolan,FALSE
+2001,Bridget Jones's Diary,Andrew Davies and Richard Curtis,FALSE
+2001,Ghost World,Daniel Clowes and Terry Zwigoff,FALSE
+2001,The Lord of the Rings: The Fellowship of the Ring,"Fran Walsh, Philippa Boyens, and Peter Jackson",FALSE
+2002,The Hours,David Hare,TRUE
+2002,About a Boy,"Peter Hedges, Chris Weitz, and Paul Weitz",FALSE
+2002,About Schmidt,Alexander Payne and Jim Taylor,FALSE
+2002,Adaptation.,Charlie Kaufman and Donald Kaufman,FALSE
+2002,Chicago,Bill Condon,FALSE
+2003,American Splendor,Shari Springer Berman and Robert Pulcini,TRUE
+2003,Cold Mountain,Anthony Minghella,FALSE
+2003,The Lord of the Rings: The Return of the King,"Fran Walsh, Philippa Boyens, and Peter Jackson",FALSE
+2003,Mystic River,Brian Helgeland,FALSE
+2003,Seabiscuit,Gary Ross,FALSE
+2004,Sideways,Alexander Payne and Jim Taylor,TRUE
+2004,Before Sunset,"Richard Linklater, Julie Delpy, Ethan Hawke, and Kim Krizan",FALSE
+2004,Mean Girls,Tina Fey,FALSE
+2004,Million Dollar Baby,Paul Haggis,FALSE
+2004,The Motorcycle Diaries (Diarios de motocicleta),José Rivera,FALSE
+2005,Brokeback Mountain,Larry McMurtry and Diana Ossana,TRUE
+2005,Capote,Dan Futterman,FALSE
+2005,The Constant Gardener,Jeffrey Caine,FALSE
+2005,A History of Violence,Josh Olson,FALSE
+2005,Syriana,Stephen Gaghan,FALSE
+2006,The Departed,William Monahan,TRUE
+2006,Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan,"Sacha Baron Cohen, Peter Baynham, Anthony Hines, Todd Phillips, and Dan Mazer",FALSE
+2006,The Devil Wears Prada,Aline Brosh McKenna,FALSE
+2006,Little Children,Todd Field and Tom Perrotta,FALSE
+2006,Thank You for Smoking,Jason Reitman,FALSE
+2007,No Country for Old Men,Joel Coen and Ethan Coen,TRUE
+2007,The Diving Bell and the Butterfly,Ronald Harwood,FALSE
+2007,Into the Wild,Sean Penn,FALSE
+2007,There Will Be Blood,Paul Thomas Anderson,FALSE
+2007,Zodiac,James Vanderbilt,FALSE
+2008,Slumdog Millionaire,Simon Beaufoy,TRUE
+2008,The Curious Case of Benjamin Button,Eric Roth and Robin Swicord,FALSE
+2008,The Dark Knight,"Jonathan Nolan, Christopher Nolan, and David S. Goyer",FALSE
+2008,Doubt,John Patrick Shanley,FALSE
+2008,Frost/Nixon,Peter Morgan,FALSE
+2009,Up in the Air,Jason Reitman and Sheldon Turner,TRUE
+2009,Crazy Heart,Scott Cooper,FALSE
+2009,Julie & Julia,Nora Ephron,FALSE
+2009,Precious,Geoffrey S. Fletcher,FALSE
+2009,Star Trek,Roberto Orci and Alex Kurtzman,FALSE
+2010,The Social Network,Aaron Sorkin,TRUE
+2010,127 Hours,Danny Boyle and Simon Beaufoy,FALSE
+2010,I Love You Phillip Morris,Glenn Ficarra and John Requa,FALSE
+2010,The Town,"Ben Affleck, Peter Craig, and Aaron Stockard",FALSE
+2010,True Grit,Joel Coen and Ethan Coen,FALSE
+2011,The Descendants,"Alexander Payne, Nat Faxon, and Jim Rash",TRUE
+2011,The Girl with the Dragon Tattoo,Steven Zaillian,FALSE
+2011,The Help,Tate Taylor,FALSE
+2011,Hugo,John Logan,FALSE
+2011,Moneyball,Aaron Sorkin and Steven Zaillian,FALSE
+2012,Argo,Chris Terrio,TRUE
+2012,Life of Pi,David Magee,FALSE
+2012,Lincoln,Tony Kushner,FALSE
+2012,The Perks of Being a Wallflower,Stephen Chbosky,FALSE
+2012,Silver Linings Playbook,David O. Russell,FALSE
+2013,Captain Phillips,Billy Ray,TRUE
+2013,August: Osage County,Tracy Letts,FALSE
+2013,Before Midnight,"Richard Linklater, Ethan Hawke, and Julie Delpy",FALSE
+2013,Lone Survivor,Peter Berg,FALSE
+2013,The Wolf of Wall Street,Terence Winter,FALSE
+2014,The Imitation Game,Graham Moore,TRUE
+2014,American Sniper,Jason Hall,FALSE
+2014,Gone Girl,Gillian Flynn,FALSE
+2014,Guardians of the Galaxy,James Gunn and Nicole Perlman,FALSE
+2014,Wild,Nick Hornby,FALSE
+2015,The Big Short,Adam McKay and Charles Randolph,TRUE
+2015,Carol,Phyllis Nagy,FALSE
+2015,The Martian,Drew Goddard,FALSE
+2015,Steve Jobs,Aaron Sorkin,FALSE
+2015,Trumbo,John McNamara,FALSE
+2016,Arrival,Eric Heisserer,TRUE
+2016,Deadpool,Rhett Reese and Paul Wernick,FALSE
+2016,Fences,August Wilson,FALSE
+2016,Hidden Figures,Allison Schroeder and Theodore Melfi,FALSE
+2016,Nocturnal Animals,Tom Ford,FALSE
+2017,Call Me by Your Name,James Ivory,TRUE
+2017,The Disaster Artist,Scott Neustadter and Michael H. Weber,FALSE
+2017,Logan,"Scott Frank, James Mangold and Michael Green",FALSE
+2017,Molly's Game,Aaron Sorkin,FALSE
+2017,Mudbound,Virgil Williams and Dee Rees,FALSE
+2018,Can You Ever Forgive Me?,Nicole Holofcener and Jeff Whitty,TRUE
+2018,Black Panther,Joe Robert Cole and Ryan Coogler,FALSE
+2018,BlacKkKlansman,"Spike Lee, David Rabinowitz, Charlie Wachtel and Kevin Willmott",FALSE
+2018,If Beale Street Could Talk,Barry Jenkins,FALSE
+2018,A Star Is Born,"Eric Roth, Bradley Cooper and Will Fetters",FALSE
+2019,Jojo Rabbit,Taika Waititi,TRUE
+2019,A Beautiful Day in the Neighborhood,Micah Fitzerman-Blue and Noah Harpster,FALSE
+2019,The Irishman,Steven Zaillian,FALSE
+2019,Joker,Todd Phillips and Scott Silver,FALSE
+2019,Little Women,Greta Gerwig,FALSE
+2020,Borat Subsequent Moviefilm,"Sacha Baron Cohen, Anthony Hines, Dan Swimer, Peter Baynham, Erica Rivinoja, Dan Mazer, Jena Friedman, Lee Kern & Nina Pedrad",TRUE
+2020,Ma Rainey's Black Bottom,Ruben Santiago-Hudson,FALSE
+2020,News of the World,Paul Greengrass and Luke Davies,FALSE
+2020,One Night in Miami...,Kemp Powers,FALSE
+2020,The White Tiger,Ramin Bahrani,FALSE
+2021,CODA,Siân Heder,TRUE
+2021,Dune,"Eric Roth, Jon Spaihts & Denis Villeneuve",FALSE
+2021,Nightmare Alley,Guillermo del Toro & Kim Morgan,FALSE
+2021,tick…tick…BOOM!,Steven Levenson,FALSE
+2021,West Side Story,Tony Kushner,FALSE
+2022,Women Talking,Sarah Polley,TRUE
+2022,Black Panther: Wakanda Forever,Ryan Coogler and Joe Robert Cole,FALSE
+2022,Glass Onion: A Knives Out Mystery,Rian Johnson,FALSE
+2022,She Said,Rebecca Lenkiewicz,FALSE
+2022,Top Gun: Maverick,"Ehren Kruger, Eric Warren Singer and Christopher McQuarrie (screenplay), Peter Craig and Justin Marks (story)",FALSE
+2023,American Fiction,Cord Jefferson,TRUE
+2023,"Are You There God? It's Me, Margaret.",Kelly Fremon Craig,FALSE
+2023,Killers of the Flower Moon,Eric Roth and Martin Scorsese,FALSE
+2023,Nyad,Julia Cox,FALSE
+2023,Oppenheimer,Christopher Nolan,FALSE
+2024,Nickel Boys,RaMell Ross and Joslyn Barnes,TRUE
+2024,A Complete Unknown,James Mangold and Jay Cocks,FALSE
+2024,Dune: Part Two,Denis Villeneuve and Jon Spaihts,FALSE
+2024,Hit Man,Richard Linklater and Glen Powell,FALSE
+2024,Wicked,Winnie Holzman and Dana Fox,FALSE

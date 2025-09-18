@@ -1,0 +1,14 @@
+```{=html}
+<% for (const item of items) { %>
+    <div>
+        <% for (let i = 0; i < item.stars; i++) { %>
+            <i class="bi bi-star-fill"></i>
+        <% } %>
+        <% for (let i = 5; i > item.stars; i--) { %>
+            <i class="bi bi-star"></i>
+        <% } %>
+        &ensp;
+        <%= item.skills.join(", ") %>
+    </div>
+<% } %>
+```
