@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../favicon.svg" rel="icon" type="image/svg+xml">
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-listing/list.min.js"></script>
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -75,20 +75,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-gallery .list');
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title','listing-description','listing-date','listing-url','listing-thumbnail',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-description","listing-date","listing-url","listing-thumbnail"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-gallery'] = new List('listing-gallery', options);
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -164,7 +164,7 @@ window.Quarto = {
 <span class="menu-text">Gallery</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../about/me.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -220,18 +220,19 @@ window.Quarto = {
 </header>
 
 
-<div id="listing-gallery" class="quarto-listing quarto-listing-container-custom">
+
+
+
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-gallery-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-gallery'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
          <option value="listing-title" data-direction="asc">
           Title
-        </option>
-         <option value="listing-description" data-direction="asc">
-          Description
         </option>
          <option value="listing-date-sort" data-direction="asc">
           Date - Oldest
@@ -239,75 +240,110 @@ window.Quarto = {
          <option value="listing-date-sort" data-direction="desc">
           Date - Newest
         </option>
-         <option value="listing-url" data-direction="asc">
-          url
-        </option>
-         <option value="listing-thumbnail" data-direction="asc">
-          thumbnail
+         <option value="listing-author" data-direction="asc">
+          Author
         </option>
      </select>
   </div>
 </div>
-<div class="list grid" style="height: 30px; column-gap: 10px;">
-    
-    <div class="card rounded-3 p-2 g-col-12 g-col-sm-6 g-col-md-4 h-100 bg-light" data-index="0">
-        <a href="https://play-birdle.com">
-            <img src="../posts/2024-04-23-birdle/play-birdle-logo.png" alt="A bird version of the NY Times' Wordle. Six guesses to identify the bird of the day." class="card-img-top border rounded-3 gallery-img">
-        </a>
-        <div class="card-body m-0 px-2 d-flex flex-column justify-content-between">
-            <div class="card-title pt-2">
-                <a href="https://play-birdle.com">Birdle</a>
-            </div>
-            <div class="card-text align-items-end"><small>A bird version of the NY Times' Wordle. Six guesses to identify the bird of the day.</small></div>
-        </div>
-    </div>
-    
-    <div class="card rounded-3 p-2 g-col-12 g-col-sm-6 g-col-md-4 h-100 bg-light" data-index="1" data-listing-date-sort="1717560000000">
-        <a href="https://flatironschool.com/blog/quantifying-rafael-nadals-dominance-with-french-open-data/">
-            <img src="https://flatironschool.com/wp-content/uploads/2024/06/Resized-blog-thumbnail-5-900x599.jpg.webp" alt="A blog post written for Flatiron School" class="card-img-top border rounded-3 gallery-img">
-        </a>
-        <div class="card-body m-0 px-2 d-flex flex-column justify-content-between">
-            <div class="card-title pt-2">
-                <a href="https://flatironschool.com/blog/quantifying-rafael-nadals-dominance-with-french-open-data/">Quantifying Rafael Nadal’s Dominance with French Open Data</a>
-            </div>
-            <div class="card-text align-items-end"><small>A blog post written for Flatiron School</small></div>
-        </div>
-    </div>
-    
-    <div class="card rounded-3 p-2 g-col-12 g-col-sm-6 g-col-md-4 h-100 bg-light" data-index="2" data-listing-date-sort="1709355600000">
-        <a href="https://flatironschool.com/blog/data-on-best-director-snubs-at-the-oscars/">
-            <img src="https://flatironschool.com/wp-content/uploads/2024/03/Resized-blog-thumbnail-47-900x599.jpg.webp" alt="A blog post written for Flatiron School" class="card-img-top border rounded-3 gallery-img">
-        </a>
-        <div class="card-body m-0 px-2 d-flex flex-column justify-content-between">
-            <div class="card-title pt-2">
-                <a href="https://flatironschool.com/blog/data-on-best-director-snubs-at-the-oscars/">The Data on Barbie, Greta Gerwig, and Best Director Snubs at the Oscars</a>
-            </div>
-            <div class="card-text align-items-end"><small>A blog post written for Flatiron School</small></div>
-        </div>
-    </div>
-    
-    <div class="card rounded-3 p-2 g-col-12 g-col-sm-6 g-col-md-4 h-100 bg-light" data-index="3" data-listing-date-sort="1706072400000">
-        <a href="https://flatironschool.com/blog/taylor-swift-and-data-science-an-unlikely-duo/">
-            <img src="https://flatironschool.com/wp-content/uploads/2024/01/Screen-Shot-2024-01-23-at-11.14.48-AM-900x431.jpg.webp" alt="A blog post written for Flatiron School" class="card-img-top border rounded-3 gallery-img">
-        </a>
-        <div class="card-body m-0 px-2 d-flex flex-column justify-content-between">
-            <div class="card-title pt-2">
-                <a href="https://flatironschool.com/blog/taylor-swift-and-data-science-an-unlikely-duo/">Taylor Swift and Data Science: An Unlikely Duo</a>
-            </div>
-            <div class="card-text align-items-end"><small>A blog post written for Flatiron School</small></div>
-        </div>
-    </div>
-    
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0">
+<a href="https://www.play-birdle.com" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="../posts/2024-04-23-birdle/play-birdle-logo.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Birdle
+</h5>
+<div class="card-text listing-description">
+A bird version of the NY Times’ Wordle. Six guesses to identify the bird of the day.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-date-sort="1715054400000" data-listing-file-modified-sort="1758217636998" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3899">
+<a href="../gallery/french-open/analysis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://flatironschool.com/wp-content/uploads/2024/06/Resized-blog-thumbnail-5-900x599.jpg.webp" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Quantifying Rafael Nadal’s Dominance with French Open Data
+</h5>
+<div class="card-text listing-description">
+A blog post written for Flatiron School
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+May 7, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-date-sort="1709355600000" data-listing-file-modified-sort="1758217688932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="55" data-listing-word-count-sort="10938">
+<a href="../gallery/oscars/analysis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://flatironschool.com/wp-content/uploads/2024/03/Resized-blog-thumbnail-47-900x599.jpg.webp" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+The Data on Barbie, Greta Gerwig, and Best Director Snubs at the Oscars
+</h5>
+<div class="card-text listing-description">
+A blog post written for Flatiron School
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Mar 2, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-date-sort="1706072400000" data-listing-file-modified-sort="1758217733735" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="752">
+<a href="../gallery/taylor-swift/analysis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://flatironschool.com/wp-content/uploads/2024/01/Screen-Shot-2024-01-23-at-11.14.48-AM-900x431.jpg.webp" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Taylor Swift and Data Science: An Unlikely Duo
+</h5>
+<div class="card-text listing-description">
+A blog post written for Flatiron School
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jan 24, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div>
-
-
-
-
-</main> <!-- /main -->
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

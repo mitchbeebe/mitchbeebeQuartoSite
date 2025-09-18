@@ -1,0 +1,148 @@
+Year,Film,Nominee,Winner
+1995,To Die For,Nicole Kidman,TRUE
+1996,Fargo,Frances McDormand,TRUE
+1997,The Wings of the Dove,Helena Bonham Carter,TRUE
+1998,Elizabeth,Cate Blanchett,TRUE
+1999,Boys Don't Cry,Hilary Swank,TRUE
+2000,Erin Brockovich,Julia Roberts,TRUE
+2001,In the Bedroom,Sissy Spacek,TRUE
+2001,Moulin Rouge!,Nicole Kidman,FALSE
+2001,Bridget Jones's Diary,Renée Zellweger,FALSE
+2002,Far from Heaven,Julianne Moore,TRUE
+2002,Frida,Salma Hayek,FALSE
+2002,The Hours,Nicole Kidman,FALSE
+2002,Unfaithful,Diane Lane,FALSE
+2003,Monster,Charlize Theron,TRUE
+2003,House of Sand and Fog,Jennifer Connelly,FALSE
+2003,Something's Gotta Give,Diane Keaton,FALSE
+2003,Cold Mountain,Nicole Kidman,FALSE
+2003,In America,Samantha Morton,FALSE
+2003,21 Grams,Naomi Watts,FALSE
+2004,Million Dollar Baby,Hilary Swank,TRUE
+2004,Being Julia,Annette Bening,FALSE
+2004,Maria Full of Grace,Catalina Sandino Moreno,FALSE
+2004,Vera Drake,Imelda Staunton,FALSE
+2004,Eternal Sunshine of the Spotless Mind,Kate Winslet,FALSE
+2004,Kill Bill: Volume 2,Uma Thurman,FALSE
+2005,Walk the Line,Reese Witherspoon,TRUE
+2005,The Upside of Anger,Joan Allen,FALSE
+2005,Mrs Henderson Presents,Judi Dench,FALSE
+2005,Transamerica,Felicity Huffman,FALSE
+2005,Pride & Prejudice,Keira Knightley,FALSE
+2005,North Country,Charlize Theron,FALSE
+2006,The Queen,Helen Mirren,TRUE
+2006,Volver,Penélope Cruz,FALSE
+2006,Notes on a Scandal,Judi Dench,FALSE
+2006,The Devil Wears Prada,Meryl Streep,FALSE
+2006,Little Children,Kate Winslet,FALSE
+2007,Away from Her,Julie Christie,TRUE
+2007,Enchanted,Amy Adams,FALSE
+2007,Elizabeth: The Golden Age,Cate Blanchett,FALSE
+2007,La Vie en Rose,Marion Cotillard,FALSE
+2007,A Mighty Heart,Angelina Jolie,FALSE
+2007,Juno,Elliot Page,FALSE
+2008,Rachel Getting Married,Anne Hathaway (TIE),TRUE
+2008,Doubt,Meryl Streep (TIE),TRUE
+2008,Nothing but the Truth,Kate Beckinsale,FALSE
+2008,The Curious Case of Benjamin Button,Cate Blanchett,FALSE
+2008,Changeling,Angelina Jolie,FALSE
+2008,Frozen River,Melissa Leo,FALSE
+2009,The Blind Side,Sandra Bullock (TIE),TRUE
+2009,Julie & Julia,Meryl Streep (TIE),TRUE
+2009,The Young Victoria,Emily Blunt,FALSE
+2009,An Education,Carey Mulligan,FALSE
+2009,The Lovely Bones,Saoirse Ronan,FALSE
+2009,Precious,Gabourey Sidibe,FALSE
+2010,Black Swan,Natalie Portman,TRUE
+2010,The Kids Are All Right,Annette Bening,FALSE
+2010,Rabbit Hole,Nicole Kidman,FALSE
+2010,Winter's Bone,Jennifer Lawrence,FALSE
+2010,The Girl with the Dragon Tattoo,Noomi Rapace,FALSE
+2010,Blue Valentine,Michelle Williams,FALSE
+2011,The Help,Viola Davis,TRUE
+2011,Martha Marcy May Marlene,Elizabeth Olsen,FALSE
+2011,The Iron Lady,Meryl Streep,FALSE
+2011,We Need to Talk About Kevin,Tilda Swinton,FALSE
+2011,Young Adult,Charlize Theron,FALSE
+2011,My Week with Marilyn,Michelle Williams,FALSE
+2012,Zero Dark Thirty,Jessica Chastain,TRUE
+2012,Rust and Bone,Marion Cotillard,FALSE
+2012,Silver Linings Playbook,Jennifer Lawrence,FALSE
+2012,Amour,Emmanuelle Riva,FALSE
+2012,Beasts of the Southern Wild,Quvenzhané Wallis,FALSE
+2012,The Impossible,Naomi Watts,FALSE
+2013,Blue Jasmine,Cate Blanchett,TRUE
+2013,Gravity,Sandra Bullock,FALSE
+2013,Philomena,Judi Dench,FALSE
+2013,Short Term 12,Brie Larson,FALSE
+2013,August: Osage County,Meryl Streep,FALSE
+2013,Saving Mr. Banks,Emma Thompson,FALSE
+2014,Still Alice,Julianne Moore,TRUE
+2014,Cake,Jennifer Aniston,FALSE
+2014,"Two Days, One Night",Marion Cotillard,FALSE
+2014,The Theory of Everything,Felicity Jones,FALSE
+2014,Gone Girl,Rosamund Pike,FALSE
+2014,Wild,Reese Witherspoon,FALSE
+2015,Room,Brie Larson,TRUE
+2015,Carol,Cate Blanchett,FALSE
+2015,Joy,Jennifer Lawrence,FALSE
+2015,45 Years,Charlotte Rampling,FALSE
+2015,Brooklyn,Saoirse Ronan,FALSE
+2015,Mad Max: Fury Road,Charlize Theron,FALSE
+2016,Jackie,Natalie Portman,TRUE
+2016,Arrival,Amy Adams,FALSE
+2016,20th Century Women,Annette Bening,FALSE
+2016,Elle,Isabelle Huppert,FALSE
+2016,Loving,Ruth Negga,FALSE
+2016,La La Land,Emma Stone,FALSE
+2017,"Three Billboards Outside Ebbing, Missouri",Frances McDormand,TRUE
+2017,Molly's Game,Jessica Chastain,FALSE
+2017,The Shape of Water,Sally Hawkins,FALSE
+2017,"I, Tonya",Margot Robbie,FALSE
+2017,Lady Bird,Saoirse Ronan,FALSE
+2017,The Post,Meryl Streep,FALSE
+2018,The Wife,Glenn Close (TIE),TRUE
+2018,A Star Is Born,Lady Gaga (TIE),TRUE
+2018,Roma,Yalitza Aparicio,FALSE
+2018,Mary Poppins Returns,Emily Blunt,FALSE
+2018,Hereditary,Toni Collette,FALSE
+2018,The Favourite,Olivia Colman,FALSE
+2018,Can You Ever Forgive Me?,Melissa McCarthy,FALSE
+2019,Judy,Renée Zellweger,TRUE
+2019,The Farewell,Awkwafina,FALSE
+2019,Harriet,Cynthia Erivo,FALSE
+2019,Marriage Story,Scarlett Johansson,FALSE
+2019,Us,Lupita Nyong'o,FALSE
+2019,Little Women,Saoirse Ronan,FALSE
+2019,Bombshell,Charlize Theron,FALSE
+2020,Promising Young Woman,Carey Mulligan,TRUE
+2020,Ma Rainey's Black Bottom,Viola Davis,FALSE
+2020,The United States vs. Billie Holiday,Andra Day,FALSE
+2020,Never Rarely Sometimes Always,Sidney Flanigan,FALSE
+2020,Pieces of a Woman,Vanessa Kirby,FALSE
+2020,Nomadland,Frances McDormand,FALSE
+2020,Malcolm & Marie,Zendaya,FALSE
+2021,The Eyes of Tammy Faye,Jessica Chastain,TRUE
+2021,The Lost Daughter,Olivia Colman,FALSE
+2021,House of Gucci,Lady Gaga,FALSE
+2021,Licorice Pizza,Alana Haim,FALSE
+2021,Being the Ricardos,Nicole Kidman,FALSE
+2021,Spencer,Kristen Stewart,FALSE
+2022,Tár,Cate Blanchett,TRUE
+2022,The Woman King,Viola Davis,FALSE
+2022,Till,Danielle Deadwyler,FALSE
+2022,Babylon,Margot Robbie,FALSE
+2022,The Fabelmans,Michelle Williams,FALSE
+2022,Everything Everywhere All at Once,Michelle Yeoh,FALSE
+2023,Poor Things,Emma Stone,TRUE
+2023,Killers of the Flower Moon,Lily Gladstone,FALSE
+2023,Anatomy of a Fall,Sandra Hüller,FALSE
+2023,Past Lives,Greta Lee,FALSE
+2023,Maestro,Carey Mulligan,FALSE
+2023,Barbie,Margot Robbie,FALSE
+2024,The Substance,Demi Moore,TRUE
+2024,Wicked,Cynthia Erivo,FALSE
+2024,Emilia Pérez,Karla Sofía Gascón,FALSE
+2024,Hard Truths,Marianne Jean-Baptiste,FALSE
+2024,Maria,Angelina Jolie,FALSE
+2024,Anora,Mikey Madison,FALSE

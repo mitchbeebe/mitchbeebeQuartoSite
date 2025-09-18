@@ -78,6 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -205,7 +208,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Below is my contribution followed by the how-to, for those interested.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="by-country.svg" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="by-country.svg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="It’s widely known that the United States was in a Space Race with the Soviet Union throughout the Cold War, but it turns out we were also in a foot race. The USSR accumulated 1,005 golds, silvers, and bronzes starting in the 1952 Games in Helsinki through the 1988 Games in Seoul. The next closest countries were the USA and Germany with 957 and 755 medals tallied, respectively."><img src="by-country.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="It’s widely known that the United States was in a Space Race with the Soviet Union throughout the Cold War, but it turns out we were also in a foot race. The USSR accumulated 1,005 golds, silvers, and bronzes starting in the 1952 Games in Helsinki through the 1988 Games in Seoul. The next closest countries were the USA and Germany with 957 and 755 medals tallied, respectively."></a></p>
+</figure>
+</div>
 <figcaption>It’s widely known that the United States was in a Space Race with the Soviet Union throughout the Cold War, but it turns out we were also in a foot race. The USSR accumulated 1,005 golds, silvers, and bronzes starting in the 1952 Games in Helsinki through the 1988 Games in Seoul. The next closest countries were the USA and Germany with 957 and 755 medals tallied, respectively.</figcaption>
 </figure>
 </div>
@@ -466,18 +473,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_markdown</span>(),</span>
 <span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"DIN Alternate"</span>),</span>
 <span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey20"</span>),</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>)</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    )  <span class="sc">+</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">'off'</span>) <span class="sc">+</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add Olympic Rings logo</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_custom</span>(</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="st">"olympic_rings.svg"</span>) <span class="sc">%&gt;%</span> grid<span class="sc">::</span><span class="fu">rasterGrob</span>(<span class="at">interpolate =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">1890</span>, <span class="at">xmax =</span> <span class="dv">1914</span>, <span class="at">y =</span> <span class="dv">3300</span>, <span class="at">ymax =</span> <span class="dv">4100</span>)</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(by_country, <span class="at">file =</span> <span class="st">"by-country.svg"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>    )  <span class="sc">+</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">'off'</span>) <span class="sc">+</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add Olympic Rings logo</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_custom</span>(</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>    magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="st">"olympic_rings.svg"</span>) <span class="sc">%&gt;%</span> grid<span class="sc">::</span><span class="fu">rasterGrob</span>(<span class="at">interpolate =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">1890</span>, <span class="at">xmax =</span> <span class="dv">1914</span>, <span class="at">y =</span> <span class="dv">3300</span>, <span class="at">ymax =</span> <span class="dv">4100</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(by_country, <span class="at">file =</span> <span class="st">"by-country.svg"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">It’s widely known that the United States was in a Space Race with the Soviet Union throughout the Cold War, but it turns out we were also in a foot race. The USSR accumulated 1,005 golds, silvers, and bronzes starting in the 1952 Games in Helsinki through the 1988 Games in Seoul. The next closest countries were the USA and Germany with 957 and 755 medals tallied, respectively.</span>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -896,8 +908,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/mitchbeebe/mitchbeebeQuartoSite/blob/main/posts/2024-07-16-data-quest/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/mitchbeebe/mitchbeebeQuartoSite/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/mitchbeebe/mitchbeebeQuartoSite/blob/main/posts/2024-07-16-data-quest/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/mitchbeebe/mitchbeebeQuartoSite/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

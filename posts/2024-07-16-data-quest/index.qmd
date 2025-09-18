@@ -3,6 +3,7 @@ title: "Inaugural Mastery Quest - Summer Olympics"
 description: "Learn more on [Bletchley.org!](https://www.bletchley.org/blog/mastery-quest-the-summer-olympics-data-science)"
 date: "2024-07-16"
 image: https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w1460/f_auto/primary/ufimmifputd3kkkvdgmb
+lightbox: auto
 ---
 
 This week's [Data Science Mastery Quest](https://www.bletchley.org/blog/mastery-quest-the-summer-olympics-data-science), or Data Quest, was to find a dataset on the Summer Olympics and create a visualization, model, app, or other data-related output using the tool of your choice.
@@ -138,7 +139,9 @@ by_country <-
     plot.caption = element_markdown(),
     text = element_text(family = "DIN Alternate"),
     axis.line = element_line(color = "grey20"),
-    strip.text = element_text(size = 48)
+    strip.text = element_text(size = 48),
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "white", color = NA)
     )  +
   coord_cartesian(clip = 'off') +
   # Add Olympic Rings logo

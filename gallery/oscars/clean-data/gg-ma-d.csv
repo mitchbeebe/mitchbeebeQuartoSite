@@ -1,0 +1,375 @@
+Year,Film,Nominee,Winner
+1943,Watch on the Rhine,Paul Lukas,TRUE
+1944,Wilson,Alexander Knox,TRUE
+1945,The Lost Weekend,Ray Milland,TRUE
+1946,The Yearling,Gregory Peck,TRUE
+1947,A Double Life,Ronald Colman,TRUE
+1948,Hamlet,Laurence Olivier,TRUE
+1949,All the King's Men,Broderick Crawford,TRUE
+1949,The Hasty Heart,Richard Todd,FALSE
+1950,Cyrano de Bergerac,José Ferrer,TRUE
+1950,The Magnificent Yankee,Louis Calhern,FALSE
+1950,Harvey,James Stewart,FALSE
+1951,Death of a Salesman,Fredric March,TRUE
+1951,Detective Story,Kirk Douglas,FALSE
+1951,Bright Victory,Arthur Kennedy,FALSE
+1952,High Noon,Gary Cooper,TRUE
+1952,The Thief,Ray Milland,FALSE
+1952,The Happy Time,Charles Boyer,FALSE
+1953,The Actress,Spencer Tracy,TRUE
+1954,On the Waterfront,Marlon Brando,TRUE
+1955,Marty,Ernest Borgnine,TRUE
+1956,Lust for Life,Kirk Douglas,TRUE
+1956,Baby Doll,Karl Malden,FALSE
+1956,Friendly Persuasion,Gary Cooper,FALSE
+1956,The Rainmaker,Burt Lancaster,FALSE
+1956,The Ten Commandments,Charlton Heston,FALSE
+1957,The Bridge on the River Kwai,Alec Guinness,TRUE
+1957,Sayonara,Marlon Brando,FALSE
+1958,Separate Tables,David Niven,TRUE
+1958,The Defiant Ones,Tony Curtis,FALSE
+1958,The Inn of the Sixth Happiness,Robert Donat,FALSE
+1958,The Defiant Ones,Sidney Poitier,FALSE
+1958,The Old Man and the Sea,Spencer Tracy,FALSE
+1959,Career,Anthony Franciosa,TRUE
+1959,Look Back in Anger,Richard Burton,FALSE
+1959,Ben-Hur,Charlton Heston,FALSE
+1959,Middle of the Night,Fredric March,FALSE
+1959,The Diary of Anne Frank,Joseph Schildkraut,FALSE
+1960,Elmer Gantry,Burt Lancaster,TRUE
+1960,Sons and Lovers,Trevor Howard,FALSE
+1960,Spartacus,Laurence Olivier,FALSE
+1960,Sons and Lovers,Dean Stockwell,FALSE
+1960,Inherit the Wind,Spencer Tracy,FALSE
+1961,Judgment at Nuremberg,Maximilian Schell,TRUE
+1961,Splendor in the Grass,Warren Beatty,FALSE
+1961,Fanny,Maurice Chevalier,FALSE
+1961,The Hustler,Paul Newman,FALSE
+1961,A Raisin in the Sun,Sidney Poitier,FALSE
+1962,To Kill a Mockingbird,Gregory Peck,TRUE
+1962,The Wonderful World of the Brothers Grimm,Laurence Harvey,FALSE
+1962,Birdman of Alcatraz,Burt Lancaster,FALSE
+1962,Days of Wine and Roses,Jack Lemmon,FALSE
+1962,Lolita,James Mason,FALSE
+1962,Sweet Bird of Youth,Paul Newman,FALSE
+1962,Lawrence of Arabia,Peter O'Toole,FALSE
+1962,Lawrence of Arabia,Anthony Quinn,FALSE
+1963,Lilies of the Field,Sidney Poitier,TRUE
+1963,The Ugly American,Marlon Brando,FALSE
+1963,America America,Stathis Giallelis,FALSE
+1963,Cleopatra,Rex Harrison,FALSE
+1963,Love with the Proper Stranger,Steve McQueen,FALSE
+1963,Hud,Paul Newman,FALSE
+1963,"Captain Newman, M.D.",Gregory Peck,FALSE
+1963,The Cardinal,Tom Tryon,FALSE
+1964,Becket,Peter O'Toole,TRUE
+1964,Becket,Richard Burton,FALSE
+1964,Rio Conchos,Anthony Franciosa,FALSE
+1964,Seven Days in May,Fredric March,FALSE
+1964,Zorba the Greek,Anthony Quinn,FALSE
+1965,Doctor Zhivago,Omar Sharif,TRUE
+1965,The Agony and the Ecstasy,Rex Harrison,FALSE
+1965,A Patch of Blue,Sidney Poitier,FALSE
+1965,The Pawnbroker,Rod Steiger,FALSE
+1965,Ship of Fools,Oskar Werner,FALSE
+1966,A Man for All Seasons,Paul Scofield,TRUE
+1966,Who's Afraid of Virginia Woolf?,Richard Burton,FALSE
+1966,Alfie,Michael Caine,FALSE
+1966,The Sand Pebbles,Steve McQueen,FALSE
+1966,Hawaii,Max von Sydow,FALSE
+1967,In the Heat of the Night,Rod Steiger,TRUE
+1967,Far from the Madding Crowd,Alan Bates,FALSE
+1967,Bonnie and Clyde,Warren Beatty,FALSE
+1967,Cool Hand Luke,Paul Newman,FALSE
+1967,In the Heat of the Night,Sidney Poitier,FALSE
+1967,Guess Who's Coming to Dinner,Spencer Tracy,FALSE
+1968,The Lion in Winter,Peter O'Toole,TRUE
+1968,The Heart Is a Lonely Hunter,Alan Arkin,FALSE
+1968,The Fixer,Alan Bates,FALSE
+1968,The Boston Strangler,Tony Curtis,FALSE
+1968,Charly,Cliff Robertson,FALSE
+1969,True Grit,John Wayne,TRUE
+1969,Popi,Alan Arkin,FALSE
+1969,Anne of the Thousand Days,Richard Burton,FALSE
+1969,Midnight Cowboy,Dustin Hoffman,FALSE
+1969,Midnight Cowboy,Jon Voight,FALSE
+1970,Patton,George C. Scott,TRUE
+1970,I Never Sang for My Father,Melvyn Douglas,FALSE
+1970,The Great White Hope,James Earl Jones,FALSE
+1970,Five Easy Pieces,Jack Nicholson,FALSE
+1970,Love Story,Ryan O'Neal,FALSE
+1971,The French Connection,Gene Hackman,TRUE
+1971,Sunday Bloody Sunday,Peter Finch,FALSE
+1971,A Clockwork Orange,Malcolm McDowell,FALSE
+1971,Carnal Knowledge,Jack Nicholson,FALSE
+1971,The Hospital,George C. Scott,FALSE
+1972,The Godfather,Marlon Brando,TRUE
+1972,Sleuth,Michael Caine,FALSE
+1972,Sleuth,Laurence Olivier,FALSE
+1972,The Godfather,Al Pacino,FALSE
+1972,Deliverance,Jon Voight,FALSE
+1973,Serpico,Al Pacino,TRUE
+1973,Electra Glide in Blue,Robert Blake,FALSE
+1973,Save the Tiger,Jack Lemmon,FALSE
+1973,Papillon,Steve McQueen,FALSE
+1973,The Last Detail,Jack Nicholson,FALSE
+1974,Chinatown,Jack Nicholson,TRUE
+1974,The Gambler,James Caan,FALSE
+1974,The Conversation,Gene Hackman,FALSE
+1974,Lenny,Dustin Hoffman,FALSE
+1974,The Godfather Part II,Al Pacino,FALSE
+1975,One Flew Over the Cuckoo's Nest,Jack Nicholson,TRUE
+1975,French Connection II,Gene Hackman,FALSE
+1975,Dog Day Afternoon,Al Pacino,FALSE
+1975,The Man in the Glass Booth,Maximilian Schell,FALSE
+1975,"Give 'em Hell, Harry!",James Whitmore,FALSE
+1976,Network,Peter Finch (posthumous),TRUE
+1976,Bound for Glory,David Carradine,FALSE
+1976,Taxi Driver,Robert De Niro,FALSE
+1976,Marathon Man,Dustin Hoffman,FALSE
+1976,Rocky,Sylvester Stallone,FALSE
+1977,Equus,Richard Burton,TRUE
+1977,A Special Day,Marcello Mastroianni,FALSE
+1977,Bobby Deerfield,Al Pacino,FALSE
+1977,MacArthur,Gregory Peck,FALSE
+1977,Heroes,Henry Winkler,FALSE
+1978,Coming Home,Jon Voight,TRUE
+1978,Midnight Express,Brad Davis,FALSE
+1978,The Deer Hunter,Robert De Niro,FALSE
+1978,Magic,Anthony Hopkins,FALSE
+1978,The Boys from Brazil,Gregory Peck,FALSE
+1979,Kramer vs. Kramer,Dustin Hoffman,TRUE
+1979,The China Syndrome,Jack Lemmon,FALSE
+1979,...And Justice for All,Al Pacino,FALSE
+1979,The Champ,Jon Voight,FALSE
+1979,The Onion Field,James Woods,FALSE
+1980,Raging Bull,Robert De Niro,TRUE
+1980,The Elephant Man,John Hurt,FALSE
+1980,Tribute,Jack Lemmon,FALSE
+1980,The Stunt Man,Peter O'Toole,FALSE
+1980,Ordinary People,Donald Sutherland,FALSE
+1981,On Golden Pond,Henry Fonda,TRUE
+1981,Reds,Warren Beatty,FALSE
+1981,Taps,Timothy Hutton,FALSE
+1981,Atlantic City,Burt Lancaster,FALSE
+1981,Prince of the City,Treat Williams,FALSE
+1982,Gandhi,Ben Kingsley,TRUE
+1982,Shoot the Moon,Albert Finney,FALSE
+1982,An Officer and a Gentleman,Richard Gere,FALSE
+1982,Missing,Jack Lemmon,FALSE
+1982,The Verdict,Paul Newman,FALSE
+1983,The Dresser,Tom Courtenay,TRUE
+1983,Tender Mercies,Robert Duvall,FALSE
+1983,"Reuben, Reuben",Tom Conti,FALSE
+1983,The Grey Fox,Richard Farnsworth,FALSE
+1983,The Dresser,Albert Finney,FALSE
+1983,Scarface,Al Pacino,FALSE
+1983,Star 80,Eric Roberts,FALSE
+1984,Amadeus,F. Murray Abraham,TRUE
+1984,Starman,Jeff Bridges,FALSE
+1984,Under the Volcano,Albert Finney,FALSE
+1984,Amadeus,Tom Hulce,FALSE
+1984,The Killing Fields,Sam Waterston,FALSE
+1985,Runaway Train,Jon Voight,TRUE
+1985,Witness,Harrison Ford,FALSE
+1985,Twice in a Lifetime,Gene Hackman,FALSE
+1985,Kiss of the Spider Woman,William Hurt,FALSE
+1985,Kiss of the Spider Woman,Raul Julia,FALSE
+1986,Mona Lisa,Bob Hoskins,TRUE
+1986,The Mosquito Coast,Harrison Ford,FALSE
+1986,Round Midnight,Dexter Gordon,FALSE
+1986,Children of a Lesser God,William Hurt,FALSE
+1986,The Mission,Jeremy Irons,FALSE
+1986,The Color of Money,Paul Newman,FALSE
+1987,Wall Street,Michael Douglas,TRUE
+1987,The Last Emperor,John Lone,FALSE
+1987,Ironweed,Jack Nicholson,FALSE
+1987,Weeds,Nick Nolte,FALSE
+1987,Cry Freedom,Denzel Washington,FALSE
+1988,Rain Man,Dustin Hoffman,TRUE
+1988,Mississippi Burning,Gene Hackman,FALSE
+1988,Dominick and Eugene,Tom Hulce,FALSE
+1988,Stand and Deliver,Edward James Olmos,FALSE
+1988,Bird,Forest Whitaker,FALSE
+1989,Born on the Fourth of July,Tom Cruise,TRUE
+1989,My Left Foot,Daniel Day-Lewis,FALSE
+1989,Dad,Jack Lemmon,FALSE
+1989,Sea of Love,Al Pacino,FALSE
+1989,Dead Poets Society,Robin Williams,FALSE
+1990,Reversal of Fortune,Jeremy Irons,TRUE
+1990,Dances with Wolves,Kevin Costner,FALSE
+1990,The Field,Richard Harris,FALSE
+1990,The Godfather Part III,Al Pacino,FALSE
+1990,Awakenings,Robin Williams,FALSE
+1991,The Prince of Tides,Nick Nolte,TRUE
+1991,Bugsy,Warren Beatty,FALSE
+1991,JFK,Kevin Costner,FALSE
+1991,Cape Fear,Robert De Niro,FALSE
+1991,The Silence of the Lambs,Anthony Hopkins,FALSE
+1992,Scent of a Woman,Al Pacino,TRUE
+1992,A Few Good Men,Tom Cruise,FALSE
+1992,Chaplin,Robert Downey Jr.,FALSE
+1992,Hoffa,Jack Nicholson,FALSE
+1992,Malcolm X,Denzel Washington,FALSE
+1993,Philadelphia,Tom Hanks,TRUE
+1993,In the Name of the Father,Daniel Day-Lewis,FALSE
+1993,The Fugitive,Harrison Ford,FALSE
+1993,The Remains of the Day,Anthony Hopkins,FALSE
+1993,Schindler's List,Liam Neeson,FALSE
+1994,Forrest Gump,Tom Hanks,TRUE
+1994,The Shawshank Redemption,Morgan Freeman,FALSE
+1994,Nobody's Fool,Paul Newman,FALSE
+1994,Legends of the Fall,Brad Pitt,FALSE
+1994,Pulp Fiction,John Travolta,FALSE
+1995,Leaving Las Vegas,Nicolas Cage,TRUE
+1995,Mr. Holland's Opus,Richard Dreyfuss,FALSE
+1995,Nixon,Anthony Hopkins,FALSE
+1995,Richard III,Ian McKellen,FALSE
+1995,Dead Man Walking,Sean Penn,FALSE
+1996,Shine,Geoffrey Rush,TRUE
+1996,The English Patient,Ralph Fiennes,FALSE
+1996,Ransom,Mel Gibson,FALSE
+1996,The People vs. Larry Flynt,Woody Harrelson,FALSE
+1996,Michael Collins,Liam Neeson,FALSE
+1997,Ulee's Gold,Peter Fonda,TRUE
+1997,Good Will Hunting,Matt Damon,FALSE
+1997,The Boxer,Daniel Day-Lewis,FALSE
+1997,Titanic,Leonardo DiCaprio,FALSE
+1997,Amistad,Djimon Hounsou,FALSE
+1998,The Truman Show,Jim Carrey,TRUE
+1998,Wilde,Stephen Fry,FALSE
+1998,Saving Private Ryan,Tom Hanks,FALSE
+1998,Gods and Monsters,Ian McKellen,FALSE
+1998,Affliction,Nick Nolte,FALSE
+1999,The Hurricane,Denzel Washington,TRUE
+1999,The Insider,Russell Crowe,FALSE
+1999,The Talented Mr. Ripley,Matt Damon,FALSE
+1999,The Straight Story,Richard Farnsworth,FALSE
+1999,American Beauty,Kevin Spacey,FALSE
+2000,Cast Away,Tom Hanks,TRUE
+2000,Before Night Falls,Javier Bardem,FALSE
+2000,Gladiator,Russell Crowe,FALSE
+2000,Wonder Boys,Michael Douglas,FALSE
+2000,Quills,Geoffrey Rush,FALSE
+2001,A Beautiful Mind,Russell Crowe,TRUE
+2001,Ali,Will Smith,FALSE
+2001,The Shipping News,Kevin Spacey,FALSE
+2001,The Man Who Wasn't There,Billy Bob Thornton,FALSE
+2001,Training Day,Denzel Washington,FALSE
+2002,About Schmidt,Jack Nicholson,TRUE
+2002,The Pianist,Adrien Brody,FALSE
+2002,The Quiet American,Michael Caine,FALSE
+2002,Gangs of New York,Daniel Day-Lewis,FALSE
+2002,Catch Me If You Can,Leonardo DiCaprio,FALSE
+2003,Mystic River,Sean Penn,TRUE
+2003,Master and Commander: The Far Side of the World,Russell Crowe,FALSE
+2003,The Last Samurai,Tom Cruise,FALSE
+2003,House of Sand and Fog,Ben Kingsley,FALSE
+2003,Cold Mountain,Jude Law,FALSE
+2004,The Aviator,Leonardo DiCaprio,TRUE
+2004,The Sea Inside,Javier Bardem,FALSE
+2004,Hotel Rwanda,Don Cheadle,FALSE
+2004,Finding Neverland,Johnny Depp,FALSE
+2004,Kinsey,Liam Neeson,FALSE
+2005,Capote,Philip Seymour Hoffman,TRUE
+2005,Cinderella Man,Russell Crowe,FALSE
+2005,Hustle & Flow,Terrence Howard,FALSE
+2005,Brokeback Mountain,Heath Ledger,FALSE
+2005,"Good Night, and Good Luck",David Strathairn,FALSE
+2006,The Last King of Scotland,Forest Whitaker,TRUE
+2006,Blood Diamond,Leonardo DiCaprio,FALSE
+2006,The Departed,Leonardo DiCaprio,FALSE
+2006,Venus,Peter O'Toole,FALSE
+2006,The Pursuit of Happyness,Will Smith,FALSE
+2007,There Will Be Blood,Daniel Day-Lewis,TRUE
+2007,Michael Clayton,George Clooney,FALSE
+2007,Atonement,James McAvoy,FALSE
+2007,Eastern Promises,Viggo Mortensen,FALSE
+2007,American Gangster,Denzel Washington,FALSE
+2008,The Wrestler,Mickey Rourke,TRUE
+2008,Revolutionary Road,Leonardo DiCaprio,FALSE
+2008,Frost/Nixon,Frank Langella,FALSE
+2008,Milk,Sean Penn,FALSE
+2008,The Curious Case of Benjamin Button,Brad Pitt,FALSE
+2009,Crazy Heart,Jeff Bridges,TRUE
+2009,Up in the Air,George Clooney,FALSE
+2009,A Single Man,Colin Firth,FALSE
+2009,Invictus,Morgan Freeman,FALSE
+2009,Brothers,Tobey Maguire,FALSE
+2010,The King's Speech,Colin Firth,TRUE
+2010,The Social Network,Jesse Eisenberg,FALSE
+2010,127 Hours,James Franco,FALSE
+2010,Blue Valentine,Ryan Gosling,FALSE
+2010,The Fighter,Mark Wahlberg,FALSE
+2011,The Descendants,George Clooney,TRUE
+2011,J. Edgar,Leonardo DiCaprio,FALSE
+2011,Shame,Michael Fassbender,FALSE
+2011,The Ides of March,Ryan Gosling,FALSE
+2011,Moneyball,Brad Pitt,FALSE
+2012,Lincoln,Daniel Day-Lewis,TRUE
+2012,Arbitrage,Richard Gere,FALSE
+2012,The Sessions,John Hawkes,FALSE
+2012,The Master,Joaquin Phoenix,FALSE
+2012,Flight,Denzel Washington,FALSE
+2013,Dallas Buyers Club,Matthew McConaughey,TRUE
+2013,12 Years a Slave,Chiwetel Ejiofor,FALSE
+2013,Mandela: Long Walk to Freedom,Idris Elba,FALSE
+2013,Captain Phillips,Tom Hanks,FALSE
+2013,All Is Lost,Robert Redford,FALSE
+2014,The Theory of Everything,Eddie Redmayne,TRUE
+2014,Foxcatcher,Steve Carell,FALSE
+2014,The Imitation Game,Benedict Cumberbatch,FALSE
+2014,Nightcrawler,Jake Gyllenhaal,FALSE
+2014,Selma,David Oyelowo,FALSE
+2015,The Revenant,Leonardo DiCaprio,TRUE
+2015,Trumbo,Bryan Cranston,FALSE
+2015,Steve Jobs,Michael Fassbender,FALSE
+2015,The Danish Girl,Eddie Redmayne,FALSE
+2015,Concussion,Will Smith,FALSE
+2016,Manchester by the Sea,Casey Affleck,TRUE
+2016,Loving,Joel Edgerton,FALSE
+2016,Hacksaw Ridge,Andrew Garfield,FALSE
+2016,Captain Fantastic,Viggo Mortensen,FALSE
+2016,Fences,Denzel Washington,FALSE
+2017,Darkest Hour,Gary Oldman,TRUE
+2017,Call Me by Your Name,Timothée Chalamet,FALSE
+2017,Phantom Thread,Daniel Day-Lewis,FALSE
+2017,The Post,Tom Hanks,FALSE
+2017,"Roman J. Israel, Esq.",Denzel Washington,FALSE
+2018,Bohemian Rhapsody,Rami Malek,TRUE
+2018,A Star Is Born,Bradley Cooper,FALSE
+2018,At Eternity's Gate,Willem Dafoe,FALSE
+2018,Boy Erased,Lucas Hedges,FALSE
+2018,BlacKkKlansman,John David Washington,FALSE
+2019,Joker,Joaquin Phoenix,TRUE
+2019,Ford v. Ferrari,Christian Bale,FALSE
+2019,Pain and Glory,Antonio Banderas,FALSE
+2019,Marriage Story,Adam Driver,FALSE
+2019,The Two Popes,Jonathan Pryce,FALSE
+2020,Ma Rainey's Black Bottom,Chadwick Boseman (posthumous),TRUE
+2020,Sound of Metal,Riz Ahmed,FALSE
+2020,The Father,Anthony Hopkins,FALSE
+2020,Mank,Gary Oldman,FALSE
+2020,The Mauritanian,Tahar Rahim,FALSE
+2021,King Richard,Will Smith,TRUE
+2021,Swan Song,Mahershala Ali,FALSE
+2021,Being the Ricardos,Javier Bardem,FALSE
+2021,The Power of the Dog,Benedict Cumberbatch,FALSE
+2021,The Tragedy of Macbeth,Denzel Washington,FALSE
+2022,Elvis,Austin Butler,TRUE
+2022,The Whale,Brendan Fraser,FALSE
+2022,The Son,Hugh Jackman,FALSE
+2022,Living,Bill Nighy,FALSE
+2022,The Inspection,Jeremy Pope,FALSE
+2023,Oppenheimer,Cillian Murphy,TRUE
+2023,Maestro,Bradley Cooper,FALSE
+2023,Killers of the Flower Moon,Leonardo DiCaprio,FALSE
+2023,Rustin,Colman Domingo,FALSE
+2023,Saltburn,Barry Keoghan,FALSE
+2023,All of Us Strangers,Andrew Scott,FALSE
+2024,The Brutalist,Adrien Brody,TRUE
+2024,A Complete Unknown,Timothée Chalamet,FALSE
+2024,Queer,Daniel Craig,FALSE
+2024,Sing Sing,Colman Domingo,FALSE
+2024,Conclave,Ralph Fiennes,FALSE
+2024,The Apprentice,Sebastian Stan,FALSE

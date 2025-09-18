@@ -1,0 +1,101 @@
+rank,name,country_name,country_id,active,value,tournament,level
+1,Rafael Nadal,Spain,ESP,false,14,Roland Garros,G
+2,Novak Djokovic,Serbia,SRB,true,10,Australian Open,G
+3,Roger Federer,Switzerland,SUI,false,8,Wimbledon,G
+4,Pete Sampras,United States,USA,false,7,Wimbledon,G
+4,Novak Djokovic,Serbia,SRB,true,7,Wimbledon,G
+6,Bjorn Borg,Sweden,SWE,false,6,Roland Garros,G
+6,Roger Federer,Switzerland,SUI,false,6,Australian Open,G
+8,Bjorn Borg,Sweden,SWE,false,5,Wimbledon,G
+8,Jimmy Connors,United States,USA,false,5,US Open,G
+8,Pete Sampras,United States,USA,false,5,US Open,G
+8,Roger Federer,Switzerland,SUI,false,5,US Open,G
+12,John McEnroe,United States,USA,false,4,US Open,G
+12,Andre Agassi,United States,USA,false,4,Australian Open,G
+12,Rafael Nadal,Spain,ESP,false,4,US Open,G
+12,Novak Djokovic,Serbia,SRB,true,4,US Open,G
+16,John McEnroe,United States,USA,false,3,Wimbledon,G
+16,Ivan Lendl,United States,USA,false,3,Roland Garros,G
+16,Ivan Lendl,United States,USA,false,3,US Open,G
+16,Mats Wilander,Sweden,SWE,false,3,Australian Open,G
+16,Mats Wilander,Sweden,SWE,false,3,Roland Garros,G
+16,Boris Becker,Germany,GER,false,3,Wimbledon,G
+16,Gustavo Kuerten,Brazil,BRA,false,3,Roland Garros,G
+16,Novak Djokovic,Serbia,SRB,true,3,Roland Garros,G
+24,Rod Laver,Australia,AUS,false,2,Wimbledon,G
+24,Jan Kodes,Czech Republic,CZE,false,2,Roland Garros,G
+24,John Newcombe,Australia,AUS,false,2,Wimbledon,G
+24,Ken Rosewall,Australia,AUS,false,2,Australian Open,G
+24,John Newcombe,Australia,AUS,false,2,Australian Open,G
+24,Guillermo Vilas,Argentina,ARG,false,2,Australian Open,G
+24,Jimmy Connors,United States,USA,false,2,Wimbledon,G
+24,Johan Kriek,United States,USA,false,2,Australian Open,G
+24,Stefan Edberg,Sweden,SWE,false,2,Australian Open,G
+24,Ivan Lendl,United States,USA,false,2,Australian Open,G
+24,Stefan Edberg,Sweden,SWE,false,2,Wimbledon,G
+24,Jim Courier,United States,USA,false,2,Roland Garros,G
+24,Stefan Edberg,Sweden,SWE,false,2,US Open,G
+24,Jim Courier,United States,USA,false,2,Australian Open,G
+24,Sergi Bruguera,Spain,ESP,false,2,Roland Garros,G
+24,Boris Becker,Germany,GER,false,2,Australian Open,G
+24,Pete Sampras,United States,USA,false,2,Australian Open,G
+24,Patrick Rafter,Australia,AUS,false,2,US Open,G
+24,Andre Agassi,United States,USA,false,2,US Open,G
+24,Rafael Nadal,Spain,ESP,false,2,Wimbledon,G
+24,Andy Murray,United Kingdom,GBR,true,2,Wimbledon,G
+24,Rafael Nadal,Spain,ESP,false,2,Australian Open,G
+46,Bill Bowrey,Australia,AUS,false,1,Australian Open,G
+46,Ken Rosewall,Australia,AUS,false,1,Roland Garros,G
+46,Arthur Ashe,United States,USA,false,1,US Open,G
+46,Rod Laver,Australia,AUS,false,1,Australian Open,G
+46,Rod Laver,Australia,AUS,false,1,Roland Garros,G
+46,Rod Laver,Australia,AUS,false,1,US Open,G
+46,Arthur Ashe,United States,USA,false,1,Australian Open,G
+46,Ken Rosewall,Australia,AUS,false,1,US Open,G
+46,Stan Smith,United States,USA,false,1,US Open,G
+46,Andres Gimeno,Spain,ESP,false,1,Roland Garros,G
+46,Stan Smith,United States,USA,false,1,Wimbledon,G
+46,Ilie Nastase,Romania,ROU,false,1,US Open,G
+46,Ilie Nastase,Romania,ROU,false,1,Roland Garros,G
+46,Jan Kodes,Czech Republic,CZE,false,1,Wimbledon,G
+46,John Newcombe,Australia,AUS,false,1,US Open,G
+46,Jimmy Connors,United States,USA,false,1,Australian Open,G
+46,Arthur Ashe,United States,USA,false,1,Wimbledon,G
+46,Manuel Orantes,Spain,ESP,false,1,US Open,G
+46,Mark Edmondson,Australia,AUS,false,1,Australian Open,G
+46,Adriano Panatta,Italy,ITA,false,1,Roland Garros,G
+46,Roscoe Tanner,United States,USA,false,1,Australian Open,G
+46,Guillermo Vilas,Argentina,ARG,false,1,Roland Garros,G
+46,Guillermo Vilas,Argentina,ARG,false,1,US Open,G
+46,Vitas Gerulaitis,United States,USA,false,1,Australian Open,G
+46,Brian Teacher,United States,USA,false,1,Australian Open,G
+46,Yannick Noah,France,FRA,false,1,Roland Garros,G
+46,Pat Cash,Australia,AUS,false,1,Wimbledon,G
+46,Mats Wilander,Sweden,SWE,false,1,US Open,G
+46,Michael Chang,United States,USA,false,1,Roland Garros,G
+46,Boris Becker,Germany,GER,false,1,US Open,G
+46,Andres Gomez,Ecuador,ECU,false,1,Roland Garros,G
+46,Michael Stich,Germany,GER,false,1,Wimbledon,G
+46,Andre Agassi,United States,USA,false,1,Wimbledon,G
+46,Thomas Muster,Austria,AUT,false,1,Roland Garros,G
+46,Yevgeny Kafelnikov,Russian Federation,RUS,false,1,Roland Garros,G
+46,Richard Krajicek,Netherlands,NED,false,1,Wimbledon,G
+46,Petr Korda,Czech Republic,CZE,false,1,Australian Open,G
+46,Carlos Moya,Spain,ESP,false,1,Roland Garros,G
+46,Yevgeny Kafelnikov,Russian Federation,RUS,false,1,Australian Open,G
+46,Andre Agassi,United States,USA,false,1,Roland Garros,G
+46,Marat Safin,Russian Federation,RUS,false,1,US Open,G
+46,Goran Ivanisevic,Croatia,CRO,false,1,Wimbledon,G
+46,Lleyton Hewitt,Australia,AUS,false,1,US Open,G
+46,Thomas Johansson,Sweden,SWE,false,1,Australian Open,G
+46,Albert Costa,Spain,ESP,false,1,Roland Garros,G
+46,Lleyton Hewitt,Australia,AUS,false,1,Wimbledon,G
+46,Juan Carlos Ferrero,Spain,ESP,false,1,Roland Garros,G
+46,Andy Roddick,United States,USA,false,1,US Open,G
+46,Gaston Gaudio,Argentina,ARG,false,1,Roland Garros,G
+46,Marat Safin,Russian Federation,RUS,false,1,Australian Open,G
+46,Roger Federer,Switzerland,SUI,false,1,Roland Garros,G
+46,Juan Martin Del Potro,Argentina,ARG,true,1,US Open,G
+46,Andy Murray,United Kingdom,GBR,true,1,US Open,G
+46,Stan Wawrinka,Switzerland,SUI,true,1,Australian Open,G
+46,Marin Cilic,Croatia,CRO,true,1,US Open,G

@@ -1,0 +1,42 @@
+---
+title: "Taylor Swift and Data Science: An Unlikely Duo"
+description: "A blog post written for Flatiron School"
+date: 2024-01-24
+image: https://flatironschool.com/wp-content/uploads/2024/01/Screen-Shot-2024-01-23-at-11.14.48-AM-900x431.jpg.webp
+format:
+  html:
+    page-layout: full
+    toc: true
+---
+
+::: callout-note
+## This article was originally posted to [Flatiron School's Blog](https://flatironschool.com/blog/taylor-swift-and-data-science-an-unlikely-duo/), but has since been moved
+:::
+
+Data is everywhere, but one thing that might be more ubiquitous than data is Taylor Swift. The recent article “[Taylor’s Towering Year](https://colorado.posit.co/rsc/tay-swift-tour/)”—authored by [Posit](https://posit.co/) (formerly RStudio)—illustrates several ways in which the two are not mutually exclusive by showing the data behind her record-breaking Eras Tour. In the article, they break down the tour’s staggering ticket sales, profound effect on worldwide economies, and boost in popularity for Taylor’s opening acts. Let’s discuss how Posit accomplished this and show you a concert tour visualization of our own.
+
+## Quarto
+
+First released in early 2021, [Quarto](https://quarto.org/), the tool behind the Eras Tour article, is an open-source publishing system designed to weave prose and code output into dynamic documents, presentations, dashboards, and more. Paired with a variety of ways to publish and share your content, it is an excellent platform for data storytelling.
+
+Deciding to learn [R vs. Python](https://flatironschool.com/blog/r-vs-python/) is a well-covered topic and often one prone to heated debate. In Quarto, there’s no “Bad Blood” between the two popular programming languages, where you can choose to run your project in R, Python, or both. It’s also compatible with the Julia and Observable JS languages as well as many of the most popular integrated development environments (IDEs) used in the field of data science, like VS Code, Jupyter, and RStudio. This flexibility means data scientists can collaborate on projects using the tools of their choice.
+
+## How Quarto Generated the Eras Tour Data
+
+You may have noticed the [See the code in R](https://colorado.posit.co/rsc/tay-swift-tour/r.html) link in the left sidebar of Posit’s article that takes you to a virtually identical page. The key difference is this page allows you to see the code behind the data collection and visualizations. We won’t go line-by-line, but let’s look at the high-level steps they took to craft the “GDP of Taylor” data visualization toward the top of the article.
+
+Expand the “See R code” section just above “The GDP of Taylor” visualization to see the first code chunk where Posit starts by web scraping the Wikipedia page for nominal GDP by country. Web scraping is a technique in which you write code to visit a website and return information or data. Be sure to read the terms and conditions of a website found in the robots.txt file that tells you what information you may scrape.
+
+Since Taylor was estimated to stimulate the economy by over \$6 billion, the collected data is filtered to countries with GDPs between \$4 and \$10 billion for comparisons of similar magnitude. Next, Posit plots the map and GDP of each of those eight countries using the R library, ggplot2. Lastly, they stitch everything together with Taylor’s image and economic impact in the center using the cowplot library. Starting with several discrete plots and organizing them together, they are able to create an infographic that puts the Eras Tour in shocking perspective.
+
+This is a great example of data science in action. As data scientists we’re often asked questions or have hypotheses but are not handed a tidy dataset. Instead, we must connect to an API or find data online, automate the process of collecting it, and manipulate it into a format that will be conducive to our analysis. Data collection and cleaning are often the iceberg below the surface while visualizations and predictive models are the parts everyone can see. Without good data, it’s incredibly difficult to produce insightful analyses.
+
+## Flatiron's Highest-Grossing Concert Tours Data Visualization
+
+Like Posit, we collected the data from the [List of highest-grossing concert tours page on Wikipedia](https://en.wikipedia.org/wiki/List_of_highest-grossing_concert_tours). Instead of a static chart, we created a bar chart race—a fun way to visualize data changing over time using animation. Below we have the highest single-year tours by gross revenue from 1993 to 2023.
+
+![Data source: Wikipedia](top-5-annual-gross-revenue-1993-2023-lowres.gif)
+
+The Rolling Stones and U2 tours held most of the top five spots for a majority of the past 30 years. That is, until the 2023 Eras Tour nearly doubled the \$617 million grossed by the A Bigger Bang Tour—the 17-year record-holder set by the Stones in 2006. Interestingly, Taylor Swift is the first female solo artist to crack the list since Madonna’s The MDNA Tour in 2012. With the Eras Tour projected to bring in another \$1 billion in 2024, it will likely be Taylor Swift in the top two spots come end of year.
+
+This analysis was originally created in our own internal Quarto project at [Flatiron School](https://flatironschool.com) and copied over here onto our [blog](https://flatironschool.com/blog/). Give Quarto a try and you might just tell Jupyter notebooks and RMarkdown, “We Are Never Ever Getting Back Together.”

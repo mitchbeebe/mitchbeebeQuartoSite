@@ -1,0 +1,1809 @@
+---
+title: "The Data on Barbie, Greta Gerwig, and Best Director Snubs at the Oscars"
+description: "A blog post written for Flatiron School"
+date: 2024-03-02
+image: "https://flatironschool.com/wp-content/uploads/2024/03/Resized-blog-thumbnail-47-900x599.jpg.webp"
+format:
+  html:
+    page-layout: full
+    toc: true
+execute: 
+  eval: false
+  include: false
+---
+
+::: callout-note
+## This article was originally posted to [Flatiron School's Blog](https://flatironschool.com/blog/data-on-best-director-snubs-at-the-oscars/), but has since been moved
+:::
+
+```{r Imports}
+library(tidyverse)
+library(lubridate)
+library(patchwork)
+library(cowplot)
+library(ggtext)
+library(lemon)
+library(rvest)
+library(httr2)
+library(polite)
+library(ggrepel)
+library(ggpubr)
+library(glue)
+library(fuzzyjoin)
+library(scales)
+library(gt)
+library(gtExtras)
+library(emoji)
+library(tidymodels)
+library(magick)
+library(showtext)
+
+font_add_google("Josefin Sans")
+showtext_auto()
+showtext_opts(dpi = 300)
+```
+
+```{r GoldenGlobes}
+#| eval: false
+# Golden Globes, Best Picture (Drama)
+# Also: https://goldenglobes.com/awards-database/
+gg_bp_d_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Motion_Picture_%E2%80%93_Drama"
+)
+gg_bp_d_df <- gg_bp_d_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         Director = coalesce(`Director[4]`, Director)) %>% 
+  select(Year, Film, Director) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_bp_d_df %>% write_csv("clean-data/gg-bp-drama.csv")
+
+# Gold Globes, Best Picture (Musical/Comedy)
+gg_bp_c_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Motion_Picture_%E2%80%93_Musical_or_Comedy"
+)
+gg_bp_c_df <- gg_bp_c_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[4:9] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Director) %>% 
+  filter(Year >= 1970) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_bp_c_df %>% write_csv("clean-data/gg-bp-comedy.csv")
+
+# Golden Globes, Best Director
+gg_bd_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Director"
+)
+gg_bd_df <- gg_bd_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Name) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_bd_df %>% write_csv("clean-data/gg-bd.csv")
+
+# Screenplay
+gg_bsp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Screenplay"
+)
+gg_bsp_df <- gg_bsp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Nominees) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_bsp_df %>% write_csv("clean-data/gg-bsp.csv")
+
+# Actress, comedy
+gg_fa_c_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Actress_%E2%80%93_Motion_Picture_Comedy_or_Musical"
+)
+gg_fa_c_df <- gg_fa_c_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actress) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1) 
+gg_fa_c_df %>% write_csv("clean-data/gg-fa-c.csv")
+
+# Actress, drama
+gg_fa_d_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Actress_in_a_Motion_Picture_%E2%80%93_Drama"
+)
+gg_fa_d_df <- gg_fa_d_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actress) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_fa_d_df %>% write_csv("clean-data/gg-fa-d.csv")
+
+# Actor, comedy
+gg_ma_c_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Actor_%E2%80%93_Motion_Picture_Musical_or_Comedy"
+)
+gg_ma_c_df <- gg_ma_c_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_ma_c_df %>% write_csv("clean-data/gg-ma-c.csv")
+
+# Actor, drama
+gg_ma_d_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Actor_%E2%80%93_Motion_Picture_Drama"
+)
+gg_ma_d_df <- gg_ma_d_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_ma_d_df %>% write_csv("clean-data/gg-ma-d.csv")
+
+# Supporting Actor
+gg_sma_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Supporting_Actor_%E2%80%93_Motion_Picture"
+)
+gg_sma_df <- gg_sma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_sma_df %>% write_csv("clean-data/gg-sma.csv")
+
+# Supporting Actress
+gg_sfa_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Supporting_Actress_%E2%80%93_Motion_Picture"
+)
+gg_sfa_df <- gg_sfa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actress) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_sfa_df %>% write_csv("clean-data/gg-sfa.csv")
+
+# Screenplay
+gg_bsp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Golden_Globe_Award_for_Best_Screenplay"
+)
+gg_bsp_df <- gg_bsp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+gg_bsp_df %>% write_csv("clean-data/gg-bsp.csv")
+```
+
+```{r CriticsChoice}
+#| eval: false
+# Critics Choice, Best Picture
+cc_bp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Picture"
+)
+cc_bp_df <- cc_bp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         Director = coalesce(`Director(s)`, Director)) %>% 
+  select(Year, Film, Director) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE))
+cc_bp_df %>% write_csv("clean-data/cc-bp.csv")
+
+# Critics Choice, Best Direction
+cc_bd_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Director"
+)
+cc_bd_df <- cc_bd_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         Film = coalesce(`Film (s)`)) %>% 
+  select(Year, Film, Director) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = (row_number() == 1 | str_detect(Director, "TIE"))) %>% 
+  separate_longer_delim(Film, " / ")
+cc_bd_df %>% write_csv("clean-data/cc-bd.csv")
+
+# Adapted Screenplay
+cc_basp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Adapted_Screenplay"
+)
+cc_basp_df <- cc_basp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         Film = coalesce(`Film(s)`, Film),
+         Writer = coalesce(`Writer(s)`, Writer)) %>% 
+  select(Year, Film, Writer) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1 | str_detect(Writer, "TIE"))
+cc_basp_df %>% write_csv("clean-data/cc-basp.csv")
+
+# Original Screenplay
+cc_bosp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Original_Screenplay"
+)
+cc_bosp_df <- cc_bosp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         Writer = `Writer (s)`) %>% 
+  filter(!is.na(Film)) %>% 
+  select(Year, Film, Writer) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1 | str_detect(Writer, "TIE"))
+cc_bosp_df %>% write_csv("clean-data/cc-bosp.csv")
+
+# Male actor
+cc_ma_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Actor"
+)
+cc_ma_df <- cc_ma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Film)) %>% 
+  select(Year, Film, Actor) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1 | str_detect(Actor, "TIE"))
+cc_ma_df %>% write_csv("clean-data/cc-ma.csv")
+
+# Female actor
+cc_fa_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Actress"
+)
+cc_fa_df <- cc_fa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Film)) %>% 
+  select(Year, Film, Actress) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1 | str_detect(Actress, "TIE"))
+cc_fa_df %>% write_csv("clean-data/cc-fa.csv")
+
+# Supporting actor
+cc_sma_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Supporting_Actor"
+)
+cc_sma_df <- cc_sma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Film)) %>% 
+  select(Year, Film, Actor) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1 | str_detect(Actor, "TIE"))
+cc_sma_df %>% write_csv("clean-data/cc-sma.csv")
+
+# Supporting actress
+cc_sfa_bow <- bow(
+  "https://en.wikipedia.org/wiki/Critics%27_Choice_Movie_Award_for_Best_Supporting_Actress"
+)
+cc_sfa_df <- cc_sfa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Film)) %>% 
+  select(Year, Film, Actor) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1 | str_detect(Actor, "TIE"))
+cc_sfa_df %>% write_csv("clean-data/cc-sfa.csv")
+```
+
+```{r DGA}
+#| eval: false
+# DGA
+# Also: https://www.dga.org/Awards/Explore.aspx
+dga_bd_bow <- bow(force = T,
+  "https://en.wikipedia.org/wiki/Directors_Guild_of_America_Award_for_Outstanding_Directing_%E2%80%93_Feature_Film"
+)
+dga_bd_df <- dga_bd_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, `Director(s)` = `Winners and nominees`) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1) %>% 
+  ungroup()
+dga_bd_df %>% write_csv("clean-data/dga-bd.csv")
+```
+
+```{r BAFTA}
+#| eval: false
+# BAFTA, Best Picture
+bafta_bp_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Film"
+)
+bafta_bp_df <- bafta_bp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, `Director(s)`) %>% 
+  filter(!is.na(Year), !is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+bafta_bp_df %>% write_csv("clean-data/bafta-bp.csv")
+
+# BAFTA, Best Director
+bafta_bd_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Direction"
+)
+bafta_bd_df <- bafta_bd_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Director) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+bafta_bp_df %>% write_csv("clean-data/bafta-bp.csv")
+
+# Original Screenplay
+bafta_bosp_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Original_Screenplay"
+)
+bafta_bosp_df <- bafta_bosp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, `Screenwriter(s)`) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+bafta_bosp_df %>% write_csv("clean-data/bafta-bosp.csv")
+
+# Adapted Screenplay
+bafta_basp_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Adapted_Screenplay"
+)
+bafta_basp_df <- bafta_basp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, `Screenwriter(s)`) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1)
+bafta_basp_df %>% write_csv("clean-data/bafta-basp.csv")
+
+# Lead actor
+bafta_ma_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Actor_in_a_Leading_Role"
+)
+bafta_ma_df <- bafta_ma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[2:9] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Film), Year >= 1968, Actor != "Best Actor") %>% # Before '68, award was split
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1) %>% 
+  group_by(Year, Actor) %>% 
+  mutate(Winner = any(Winner))
+bafta_ma_df %>% write_csv("clean-data/bafta-ma.csv")
+
+# Lead actress
+bafta_fa_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Actress_in_a_Leading_Role"
+)
+bafta_fa_df <- bafta_fa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[1:8] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actress) %>% 
+  filter(!is.na(Film), Year >= 1968) %>% # Before '68, award was split
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1) %>% 
+  group_by(Year, Actress) %>% 
+  mutate(Winner = any(Winner))
+bafta_fa_df %>% write_csv("clean-data/bafta-fa.csv")
+
+# Supporting actor
+bafta_sma_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Actor_in_a_Supporting_Role"
+)
+bafta_sma_df <- bafta_sma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Film), Film != "Not Awarded") %>%
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1) %>% 
+  group_by(Year, Actor) %>% 
+  mutate(Winner = any(Winner))
+bafta_sma_df %>% write_csv("clean-data/bafta-sma.csv")
+
+# Supporting actress
+bafta_sfa_bow <- bow(
+  "https://en.wikipedia.org/wiki/BAFTA_Award_for_Best_Actress_in_a_Supporting_Role"
+)
+bafta_sfa_df <- bafta_sfa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[1:7] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actress) %>% 
+  filter(!is.na(Film)) %>% # Before '68, award was split
+  group_by(Year) %>% 
+  mutate(Winner = row_number() == 1) %>% 
+  group_by(Year, Actress) %>% 
+  mutate(Winner = any(Winner))
+bafta_sfa_df %>% write_csv("clean-data/bafta-sfa.csv")
+```
+
+```{r SAG}
+#| eval: false
+# SAG
+# Also: https://www.sagawards.org/awards/nominees-and-recipients/2nd-annual-screen-actors-guild-awards
+sag_bp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Screen_Actors_Guild_Award_for_Outstanding_Performance_by_a_Cast_in_a_Motion_Picture"
+)
+sag_bp_df <- sag_bp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE))
+sag_bp_df %>% write_csv("clean-data/sag-bp.csv")
+
+# Leading actor
+sag_ma_bow <- bow(
+  "https://en.wikipedia.org/wiki/Screen_Actors_Guild_Award_for_Outstanding_Performance_by_a_Male_Actor_in_a_Leading_Role"
+)
+sag_ma_df <- sag_ma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[1:5] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2025, row_number() == 1, FALSE))
+sag_ma_df %>% write_csv("clean-data/sag-ma.csv")
+
+# Leading actress
+sag_fa_bow <- bow(
+  "https://en.wikipedia.org/wiki/Screen_Actors_Guild_Award_for_Outstanding_Performance_by_a_Female_Actor_in_a_Leading_Role"
+)
+sag_fa_df <- sag_fa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[1:4] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Film)) %>% 
+  select(Year, Film, Actress) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE))
+sag_fa_df %>% write_csv("clean-data/sag-fa.csv")
+
+# Supporting actor
+sag_sma_bow <- bow(
+  "https://en.wikipedia.org/wiki/Screen_Actors_Guild_Award_for_Outstanding_Performance_by_a_Male_Actor_in_a_Supporting_Role"
+)
+sag_sma_df <- sag_sma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[1:4] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE))
+sag_sma_df %>% write_csv("clean-data/sag-sma.csv")
+
+# Supporting actress
+sag_sfa_bow <- bow(
+  "https://en.wikipedia.org/wiki/Screen_Actors_Guild_Award_for_Outstanding_Performance_by_a_Female_Actor_in_a_Supporting_Role"
+)
+sag_sfa_df <- sag_sfa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[1:4] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Film)) %>% 
+  select(Year, Film, Actress) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1 | str_detect(Actress, "TIE"), FALSE))
+sag_sfa_df %>% write_csv("clean-data/sag-sfa.csv")
+```
+
+```{r PGA}
+#| eval: false
+# PGA
+pga_bp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Producers_Guild_of_America_Award_for_Best_Theatrical_Motion_Picture"
+)
+pga_bp_df <- pga_bp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(Year <= 2023) %>% 
+  select(Year, Film, `Producer(s)`) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE))
+pga_bp_df %>% write_csv("clean-data/pga-bp.csv")
+```
+
+```{r Oscars}
+#| eval: false
+# Oscars Best Director
+oscars_bd_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Director"
+)
+oscars_bd_df <- 
+  oscars_bd_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, `Director(s)`) %>% 
+  filter(!is.na(`Director(s)`)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_bd_df %>% write_csv("clean-data/oscars-bd.csv")
+
+# Oscars Best Picture
+oscars_bp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Picture"
+)
+oscars_bp_df <- 
+  oscars_bp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(`Year of Film Release`, '\\d{4}')) %>% 
+  select(Year, Film, `Producer(s)`) %>% 
+  filter(!is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_bp_df %>% write_csv("clean-data/oscars-bp.csv")
+
+# Oscars Original Screenplay
+oscars_bosp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Original_Screenplay"
+)
+oscars_bosp_df <- 
+  oscars_bosp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         Nominee = coalesce(Nominee, Nominees)) %>% 
+  select(Year, Film, Nominee) %>% 
+  filter(!is.na(Year), !is.na(Film)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_bosp_df %>% write_csv("clean-data/oscars-bosp.csv")
+
+# Oscars Adapted Screenplay
+oscars_basp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Adapted_Screenplay"
+)
+oscars_basp_df <- 
+  oscars_basp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Nominees) %>% 
+  filter(!is.na(Year)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_basp_df %>% write_csv("clean-data/oscars-basp.csv")
+
+# Lead actor
+oscars_ma_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actor"
+)
+oscars_ma_df <- 
+  oscars_ma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  .[2:12] %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Year)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2025, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_ma_df %>% write_csv("clean-data/oscars-ma.csv")
+
+# Lead actress
+oscars_fa_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actress"
+)
+oscars_fa_df <- 
+  oscars_fa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Year)) %>% 
+  select(Year, Film, Actress) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_fa_df %>% write_csv("clean-data/oscars-fa.csv")
+
+# Supporting actor
+oscars_sma_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actor"
+)
+oscars_sma_df <- 
+  oscars_sma_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  select(Year, Film, Actor) %>% 
+  filter(!is.na(Year)) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_sma_df %>% write_csv("clean-data/oscars-sma.csv")
+
+# Supporting actress
+oscars_sfa_bow <- bow(
+  "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actress"
+)
+oscars_sfa_df <- 
+  oscars_sfa_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}')) %>% 
+  filter(!is.na(Year)) %>% 
+  select(Year, Film, Actress) %>% 
+  group_by(Year) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup()
+oscars_sfa_df %>% write_csv("clean-data/oscars-sfa.csv")
+```
+
+```{r WGA}
+#| eval: false
+# WGA Adapted
+wga_basp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Writers_Guild_of_America_Award_for_Best_Adapted_Screenplay"
+)
+wga_basp_df <- 
+  wga_basp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  select(Year, Film) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         cat = str_extract(Film, 'Best (Drama|Comedy)')) %>% 
+  fill(cat) %>% 
+  filter(!is.na(Film), !str_detect(Film, 'Best (Drama|Comedy)')) %>% 
+  group_by(Year, cat) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup() %>% 
+  select(-cat)
+wga_basp_df %>% write_csv("clean-data/wga-basp.csv")
+
+# WGA Original
+wga_bosp_bow <- bow(
+  "https://en.wikipedia.org/wiki/Writers_Guild_of_America_Award_for_Best_Original_Screenplay"
+)
+wga_bosp_df <- 
+  wga_bosp_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character))) %>% 
+  select(Year, Film) %>% 
+  mutate(Year = str_extract(Year, '\\d{4}'),
+         cat = str_extract(Film, 'Best (Drama|Comedy)')) %>% 
+  fill(cat) %>% 
+  filter(!is.na(Film), !str_detect(Film, 'Best (Drama|Comedy)')) %>% 
+  group_by(Year, cat) %>% 
+  mutate(Winner = if_else(Year < 2023, row_number() == 1, FALSE)) %>% 
+  ungroup() %>% 
+  select(-cat)
+wga_bosp_df %>% write_csv("clean-data/wga-bosp.csv")
+```
+
+When the [2024 Academy Award nominees](https://www.hollywoodreporter.com/movies/movie-news/2024-oscars-nominees-list-1235804181/) were announced in late January, one of the most hotly discussed topics was that Greta Gerwig, director of Barbie, was [not nominated for Best Director](https://www.eonline.com/news/1395633/greta-gerwig-breaks-silence-on-oscars-snub-for-directing-barbie), despite the film being nominated for Best Picture. I assumed a Best Director nomination went hand-in-hand with a Best Picture nomination, so how common is it for a film to be nominated for Best Picture, but not Best Director? It turns out, fairly often, at least since 2009.
+
+```{r OscarsBestPictureVsDirector}
+#| eval: false
+tryCatch(
+  oscars_bp_bd_df <- read_csv("clean-data/oscars-bp-bd.csv"),
+  error = function(e) {
+    oscars_bp_bd_df <-
+      oscars_bp_df %>% 
+      mutate(
+        year = Year,
+        film = Film,
+        award = "best_picture",
+        winner = Winner, 
+        .keep = "none") %>% 
+      bind_rows(
+        oscars_bd_df %>% 
+          mutate(
+            year = Year,
+            film = Film,
+            award = "best_director",
+            winner = Winner, 
+            .keep = "none")
+      ) %>% 
+      mutate(
+        #decade = paste0(str_extract(year, '^\\d{3}'), "0s"),
+        film = case_when(
+          str_detect(film, "^Birdman") ~ 'Birdman',
+          str_detect(film, "The Postman") ~ 'The Postman',
+          TRUE ~ film
+        ))
+    oscars_bp_bd_df %>% write_csv("clean-data/oscars-bp-bd.csv")
+  }
+)
+
+oscars_bp_v_bd_base <-
+  oscars_bp_bd_df %>% 
+  pivot_wider(id_cols = c(year, film),
+              names_from = award,
+              values_from = winner) %>% 
+  mutate(
+    category = case_when(
+      !is.na(best_picture) & !is.na(best_director) ~ 'Best Picture and Best Director',
+      !is.na(best_picture) ~ 'Best Picture Only',
+      !is.na(best_director) ~ 'Best Director Only'
+    ),
+    result = case_when(
+      best_picture & best_director ~ 'Won Both',
+      best_picture ~ 'Won Best Picture Only',
+      best_director ~ 'Won Best Director Only', 
+      TRUE ~ 'Won Neither'
+      ),
+    year = as.numeric(year)
+  ) %>% 
+  filter(year >= 1970, year < 2023) %>% 
+  ggplot(aes(x = category, y = year, fill = result)) +
+  geom_dotplot(binaxis = "y", 
+               stackdir = "down", 
+               stackgroups = TRUE, 
+               method = "histodot",
+               width = 0,
+               binwidth = 1,
+               dotsize = 1) +
+  scale_x_discrete(labels = ~ str_wrap(.x, 15)) +
+  scale_fill_manual(
+    name = "Result",
+    values = c(
+      "Won Both" = "gold",
+      "Won Best Director Only" = "#00b3e6",
+      "Won Best Picture Only" = "#fc8eac",
+      "Won Neither" = "grey90"
+      )
+  ) +
+  coord_flip() +
+  annotate(
+    geom = "text",
+    size = 3,
+    family = "Josefin Sans",
+    x = 3.1,
+    y = 2009,
+    hjust = 0,
+    vjust = 0,
+    label = "2009: Best Picture\nexpands to 10 nominees"
+  ) +
+  geom_segment(
+    inherit.aes = FALSE,
+    x = 3.05, 
+    xend = 3.05, 
+    y = 2009,
+    yend = 2020,
+    arrow = grid::arrow(length = unit(0.1, "cm"))
+  ) +
+  annotate(
+    geom = "text",
+    size = 3,
+    family = "Josefin Sans",
+    x = 0.5,
+    y = 2022,
+    hjust = 1,
+    label = "2022: Everything Everywhere All at Once is nominated\nfor and wins both Best Picture and Best Director"
+  ) +
+  geom_curve(
+    color = "grey30",
+    x = 0.5, 
+    xend = 1.95, 
+    y = 2022,
+    yend = 2022.5,
+    curvature = 0.3,
+    arrow = grid::arrow(length = unit(0.2, "cm"), type = "closed")
+  ) +
+  annotate(
+    geom = "text",
+    size = 3,
+    family = "Josefin Sans",
+    x = 2.25,
+    y = 1970,
+    hjust = 0,
+    label = "1989: Born on the Fourth of July is nominated\nfor both awards, but only wins Best Director"
+  ) +
+  geom_curve(
+    color = "grey30",
+    x = 2.2, 
+    xend = 2, 
+    y = 1988.5,
+    yend = 1989,
+    curvature = -0.5,
+    arrow = grid::arrow(length = unit(0.2, "cm"), type = "closed")
+  ) +
+  annotate(
+    geom = "text",
+    size = 3,
+    family = "Josefin Sans",
+    x = 3.1,
+    y = 1970,
+    hjust = 0,
+    vjust = 0,
+    label = "1989: Driving Miss Daisy is only\nnominated for Best Picture and wins."
+  ) +
+  geom_curve(
+    color = "grey30",
+    x = 3.2, 
+    xend = 3.025, 
+    y = 1985,
+    yend = 1989,
+    curvature = -0.5,
+    arrow = grid::arrow(length = unit(0.2, "cm"), type = "closed")
+  ) +
+  annotate(
+    geom = "text",
+    size = 3,
+    family = "Josefin Sans",
+    x = 0.5,
+    y = 1970,
+    hjust = 0,
+    label = "1981: All 5 Best Picture nominees\nare also nominated for Best Director"
+  ) +
+  geom_curve(
+    color = "grey30",
+    x = 0.7, 
+    xend = 1.5, 
+    y = 1981,
+    yend = 1981.5,
+    curvature = 0.4,
+    arrow = grid::arrow(length = unit(0.2, "cm"), type = "closed")
+  ) +
+  theme_minimal(base_family = "Josefin Sans", base_size = 12) +
+  theme(legend.position = "bottom",
+        legend.justification = c(0,0),
+        plot.title = element_text(hjust = 0.5, face = "bold"),
+        plot.title.position = "plot",
+        axis.text.y = element_text(face = "bold", vjust = 1),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.x = element_blank()) +
+  labs(
+    title = "Best Picture and Director Nominations and Results since 1970",
+    x = "Nominations Received", y = NULL
+  )
+
+logo_file <- 
+  image_read("oscars-logo.png") %>% 
+  image_colorize(75, "white") %>% 
+  image_background(color = "white")
+
+oscars_bp_v_bd_plot <-
+  ggdraw() + 
+  theme(plot.background = element_rect(fill = "white", color = NA)) +
+  draw_image(logo_file, x = 0.1, y = 0.05, scale = 1.25) +
+  draw_plot(oscars_bp_v_bd_base) 
+
+oscars_bp_v_bd_plot %>% 
+  ggsave(filename = "fig1-oscars-best-picture-vs-director.png", 
+         height = 6, width = 9)
+```
+
+![](fig1-oscars-best-picture-vs-director.png){fig-alt="Best Picture vs Best Director"}
+
+From 1970 to 2008, the Best Picture and Best Director categories had five nominees each. It was common to see four of the five Best Picture nominees also receiving a nomination for Best Director. And in 32 of these 39 years, the film that won Best Picture also won Best Director.
+
+In 2009, the Best Picture nomination limit [increased to 10 films](https://variety.com/2009/film/awards/oscar-expands-best-pic-noms-to-10-1118005322/). Best Director remained capped at five, so naturally, this resulted in more Best Director snubs than before. In terms of winners, the larger pool of Best Picture nominees seems to be aiding in separating the two awards. Best Picture and Best Director Oscars have gone to two different films in six of the last 14 years (this happened only seven times in the 39 years before 2009).
+
+## Barbenheimer
+
+Although it’s no longer uncommon for a film to receive a Best Picture nomination without one for Best DIrector, Barbie wasn’t just any film. Barbie was one half of the cultural phenomenon known as [Barbenheimer](https://variety.com/2023/film/columns/barbenheimer-lessons-barbie-oppenheimer-greta-gerwig-christopher-nolan-1235677801/). A mashup of two highly anticipated and starkly different films—Barbie, and director Christopher Nolan’s historical biopic Oppenheimer—were both released on July 21, 2023. The goal of [seeing both films back-to-back](https://www.npr.org/2023/07/21/1189062921/barbie-oppenheimer-barbenheimer-movie-double-feature) became one of the defining characteristics of the Barbenheimer phenomenon. While both films were hugely successful at the domestic and international box office, Barbie out-grossed Oppenheimer by an estimated half-billion dollars worldwide.
+
+The two films dominated the zeitgeist for much of 2023 and both received enormous critical acclaim. Oppenheimer has dominated this awards season, however, with [13 Oscar nominations](https://www.hollywoodreporter.com/movies/movie-news/2024-oscars-oppenheimer-nominated-13-oscars-1235803622/) garnered and multiple important wins at other film awards ceremonies leading up to the Academy Awards on March 10.\
+\
+We’ll return to how we think about “importance” in the context of nominations, but for now, let’s compare the two films along the lines of major award ceremonies, ratings, and box office revenue.
+
+## Barbie vs Oppenheimer
+
+```{r Barbenheimer}
+#| eval: false
+oppenheimer_bow <- bow(
+  "https://en.wikipedia.org/wiki/List_of_accolades_received_by_Oppenheimer_(film)"
+)
+oppenheimer_awards <-
+  oppenheimer_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character)))
+
+barbie_bow <- bow(
+  "https://en.wikipedia.org/wiki/List_of_accolades_received_by_Barbie_(film)"
+)
+barbie_awards <-
+  barbie_bow %>% 
+  scrape() %>% 
+  html_nodes("table.wikitable") %>% 
+  html_table() %>% 
+  map_df(~ .x %>% mutate(across(everything(), as.character)))
+
+barbenheimer_awards <-
+  lst(
+    oppenheimer_awards,
+    barbie_awards
+  ) %>% 
+  bind_rows(
+    .id = "id"
+  ) %>% 
+  filter(Award %in% c("Academy Awards",
+                      "British Academy Film Awards",
+                      "Critics' Choice Movie Awards",
+                      "Directors Guild of America Awards",
+                      "Golden Globe Awards",
+                      "People's Choice Awards",
+                      "Producers Guild of America",
+                      "Screen Actors Guild Awards")) %>% 
+  mutate(date = mdy(`Date of ceremony`),
+         Award = paste0("<strong>", Award, "</strong><br>", `Date of ceremony`),
+         Award = fct_reorder(Award, desc(date)),
+         Result = fct_relevel(Result, "Nominated", "Won"),
+         id = if_else(id == "barbie_awards", "Barbie", "Oppenheimer")) %>% 
+  count(id, Award, Result)
+
+barbenheimer_awards %>% 
+  ggplot(aes(x = n, y = Award)) +
+  geom_col(aes(fill = Result)) +
+  geom_text(
+    data = . %>% 
+      group_by(id, Award) %>% 
+      summarize(wins = sum(if_else(Result == "Won", n, 0)),
+                noms = sum(n)),
+    aes(x = noms + 0.5, label = glue("{wins}/{noms}")),
+    hjust = 0,
+    family = "Josefin Sans"
+  ) +
+  scale_fill_manual(
+    values = c("Nominated" = "#0b6043", "Won" = "#c8b273", "Pending" = "grey")
+  ) +
+  scale_x_continuous(limits = c(0, 21)) +
+  facet_grid(cols = vars(id)) +
+  labs(
+    title = "Barbie vs Oppenheimer: Wins/Nominations by Major Awards",
+    x = NULL,
+    y = NULL) +
+  theme_minimal(base_family = "Josefin Sans") +
+  theme(plot.title = element_text(hjust = 0.5),
+        strip.text = element_text(face = "bold"),
+        axis.text.y = element_markdown()) -> p0
+
+tibble(
+    movie = c("Barbie", "Barbie", "Oppenheimer", "Oppenheimer"),
+    type = c("rating", "other", "rating", "other"),
+    rating = c(7.127, 10-7.127, 8.119, 10-8.119),
+    count = c(7516,7516,6855,6855),
+    rev = c(1445638421,1445638421,952000000,952000000)
+  ) %>% 
+  ggplot(aes(x = 1, y = rating, fill = type, alpha = type)) +
+  geom_col() +
+  facet_grid(cols = vars(movie), scales = "free") +
+  coord_polar(theta = "y", direction = -1, clip = "off") +
+  scale_fill_manual(values = c("grey", "#0b6043")) +
+  scale_alpha_manual(values = c(0, 1)) +
+  theme_void(base_family = "Josefin Sans") +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust=0.5),
+        plot.subtitle = element_text(hjust=0.5),
+        strip.text = element_blank(),
+        panel.spacing = unit(4, "lines")) +
+  xlim(c(-2, 2)) +
+  geom_text(
+    data = . %>% filter(type == "rating"),
+    aes(label = percent(rating/10, accuracy = 1)),
+    x = -1.5, y = 0,
+    size = 6,
+    family = "Josefin Sans") +
+  geom_text(
+    data = . %>% filter(type == "rating"),
+    aes(label = glue("{comma(count)}\nvotes")),
+    x = -0.75, y = 5,
+    size = 3,
+    lineheight = 0.85,
+    family = "Josefin Sans") +
+  geom_text(
+    data = . %>% filter(type == "rating"),
+    aes(label = dollar(rev, scale = 1e-9, suffix = "B")),
+    x = 2.1, y = 5,
+    size = 5,
+    family = "Josefin Sans") +
+  labs(title = "User Ratings and Box Office Revenue",
+       subtitle = "The Movie Database (TMDB)") -> p2
+
+barbie_png <- 
+  png::readPNG("barbie.png", native = TRUE)
+
+oppenheimer_png <- 
+  png::readPNG("oppenheimer.png", native = TRUE)
+
+# ggdraw() +
+#   draw_plot(p0) +
+#   draw_image(barbie_png, x = 0, y = -0.2, scale = 0.3) +
+#   draw_image(oppenheimer_png,  x = 0, y = 0.2, scale = 0.3)
+p1 <-
+  p0 +
+  inset_element(barbie_png, 0.3, 0, 0.45, 0.5) +
+  theme(rect = element_rect(fill="transparent", color = "transparent")) +
+  inset_element(oppenheimer_png, 1.4, 0.175, 0.25, 0.4, align_to = "full") +
+  theme(rect = element_rect(fill="transparent",linetype = "blank")) 
+
+barbenheimer_plot <- p1 / p2 + plot_layout(heights = c(2,1))
+
+barbenheimer_plot %>% 
+  ggsave(filename = "fig2-barbie-vs-oppenheimer.png", 
+         height = 6, width = 9)
+```
+
+![](fig2-barbie-vs-oppenheimer.png){fig-alt="Barbie vs Oppenheimer"}
+
+Minus its take at the People’s Choice Awards, Oppenheimer has taken home more awards overall, despite having a similar number of nominations at most award shows. Barbie appeared to be on a roll this award season, with nominations for picture, director, screenplay, actress, and supporting actor at the Golden Globes and Critics Choice Awards in early January. However, Greta Gerwig was left out of the director category when the Oscar nominees were announced on January 23. This leads to the question, what films are most similar to Barbie, not just by nomination count, but across major categories? And were those films nominated for Best Director? 
+
+```{r AllAwards}
+#| eval: false
+# Do Golden Globes (Jan 7), Critics Choice (Jan 14), DGA (Feb 10), BAFTA (Feb 18), SAG (Feb 24), or PGA (Feb 25) predict Oscars?
+tryCatch(
+  all_awards_df <- read_csv("clean-data/all-awards.csv"),
+  error = function(e) {
+    all_awards_df <-
+      lst(
+        gg_bp_c_df,
+        gg_bp_d_df,
+        gg_bd_df,
+        gg_ma_c_df,
+        gg_ma_d_df,
+        gg_fa_c_df,
+        gg_fa_d_df,
+        gg_sma_df,
+        gg_sfa_df,
+        gg_bsp_df,
+        cc_bp_df,
+        cc_basp_df,
+        cc_bosp_df,
+        cc_bd_df,
+        cc_ma_df,
+        cc_fa_df,
+        cc_sma_df,
+        cc_sfa_df,
+        dga_bd_df,
+        bafta_bp_df,
+        bafta_basp_df,
+        bafta_bosp_df,
+        bafta_bd_df,
+        bafta_ma_df,
+        bafta_fa_df,
+        bafta_sma_df,
+        bafta_sfa_df,
+        sag_bp_df,
+        sag_ma_df,
+        sag_fa_df,
+        sag_sma_df,
+        sag_sfa_df,
+        pga_bp_df,
+        wga_basp_df,
+        wga_bosp_df,
+        oscars_bd_df,
+        oscars_basp_df,
+        oscars_bosp_df,
+        oscars_bp_df,
+        oscars_ma_df,
+        oscars_fa_df,
+        oscars_sma_df,
+        oscars_sfa_df) %>% 
+      bind_rows(.id = "id") %>% 
+      mutate(Year = as.numeric(Year),
+             Film = case_when(
+               Film == "Everything Everywhere All At Once" ~ "Everything Everywhere All at Once",
+               str_detect(Film, regex("(tick).*(boom)", ignore_case = T)) ~ "tick, tick... BOOM!",
+               Film == "A Star is Born" ~ "A Star Is Born",
+               Film == "Life is Beautiful" ~ "Life is Beautiful",
+               str_detect(Film, "^Birdman") ~ "Birdman",
+               str_detect(Film, "^Borat Subsequent Moviefilm") ~ "Borat Subsequent Moviefilm",
+               Film == "Precious: Based on the Novel 'Push' by Sapphire" ~ "Precious",
+               str_detect(Film, "Good Night.? and Good Luck.?") ~ "Good Night, and Good Luck",
+               str_detect(Film, "The Postman") ~ "The Postman",
+               Film == "Thelma and Louise" ~ "Thelma & Louise",
+               Film == "Secrets and Lies" ~ "Secrets & Lies",
+               Film == "Waking Ned Devine" ~ "Waking Ned",
+               Film == "Sex, Lies and Videotape" ~ "Sex, Lies, and Videotape",
+               Film == "Those Magnificent Men in their Flying Machines" ~ "Those Magnificent Men in Their Flying Machines",
+               Film == "MASH" ~ "M*A*S*H",
+               Film == "Harry Potter and the Philosopher's Stone" ~ "Harry Potter and the Sorcerer's Stone",
+               str_detect(Film, "(Ford).*(Ferrari)") ~ "Ford v Ferrari",
+               Film == "East Is East" ~ "East is East",
+               Film == "Hiroshima, Mon Amour" ~ "Hiroshima mon amour",
+               Film == "Lacombe Lucien" ~ "Lacombe, Lucien",
+               Film == "Murder on the Orient Express / Serpico" ~ "Murder on the Orient Express",
+               Film == "A Man For All Seasons" ~ "A Man for All Seasons",
+               Film == "Victor Victoria" ~ "Victor/Victoria",
+               Film == "...And Justice for All." ~ "...And Justice for All",
+               str_detect(Film, "^Adaptation") & Year == 2002 ~ "Adaptation.",
+               str_detect(Film, "^Dr. Strangelove") ~ "Dr. Strangelove",
+               TRUE ~ Film
+             ) %>% 
+               str_remove("\\(.*\\)$") %>% 
+               str_remove("\\[.*\\]$") %>% 
+               str_replace_all("(’)|(‘)", "'") %>% 
+               str_trim()) %>% 
+      filter(!is.na(Year)) %>% 
+      select(id, Year, Film, Winner) %>% 
+      mutate(
+        id = paste0(
+          str_extract(id, "(gg|cc|bafta|dga|pga|wga|sag|oscars)"),
+          case_when(
+            str_detect(id, "bp") ~ "_bp",
+            str_detect(id, "b(a|o)?sp") ~ "_bsp",
+            str_detect(id, "s?(m|f)a") ~ "_ba",
+            str_detect(id, "bd") ~ "_bd",
+            TRUE ~ '_other'
+          )
+        )
+      )
+    all_awards_df %>% write_csv("clean-data/all-awards.csv")
+  }
+)
+
+wins <- 
+  all_awards_df %>% 
+  pivot_wider(id_cols = c(Year, Film),
+              names_from = id,
+              values_from = Winner,
+              values_fn = ~sum(.x, na.rm = T)) %>%
+  group_by(Film) %>% 
+  arrange(Film, Year) %>% 
+  mutate(Year = case_when(
+    is.na(lag(Year)) ~ Year,
+    Year == lag(Year) + 1 ~ lag(Year),
+    TRUE ~ Year
+  )) %>% 
+  group_by(Year, Film) %>% 
+  summarise(across(everything(), 
+                   ~ sum(., na.rm = T)),
+            .groups = "drop")
+
+noms <- 
+  all_awards_df %>% 
+  pivot_wider(id_cols = c(Year, Film),
+              names_from = id,
+              values_from = Winner,
+              values_fn = ~sum(!is.na(.x))) %>%
+  group_by(Film) %>% 
+  arrange(Film, Year) %>% 
+  mutate(Year = case_when(
+    is.na(lag(Year)) ~ Year,
+    Year == lag(Year) + 1 ~ lag(Year),
+    TRUE ~ Year
+  )) %>% 
+  group_by(Year, Film) %>% 
+  summarise(across(everything(), 
+                   ~ sum(., na.rm = T)),
+            .groups = "drop") %>% 
+  mutate(across(contains("bsp"), ~ if_else(.x >= 1, 1, 0)))
+```
+
+## Movies Like Barbie
+
+We began our Best Director snubs analysis at Flatiron by collecting all past nominees across the entire history of the awards ceremonies noted in the image above—swapping out the [People’s Choice Awards](https://www.votepca.com/) for the Writers Guild Awards—for a comprehensive dataset of non-fan nominations. We also merged categories like Best Adapted Screenplay and Best Original Screenplay into one screenplay category for ease of comparison. Similarly, we lumped all acting categories–male, female, lead, and supporting–into one, and all Best Picture categories into one if split into drama and comedy/musical categories (like the Golden Globes does).
+
+With a dataset of over 3,000 nominees going back to the 1920s, we found films most similar to Barbie across our grouped screenplay, grouped actor(s), director, and picture categories using Euclidean distance, a method for finding the distance between two data points. The five films below are the most similar to Barbie according to the awards and groupings we’ve selected. Interestingly, these five films, including Gerwig’s 2017 debut film, Lady Bird, all received a Best Director nomination at the Oscars (while Gerwig’s directing work on Barbie did not).
+
+```{r BarbieNN}
+#| eval: false
+barbie_idx <- which(noms$Film == "Barbie")
+ 
+nn <- noms %>% 
+  select(-c(Year, Film, oscars_bd)) %>% 
+  RANN::nn2()
+
+gt_compare_barbie <- function(df) {
+  df %>% 
+  mutate(id = glue("{Film} ({Year})")) %>% 
+  select(-c(Year, Film)) %>% 
+  pivot_longer(cols = -id, names_to = "Award", values_to = "Nominations") %>% 
+  mutate(Nominations = case_when(
+    str_detect(Award, "(bp)|(bsp)|(bd)") & Nominations == 1 ~ emoji("check_mark"),
+    Nominations == 0 ~ emoji("multiply"),
+    TRUE ~ as.character(Nominations)
+  )) %>% 
+  pivot_wider(names_from = id, values_from = "Nominations") %>% 
+  mutate(
+    Category = case_when(
+      str_detect(Award, "_bp") ~ "Best Picture",
+      str_detect(Award, "_bsp") ~ "Best Screenplay",
+      str_detect(Award, "_ba") ~ "Best Actor(s)",
+      str_detect(Award, "_bd") ~ "Best Director"
+    ) %>% 
+      fct_relevel("Best Screenplay", "Best Actor(s)", "Best Director", "Best Picture"),
+    Award = case_when(
+      str_detect(Award, "gg") ~ "Golden Globes",
+      str_detect(Award, "cc") ~ "Critics' Choice",
+      str_detect(Award, "dga") ~ "Directors Guild of America (DGA)",
+      str_detect(Award, "pga") ~ "Producers Guild of America (PGA)",
+      str_detect(Award, "sag") ~ "Screen Actors Guild (SAG)",
+      str_detect(Award, "pga") ~ "Producers Guild of America (PGA)",
+      str_detect(Award, "wga") ~ "Writers Guild of America (WGA)",
+      str_detect(Award, "bafta") ~ "British Academy Film Awards (BAFTA)",
+      str_detect(Award, "oscars") ~ "Academy Awards (Oscars)"
+      ) %>% 
+      fct_relevel("Critics' Choice", "Golden Globes", "Producers Guild of America (PGA)",
+                  "Screen Actors Guild (SAG)", "Directors Guild of America (DGA)",
+                  "British Academy Film Awards (BAFTA)", "Writers Guild of America (WGA)",
+                  "Academy Awards (Oscars)")
+  ) %>% 
+  arrange(Award, Category) %>% 
+  gt(groupname_col = "Award", rowname_col = "Category") %>% 
+  cols_label(
+    `Barbie (2023)` = img_header(
+      label = "Barbie",
+      img_url="https://image.tmdb.org/t/p/original/dekMkQf0kqAmztUca9lX5e5Pjbp.jpg"),
+    `The Irishman (2019)` = img_header(
+      label = "The Irishman",
+      img_url="https://image.tmdb.org/t/p/original/mbm8k3GFhXS0ROd9AD1gqYbIFbM.jpg"),
+     `Moonlight (2016)` = img_header(
+       label = "Moonlight",
+       img_url="https://image.tmdb.org/t/p/original/4911T5FbJ9eD2Faz5Z8cT3SUhU3.jpg"),
+     `Lady Bird (2017)` = img_header(
+       label = "Lady Bird",
+       img_url="https://image.tmdb.org/t/p/original/iySFtKLrWvVzXzlFj7x1zalxi5G.jpg"),
+     `Mystic River (2003)` = img_header(
+       label = "Mystic River",
+       img_url="https://image.tmdb.org/t/p/original/hCHVDbo6XJGj3r2i4hVjKhE0GKF.jpg"),
+     `A Beautiful Mind (2001)` = img_header(
+       label = "A Beautiful Mind",
+       img_url="https://image.tmdb.org/t/p/original/zwzWCmH72OSC9NA0ipoqw5Zjya8.jpg")
+  ) %>% 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_body()
+  ) %>% 
+  opt_table_font(
+    font = google_font(name = "Fira Sans")
+  ) %>% 
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) %>% 
+  tab_style(
+    style = list(cell_fill(color = "grey", alpha = 0.5)),
+    locations = cells_row_groups()
+  ) %>% 
+  tab_style(
+    style = cell_text(weight = "bold", align = "center"),
+    locations = list(
+      cells_title("title"),
+      cells_row_groups()
+    )
+  ) %>% 
+  tab_header(
+    title = "Was Greta Gerwig Snubbed for Best Director at the Oscars?",
+    subtitle = "Left to Right: Most Similar to Least Similar by Major Award Nominations"
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_fill(color = "#e0218a", alpha = 0.3)
+    ),
+    locations = list(
+      cells_column_labels(columns = `Barbie (2023)`),
+      cells_body(columns = `Barbie (2023)`)
+    )
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_text(font = "Bartex", weight = "bold")
+    ),
+    locations = list(
+      # cells_title("title"),
+      cells_column_labels(columns = `Barbie (2023)`)
+    )
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_fill(color = "gold", alpha = 0.3)
+    ),
+    locations = list(
+      cells_stub(rows = Award == "Academy Awards (Oscars)" & Category == "Best Director"),
+      cells_body(rows = Award == "Academy Awards (Oscars)" & Category == "Best Director")
+    )
+  ) %>% 
+  cols_move_to_start(`Barbie (2023)`) %>% 
+  tab_footnote(
+    footnote = "Combines Adapted Screenplay and Original Screenplay when the award is split",
+    locations = cells_stub(rows = Category == "Best Screenplay")
+  ) %>% 
+  tab_footnote(
+    footnote = "Combines Drama and Comedy/Musical when the award is split and groups ensemble or whole-cast awards in this category",
+    locations = cells_stub(rows = Category == "Best Picture")
+  ) %>% 
+  tab_footnote(
+    footnote = "Combined count of Male, Female, Leading, and Supporting nominations",
+    locations = cells_stub(rows = Category == "Best Actor(s)")
+  ) %>% 
+  tab_source_note(
+    md(glue("
+    {emoji('check_mark')} denotes the film received the nomination\n
+    {emoji('multiply')} denotes the film did not receive the nomination
+    "))
+  ) %>% 
+  tab_options(data_row.padding = px(3), row_group.padding = px(1))
+}
+barbie_vs_nn <- noms[nn[[1]][barbie_idx,],] %>% head(6)
+barbie_vs_2023 <- noms %>% filter((Year == 2023 & oscars_bd == 1) | Film == "Barbie")
+
+gt_barbie_vs_nn <- gt_compare_barbie(barbie_vs_nn)
+gtsave(gt_barbie_vs_nn, "fig3-barbie-vs-similar-films.png")
+```
+
+![](fig3-barbie-vs-similar-films.png){fig-alt="Barbie vs NN" fig-align="center" width="80%"}
+
+## Predicting Best Director Snubs at the Oscars
+
+A sample size of five is certainly not enough evidence to make a definitive claim of a snub, so we developed a predictive model that classifies a film as a Best Director nominee based on the other nominations it received, either at the Oscars or previous award shows. Our final model achieved 91% accuracy. For the astute reader, it also reached 93% precision and 96% recall. 
+
+Based on films from 1927 to 2022, the best predictor of a Best Director nomination at the Oscars is a Best Picture nomination at the Oscars. This isn’t surprising, considering the overlap in nominees that we observed in the first image at the top of the article.\
+\
+Other notable predictors are Best Screenplay at the Oscars or Critics Choice Awards, and Best Director at the Golden Globes or Director’s Guild Awards (DGA). These predictors align with intuition, given the importance of a good script and how common it is to have a filmmaker with the title of writer/director. In the case of the DGA, it’s hard to think of a more qualified group to identify the best directors of the year than the 19,000-plus directors who make up the guild’s membership 
+
+Finally, using our trained model, we applied it to our list of 2023 films that received at least one nomination in a screenplay, acting, directing, or picture category. Given the long list of accolades received by Barbie at the Golden Globes, Critics Choice Awards, British Academy Film Awards (BAFTA), and all the filmmaking guild awards, our model predicted Greta Gerwig to have a 76% chance of snagging a Best Director nomination. Considering she was in third, just behind Christopher Nolan for Oppenheimer and Yorgos Lanthimos for Poor Things, I’d call this a snub. (Gerwig tied for third with Justine Triet for Anatomy of a Fall.)
+
+```{r PredictingOscarBD}
+#| eval: false
+train <-
+  noms %>% 
+  mutate(oscars_bd = as_factor(oscars_bd)) %>% 
+  filter(Year < 2023)
+
+test <-
+  noms %>% 
+  mutate(oscars_bd = as_factor(oscars_bd)) %>% 
+  filter(Year == 2023)
+
+mod <- glm(oscars_bd ~ ., 
+           family = binomial(), 
+           data = train %>% select(-Year, -Film))
+summary(mod)
+
+# Cross validation
+# cell_folds <- vfold_cv(train %>% select(-Year, -Film))
+# wf <- workflow() %>%
+#   add_model(
+#     logistic_reg()
+#      #nearest_neighbor(neighbors = 5, mode = "classification")
+#   ) %>%
+#   add_formula(oscars_bd ~ .)
+# 
+# wf %>%
+#   fit_resamples(cell_folds, 
+#                 metrics = metric_set(
+#                   roc_auc, 
+#                   accuracy, 
+#                   yardstick::precision,
+#                   yardstick::recall)) %>% 
+#   collect_metrics()
+# 
+# m <- wf %>% fit(train)
+
+# Most important factors
+tidy(mod) %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(
+    imp = abs(estimate),
+    sign = as_factor(sign(estimate)),
+    term = fct_reorder(term, imp)
+  ) %>% 
+  arrange(desc(imp)) %>% 
+  head(5) %>% 
+  ggplot(aes(x = abs(estimate), y = term, fill = sign)) +
+  geom_col() +
+  labs(
+    title = "What are the Most Important Nominations in Predicting Best Director at the Oscars?",
+    x = NULL, y = NULL
+    ) +
+  theme_minimal()
+```
+
+```{r Snub2024}
+#| eval: false
+my_headers <- function(x) {
+  x %>% 
+    req_headers(
+      "Authorization" = paste("Bearer", "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMTY3MzcxMWVlZDNjZmRlOGQ1NzA0NDg5NWFjMGI2ZSIsInN1YiI6IjY1YjQyMzczNTc1MzBlMDE4M2Q5ZjQ5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.opWROQyc_BonwyZD-v1ab0B_48CJaIxkMPwF-ZBqiZ0"))
+} 
+
+get_poster <- function(film, year = NULL) {
+  img <- 
+    request("https://api.themoviedb.org/3/search/movie") %>% 
+    my_headers() %>% 
+    req_url_query(query = film, year = year) %>% 
+    req_perform() %>% 
+    resp_body_json() %>% 
+    pluck("results") %>% 
+    .[[1]] %>% 
+    pluck("poster_path")
+  return(paste0("https://image.tmdb.org/t/p/original", img))
+}
+# get_poster("Poor Things")
+
+# 2024 Oscars
+oscars_bd_preds <-
+  test %>% 
+  modelr::add_predictions(mod, type = "response") %>% 
+  select(Year, Film, oscars_bd, pred) %>% 
+  arrange(desc(pred)) %>% 
+  head(10) 
+oscars_bd_preds$poster <- oscars_bd_preds$Film %>% map_chr(get_poster)
+oscars_bd_preds <-
+  oscars_bd_preds %>% 
+  left_join(
+    tibble( 
+      Film = c(
+        "American Fiction",
+        "Anatomy of a Fall",
+        "Barbie",
+        "The Holdovers",
+        "Killers of the Flower Moon",
+        "Maestro",
+        "Oppenheimer",
+        "Past Lives",
+        "Poor Things",
+        "The Zone of Interest"
+      ),
+      Director = c(
+        "Cord Jefferson",
+        "Justine Triet",
+        "Greta Gerwig",
+        "Alexander Payne",
+        "Martin Scorsese",
+        "Bradley Cooper",
+        "Christopher Nolan",
+        "Celine Song",
+        "Yorgos Lanthimos",
+        "Jonathan Glazer"
+      )
+    )
+  )
+
+oscars_bd_pred_tbl <- 
+  oscars_bd_preds %>% 
+  mutate(oscars_bd = if_else(oscars_bd == 1, emoji("star"), ""),
+         pred = pred * 100) %>% 
+  gt() %>% 
+  gt_img_multi_rows(columns = poster, height = 50) %>% 
+  cols_move_to_start(poster) %>% 
+  cols_move(Director, Film) %>% 
+  cols_hide(Year) %>% 
+  cols_label(
+    poster = "",
+    oscars_bd = "",
+    Director = md("**Director / Film**"),
+    pred = md("**Predicted Probability**")
+  ) %>% 
+  gt_plt_bar_pct(
+    column = pred, 
+    labels = T,
+    decimals = 0,
+    scaled = T,
+    height = 25,
+    font_size = "12px",
+    fill = "#C79F27") %>% 
+  tab_header(
+    title = add_text_img(
+      text = "",
+      url = "https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3027088-inline-i-oscars.jpg",
+      height = 75
+    ),
+    subtitle = md("**Who did our model expect would receive<br>the 2024 Best Director nominations?**")
+  ) %>% 
+  opt_table_font(
+    font = google_font(name = "Fira Sans")
+  ) %>% 
+  cols_merge(
+    columns = c(Director, oscars_bd),
+    pattern = "{1} {2}"
+  ) %>% 
+  cols_merge(
+    columns = c(Director, Film),
+    pattern = md("{1}<br><em>{2}</em>")
+  ) %>% 
+  tab_source_note(
+    glue("{emoji('star')} denotes this year's nominees")
+  ) %>% 
+  cols_width(
+    pred ~ pct(33)
+  ) %>% 
+  tab_options(data_row.padding = px(1), heading.subtitle.font.size = px(16))
+oscars_bd_pred_tbl %>% 
+  gtsave("fig4-oscars-best-director-predictions.png")
+```
+
+![](fig4-oscars-best-director-predictions.png){fig-alt="Best Director Predictions" fig-align="center" width="60%"}
+
+### Best Director Snubs: Flatiron’s Choice
+
+Rank-ordering the predicted probability of receiving the directorial nomination, the 2017 film Three Billboards Outside Ebbing, Missouri by writer/director Martin McDonagh was our model’s biggest snub. A film that initially received wide acclaim, it later faced [criticism](https://www.vox.com/2018/1/19/16878018/three-billboards-controversy-racist-sam-rockwell-redemption-flannery-oconnor) over its portrayal of misogyny and racism. Coincidentally, Greta Gerwig was one of the five directors nominees that year alongside Guillermo del Toro, Christopher Nolan, Jordan Peele, and Paul Thomas Anderson—a star-studded list of filmmakers if ever there was one. 
+
+```{r SnubGOAT}
+#| eval: false
+top10snubs <-
+  noms %>% 
+  filter(Year >= 1999) %>% 
+  modelr::add_predictions(mod, type = "response") %>% 
+  select(Year, Film, oscars_bd, pred) %>% 
+  filter(oscars_bd == 0) %>% 
+  arrange(desc(pred)) %>% 
+  head(10)
+
+top10snubs$poster <-
+  top10snubs %>% 
+  select(Film, Year) %>% 
+  pmap_chr(~get_poster(.x, .y))
+
+top10snub_tbl <-
+  top10snubs %>% 
+  left_join(
+    tribble(
+      ~ Film, ~ Director,
+      "Three Billboards Outside Ebbing, Missouri", "Martin McDonagh",
+      "Finding Neverland", "Marc Forster",
+      "Argo", "Ben Affleck",
+      "Inception", "Christopher Nolan",
+      "Zero Dark Thirty", "Kathryn Bigelow",
+      "Atonement", "Joe Wright",
+      "A Star Is Born", "Bradley Cooper",
+      "The Trial of the Chicago 7", "Aaron Sorkin",
+      "Green Book", "Peter Farrelly",
+      "The Lord of the Rings: The Two Towers", "Peter Jackson"
+    )
+  ) %>% 
+  mutate(pred = pred * 100) %>% 
+  gt() %>% 
+  gt_img_multi_rows(columns = poster, height = 50) %>% 
+  cols_move_to_start(poster) %>% 
+  cols_move(Director, Film) %>% 
+  cols_hide(c(Year, oscars_bd)) %>% 
+  cols_label(
+    poster = "",
+    Director = md("**Director / Film**"),
+    pred = md("**Predicted Probability**")
+  ) %>% 
+  gt_plt_bar_pct(
+    column = pred, 
+    labels = T,
+    scaled = T,
+    decimals = 0,
+    height = 25,
+    font_size = "12px",
+    fill = "#C79F27") %>% 
+  tab_header(
+    title = add_text_img(
+      text = "",
+      url = "https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3027088-inline-i-oscars.jpg",
+      height = 75
+    ),
+    subtitle = md("**Who were the biggest<br>Best Director snubs of the last 25 years?**")
+  ) %>% 
+  opt_table_font(
+    font = google_font(name = "Fira Sans")
+  ) %>% 
+  cols_merge(
+    columns = c(Director, Film),
+    pattern = md("{1}<br><em>{2}</em>")
+  ) %>% 
+  cols_width(
+    pred ~ pct(33)
+  ) %>% 
+  tab_options(data_row.padding = px(1), heading.subtitle.font.size = px(16))
+top10snub_tbl %>% 
+  gtsave("fig5-biggest-directorial-snubs.png")
+```
+
+![](fig5-biggest-directorial-snubs.png){fig-alt="Best Director Snubs" fig-align="center" width="60%"}
+
+## Final Thoughts
+
+As with all predictive models, our model is only as good as the data it learns from. A common criticism of the Academy is its [lack of nominating women and people of color](https://www.cnn.com/2023/03/11/entertainment/awards-shows-diversity-oscars-cec/index.html) across categories, particularly for Best Director. Mitigating bias and ensuring fairness in predictive models are important concepts in [Big Data Ethics](https://en.wikipedia.org/wiki/Big_data_ethics), but we’ll save the ways one could address these issues for another post.
+
+```{r ModelAppendix}
+#| eval: false
+cell_folds <- vfold_cv(train %>% select(-Year, -Film))
+grid <- grid_regular(penalty(), levels = 10)
+wf <- 
+  workflow() %>% 
+  add_model(
+    logistic_reg()
+  ) %>% 
+  add_formula(as_factor(oscars_bd) ~ .)
+res <- 
+  wf %>% 
+  fit_resamples(cell_folds) 
+res %>% collect_metrics()
+
+logistic_reg(
+  #penalty = 4.641589e-04
+) %>% 
+  fit(mod$terms, train %>% select(-Year, -Film)) %>% 
+  predict(train, type = "prob") %>% 
+  bind_cols(train %>% select(Year, Film, oscars_bd), .) %>% 
+  view()
+
+gen_additive_mod(select_features = TRUE, adjust_deg_free = 10) %>% 
+  set_mode("classification") %>% 
+  set_engine("mgcv") %>% 
+  fit(mod$terms, train %>% select(-Year, -Film)) %>% 
+  predict(train, type = "prob") %>% 
+  bind_cols(train %>% select(Year, Film, oscars_bd), .)
+```
+
+```{r DGAvsOscars}
+#| eval: false
+dga_oscars_df <-
+  dga_bp_df %>% 
+    mutate(award = "DGA") %>% 
+    bind_rows(
+      oscars_bd_df %>% 
+        mutate(award = "Oscar")
+    ) %>% 
+    rename_with(tolower) %>% 
+    mutate(
+      film = case_when(
+        str_detect(film, "Birdman") ~ 'Birdman',
+        str_detect(film, "The Postman") ~ 'The Postman',
+        TRUE ~ film
+    )) %>% 
+    pivot_wider(id_cols = c(year, film),
+                names_from = award,
+                values_from = winner) %>% 
+    mutate(
+      year = as.numeric(year),
+      category = case_when(
+        !is.na(DGA) & !is.na(Oscar) ~ 'DGA and Oscar',
+        !is.na(DGA) ~ 'DGA Only',
+        !is.na(Oscar) ~ 'Oscar Only'
+      ) %>% fct_relevel("DGA and Oscar", after = 0),
+      result = case_when(
+        DGA & Oscar ~ 'Won Both',
+        DGA ~ 'Won DGA Only',
+        Oscar ~ 'Won Oscar Only', 
+        TRUE ~ 'Won Neither'
+        )
+    ) %>% 
+  filter(year >= 1970)
+
+dga_oscars_df %>% 
+  ggplot(aes(x = year, fill = category)) +
+  geom_dotplot(method = "histodot", stackgroups = TRUE, stackdir = "center", binwidth = 1) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+dga_oscars_df %>% 
+  filter(category == "DGA Only")
+```

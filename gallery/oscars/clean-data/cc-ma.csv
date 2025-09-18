@@ -1,0 +1,149 @@
+Year,Film,Nominee,Winner
+1995,Murder in the First,Kevin Bacon,TRUE
+1996,Shine,Geoffrey Rush,TRUE
+1997,As Good as It Gets,Jack Nicholson,TRUE
+1998,Gods and Monsters,Ian McKellen,TRUE
+1999,The Insider,Russell Crowe,TRUE
+2000,Gladiator,Russell Crowe,TRUE
+2001,A Beautiful Mind,Russell Crowe,TRUE
+2001,I Am Sam,Sean Penn,FALSE
+2001,Ali,Will Smith,FALSE
+2002,Gangs of New York,Daniel Day-Lewis (TIE),TRUE
+2002,About Schmidt,Jack Nicholson (TIE),TRUE
+2002,One Hour Photo,Robin Williams,FALSE
+2003,Mystic River,Sean Penn,TRUE
+2003,Master and Commander: The Far Side of the World,Russell Crowe,FALSE
+2003,Pirates of the Caribbean: The Curse of the Black Pearl,Johnny Depp,FALSE
+2003,House of Sand and Fog,Ben Kingsley,FALSE
+2003,Lost in Translation,Bill Murray,FALSE
+2004,Ray,Jamie Foxx,TRUE
+2004,The Sea Inside,Javier Bardem,FALSE
+2004,Hotel Rwanda,Don Cheadle,FALSE
+2004,Finding Neverland,Johnny Depp,FALSE
+2004,The Aviator,Leonardo DiCaprio,FALSE
+2004,Sideways,Paul Giamatti,FALSE
+2005,Capote,Philip Seymour Hoffman,TRUE
+2005,Cinderella Man,Russell Crowe,FALSE
+2005,Hustle & Flow,Terrence Howard,FALSE
+2005,Brokeback Mountain,Heath Ledger,FALSE
+2005,Walk the Line,Joaquin Phoenix,FALSE
+2005,"Good Night, and Good Luck",David Strathairn,FALSE
+2006,The Last King of Scotland,Forest Whitaker,TRUE
+2006,Blood Diamond,Leonardo DiCaprio,FALSE
+2006,The Departed,Leonardo DiCaprio,FALSE
+2006,Half Nelson,Ryan Gosling,FALSE
+2006,Venus,Peter O'Toole,FALSE
+2006,The Pursuit of Happyness,Will Smith,FALSE
+2007,There Will Be Blood,Daniel Day-Lewis,TRUE
+2007,Michael Clayton,George Clooney,FALSE
+2007,Sweeney Todd: The Demon Barber of Fleet Street,Johnny Depp,FALSE
+2007,Lars and the Real Girl,Ryan Gosling,FALSE
+2007,Into the Wild,Emile Hirsch,FALSE
+2007,Eastern Promises,Viggo Mortensen,FALSE
+2008,Milk,Sean Penn,TRUE
+2008,Gran Torino,Clint Eastwood,FALSE
+2008,The Visitor,Richard Jenkins,FALSE
+2008,Frost/Nixon,Frank Langella,FALSE
+2008,The Curious Case of Benjamin Button,Brad Pitt,FALSE
+2008,The Wrestler,Mickey Rourke,FALSE
+2009,Crazy Heart,Jeff Bridges,TRUE
+2009,Up in the Air,George Clooney,FALSE
+2009,A Single Man,Colin Firth,FALSE
+2009,Invictus,Morgan Freeman,FALSE
+2009,The Road,Viggo Mortensen,FALSE
+2009,The Hurt Locker,Jeremy Renner,FALSE
+2010,The King's Speech,Colin Firth,TRUE
+2010,True Grit,Jeff Bridges,FALSE
+2010,Get Low,Robert Duvall,FALSE
+2010,The Social Network,Jesse Eisenberg,FALSE
+2010,127 Hours,James Franco,FALSE
+2010,Blue Valentine,Ryan Gosling,FALSE
+2011,The Descendants,George Clooney,TRUE
+2011,J. Edgar,Leonardo DiCaprio,FALSE
+2011,The Artist,Jean Dujardin,FALSE
+2011,Shame,Michael Fassbender,FALSE
+2011,Drive,Ryan Gosling,FALSE
+2011,Moneyball,Brad Pitt,FALSE
+2012,Lincoln,Daniel Day-Lewis,TRUE
+2012,Silver Linings Playbook,Bradley Cooper,FALSE
+2012,The Sessions,John Hawkes,FALSE
+2012,Les Misérables,Hugh Jackman,FALSE
+2012,The Master,Joaquin Phoenix,FALSE
+2012,Flight,Denzel Washington,FALSE
+2013,Dallas Buyers Club,Matthew McConaughey,TRUE
+2013,American Hustle,Christian Bale,FALSE
+2013,Nebraska,Bruce Dern,FALSE
+2013,12 Years a Slave,Chiwetel Ejiofor,FALSE
+2013,Captain Phillips,Tom Hanks,FALSE
+2013,All Is Lost,Robert Redford,FALSE
+2014,Birdman,Michael Keaton,TRUE
+2014,The Imitation Game,Benedict Cumberbatch,FALSE
+2014,The Grand Budapest Hotel,Ralph Fiennes,FALSE
+2014,Nightcrawler,Jake Gyllenhaal,FALSE
+2014,Selma,David Oyelowo,FALSE
+2014,The Theory of Everything,Eddie Redmayne,FALSE
+2015,The Revenant,Leonardo DiCaprio,TRUE
+2015,Trumbo,Bryan Cranston,FALSE
+2015,The Martian,Matt Damon,FALSE
+2015,Black Mass,Johnny Depp,FALSE
+2015,Steve Jobs,Michael Fassbender,FALSE
+2015,The Danish Girl,Eddie Redmayne,FALSE
+2016,Manchester by the Sea,Casey Affleck,TRUE
+2016,Loving,Joel Edgerton,FALSE
+2016,Hacksaw Ridge,Andrew Garfield,FALSE
+2016,La La Land,Ryan Gosling,FALSE
+2016,Sully,Tom Hanks,FALSE
+2016,Fences,Denzel Washington,FALSE
+2017,Darkest Hour,Gary Oldman,TRUE
+2017,Call Me by Your Name,Timothée Chalamet,FALSE
+2017,Phantom Thread,Daniel Day-Lewis,FALSE
+2017,The Disaster Artist,James Franco,FALSE
+2017,Stronger,Jake Gyllenhaal,FALSE
+2017,The Post,Tom Hanks,FALSE
+2017,Get Out,Daniel Kaluuya,FALSE
+2018,Vice,Christian Bale,TRUE
+2018,A Star Is Born,Bradley Cooper,FALSE
+2018,At Eternity's Gate,Willem Dafoe,FALSE
+2018,First Man,Ryan Gosling,FALSE
+2018,First Reformed,Ethan Hawke,FALSE
+2018,Bohemian Rhapsody,Rami Malek,FALSE
+2018,Green Book,Viggo Mortensen,FALSE
+2019,Joker,Joaquin Phoenix,TRUE
+2019,Pain and Glory,Antonio Banderas,FALSE
+2019,The Irishman,Robert De Niro,FALSE
+2019,Once Upon a Time in Hollywood,Leonardo DiCaprio,FALSE
+2019,Marriage Story,Adam Driver,FALSE
+2019,Dolemite Is My Name,Eddie Murphy,FALSE
+2019,Uncut Gems,Adam Sandler,FALSE
+2020,Ma Rainey's Black Bottom,Chadwick Boseman (posthumous),TRUE
+2020,The Way Back,Ben Affleck,FALSE
+2020,Sound of Metal,Riz Ahmed,FALSE
+2020,News of the World,Tom Hanks,FALSE
+2020,The Father,Anthony Hopkins,FALSE
+2020,Da 5 Bloods,Delroy Lindo,FALSE
+2020,Mank,Gary Oldman,FALSE
+2020,Minari,Steven Yeun,FALSE
+2021,King Richard,Will Smith,TRUE
+2021,Pig,Nicolas Cage,FALSE
+2021,The Power of the Dog,Benedict Cumberbatch,FALSE
+2021,Cyrano,Peter Dinklage,FALSE
+2021,"tick, tick... BOOM!",Andrew Garfield,FALSE
+2021,The Tragedy of Macbeth,Denzel Washington,FALSE
+2022,The Whale,Brendan Fraser,TRUE
+2022,Elvis,Austin Butler,FALSE
+2022,Top Gun: Maverick,Tom Cruise,FALSE
+2022,The Banshees of Inisherin,Colin Farrell,FALSE
+2022,Aftersun,Paul Mescal,FALSE
+2022,Living,Bill Nighy,FALSE
+2023,The Holdovers,Paul Giamatti,TRUE
+2023,Maestro,Bradley Cooper,FALSE
+2023,Killers of the Flower Moon,Leonardo DiCaprio,FALSE
+2023,Rustin,Colman Domingo,FALSE
+2023,Oppenheimer,Cillian Murphy,FALSE
+2023,American Fiction,Jeffrey Wright,FALSE
+2024,The Brutalist,Adrien Brody,TRUE
+2024,A Complete Unknown,Timothée Chalamet,FALSE
+2024,Queer,Daniel Craig,FALSE
+2024,Sing Sing,Colman Domingo,FALSE
+2024,Conclave,Ralph Fiennes,FALSE
+2024,Heretic,Hugh Grant,FALSE

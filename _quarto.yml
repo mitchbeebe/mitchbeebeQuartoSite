@@ -14,7 +14,7 @@ website:
       - text: "Gallery"
         href: gallery/index.qmd
       - text: "About"
-        href: about.qmd
+        href: about/me.qmd
       - icon: linkedin
         href: https://linkedin.com/in/mitchbeebe
         target: _blank
@@ -26,12 +26,12 @@ website:
         target: _blank
   repo-url: https://github.com/mitchbeebe/mitchbeebeQuartoSite
   repo-actions: [source, issue]
-  favicon: favicon.svg
+  favicon: assets/favicon.svg
 format:
   html:
     theme: 
       - Flatly
-      - styles.scss
+      - assets/styles.scss
     page-layout: full
 
 editor: visual
