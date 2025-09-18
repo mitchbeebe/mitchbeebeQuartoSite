@@ -3,5 +3,7 @@
 .RData
 .Ruserdata
 .Renviron
-
+/_site/
 /.quarto/
+*.csv
+.DS_Store
