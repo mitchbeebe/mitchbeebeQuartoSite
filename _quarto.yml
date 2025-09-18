@@ -26,12 +26,12 @@ website:
         target: _blank
   repo-url: https://github.com/mitchbeebe/mitchbeebeQuartoSite
   repo-actions: [source, issue]
-  favicon: assets/favicon.svg
+  favicon: "assets/favicon.svg"
 format:
   html:
     theme: 
       - Flatly
-      - assets/styles.scss
+      - "assets/styles.scss"
     page-layout: full
 
 editor: visual
