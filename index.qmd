@@ -2,7 +2,7 @@
 repo-actions: false
 ---
 
-![](mitch.jpg){.col-6 .pro-pic fig-align="center" width="250px"}
+![](assets/images/mitch.jpg){.col-6 .pro-pic fig-align="center"}
 
 ::: text-center
 Welcome to my personal site.

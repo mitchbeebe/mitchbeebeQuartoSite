@@ -2,12 +2,10 @@
 title: "Gallery"
 description: "Stuff I've created"
 listing:
-    id: gallery
-    contents: ./gallery.yml
-    template: gallery.ejs
-    sort-ui: true
-    sort: "date desc"
+  type: grid
+  contents:
+    - birdle/birdle.yml
+    - "*.qmd"
+  sort-ui: true
+  sort: "date desc"
 ---
-
-:::{#gallery}
-:::

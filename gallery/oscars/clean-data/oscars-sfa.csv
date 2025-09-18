@@ -1,0 +1,446 @@
+Year,Film,Nominee,Winner
+1936,Anthony Adverse,Gale Sondergaard ‡,TRUE
+1936,The Gorgeous Hussy,Beulah Bondi,FALSE
+1936,My Man Godfrey,Alice Brady,FALSE
+1936,These Three,Bonita Granville,FALSE
+1936,Dodsworth,Maria Ouspenskaya,FALSE
+1937,In Old Chicago,Alice Brady ‡,TRUE
+1937,Stage Door,Andrea Leeds,FALSE
+1937,Stella Dallas,Anne Shirley,FALSE
+1937,Dead End,Claire Trevor,FALSE
+1937,Night Must Fall,May Whitty,FALSE
+1938,Jezebel,Fay Bainter ‡,TRUE
+1938,Of Human Hearts,Beulah Bondi,FALSE
+1938,Merrily We Live,Billie Burke,FALSE
+1938,You Can't Take It with You,Spring Byington,FALSE
+1938,The Great Waltz,Miliza Korjus,FALSE
+1939,Gone with the Wind,Hattie McDaniel ‡,TRUE
+1939,Gone with the Wind,Olivia de Havilland,FALSE
+1939,Wuthering Heights,Geraldine Fitzgerald,FALSE
+1939,Drums Along the Mohawk,Edna May Oliver,FALSE
+1939,Love Affair,Maria Ouspenskaya,FALSE
+1940,The Grapes of Wrath,Jane Darwell ‡,TRUE
+1940,Rebecca,Judith Anderson,FALSE
+1940,The Philadelphia Story,Ruth Hussey,FALSE
+1940,"All This, and Heaven Too",Barbara O'Neil,FALSE
+1940,Primrose Path,Marjorie Rambeau,FALSE
+1941,The Great Lie,Mary Astor ‡,TRUE
+1941,How Green Was My Valley,Sara Allgood,FALSE
+1941,The Little Foxes,Patricia Collinge,FALSE
+1941,The Little Foxes,Teresa Wright,FALSE
+1941,Sergeant York,Margaret Wycherly,FALSE
+1942,Mrs. Miniver,Teresa Wright ‡,TRUE
+1942,"Now, Voyager",Gladys Cooper,FALSE
+1942,The Magnificent Ambersons,Agnes Moorehead,FALSE
+1942,Random Harvest,Susan Peters,FALSE
+1942,Mrs. Miniver,May Whitty,FALSE
+1943,For Whom the Bell Tolls,Katina Paxinou ‡,TRUE
+1943,The Song of Bernadette,Gladys Cooper,FALSE
+1943,So Proudly We Hail!,Paulette Goddard,FALSE
+1943,The Song of Bernadette,Anne Revere,FALSE
+1943,Watch on the Rhine,Lucile Watson,FALSE
+1944,None but the Lonely Heart,Ethel Barrymore ‡,TRUE
+1944,Since You Went Away,Jennifer Jones,FALSE
+1944,Gaslight,Angela Lansbury,FALSE
+1944,Dragon Seed,Aline MacMahon,FALSE
+1944,Mrs. Parkington,Agnes Moorehead,FALSE
+1945,National Velvet,Anne Revere ‡,TRUE
+1945,Mildred Pierce,Eve Arden,FALSE
+1945,Mildred Pierce,Ann Blyth,FALSE
+1945,The Picture of Dorian Gray,Angela Lansbury,FALSE
+1945,The Corn Is Green,Joan Lorring,FALSE
+1946,The Razor's Edge,Anne Baxter ‡,TRUE
+1946,The Spiral Staircase,Ethel Barrymore,FALSE
+1946,Duel in the Sun,Lillian Gish,FALSE
+1946,Saratoga Trunk,Flora Robson,FALSE
+1946,Anna and the King of Siam,Gale Sondergaard,FALSE
+1947,Gentleman's Agreement,Celeste Holm ‡,TRUE
+1947,The Paradine Case,Ethel Barrymore,FALSE
+1947,Crossfire,Gloria Grahame,FALSE
+1947,The Egg and I,Marjorie Main,FALSE
+1947,Gentleman's Agreement,Anne Revere,FALSE
+1948,Key Largo,Claire Trevor ‡,TRUE
+1948,I Remember Mama,Barbara Bel Geddes,FALSE
+1948,I Remember Mama,Ellen Corby,FALSE
+1948,Johnny Belinda,Agnes Moorehead,FALSE
+1948,Hamlet,Jean Simmons,FALSE
+1949,All the King's Men,Mercedes McCambridge ‡,TRUE
+1949,Pinky,Ethel Barrymore,FALSE
+1949,Come to the Stable,Celeste Holm,FALSE
+1949,Come to the Stable,Elsa Lanchester,FALSE
+1949,Pinky,Ethel Waters,FALSE
+1950,Harvey,Josephine Hull ‡,TRUE
+1950,Caged,Hope Emerson,FALSE
+1950,All About Eve,Celeste Holm,FALSE
+1950,Sunset Boulevard,Nancy Olson,FALSE
+1950,All About Eve,Thelma Ritter,FALSE
+1951,A Streetcar Named Desire,Kim Hunter ‡,TRUE
+1951,The Blue Veil,Joan Blondell,FALSE
+1951,Death of a Salesman,Mildred Dunnock,FALSE
+1951,Detective Story,Lee Grant,FALSE
+1951,The Mating Season,Thelma Ritter,FALSE
+1952,The Bad and the Beautiful,Gloria Grahame ‡,TRUE
+1952,Singin' in the Rain,Jean Hagen,FALSE
+1952,Moulin Rouge,Colette Marchand,FALSE
+1952,"Come Back, Little Sheba",Terry Moore,FALSE
+1952,With a Song in My Heart,Thelma Ritter,FALSE
+1953,From Here to Eternity,Donna Reed ‡,TRUE
+1953,Mogambo,Grace Kelly,FALSE
+1953,Hondo,Geraldine Page,FALSE
+1953,Torch Song,Marjorie Rambeau,FALSE
+1953,Pickup on South Street,Thelma Ritter,FALSE
+1954,On the Waterfront,Eva Marie Saint ‡,TRUE
+1954,Executive Suite,Nina Foch,FALSE
+1954,Broken Lance,Katy Jurado,FALSE
+1954,The High and the Mighty,Jan Sterling,FALSE
+1954,The High and the Mighty,Claire Trevor,FALSE
+1955,East of Eden,Jo Van Fleet ‡,TRUE
+1955,Marty,Betsy Blair,FALSE
+1955,Pete Kelly's Blues,Peggy Lee,FALSE
+1955,The Rose Tattoo,Marisa Pavan,FALSE
+1955,Rebel Without a Cause,Natalie Wood,FALSE
+1956,Written on the Wind,Dorothy Malone ‡,TRUE
+1956,Baby Doll,Mildred Dunnock,FALSE
+1956,The Bad Seed,Eileen Heckart,FALSE
+1956,Giant,Mercedes McCambridge,FALSE
+1956,The Bad Seed,Patty McCormack,FALSE
+1957,Sayonara,Miyoshi Umeki ‡,TRUE
+1957,The Bachelor Party,Carolyn Jones,FALSE
+1957,Witness for the Prosecution,Elsa Lanchester,FALSE
+1957,Peyton Place,Hope Lange,FALSE
+1957,Peyton Place,Diane Varsi,FALSE
+1958,Separate Tables,Wendy Hiller ‡,TRUE
+1958,Auntie Mame,Peggy Cass,FALSE
+1958,Some Came Running,Martha Hyer,FALSE
+1958,Lonelyhearts,Maureen Stapleton,FALSE
+1958,The Defiant Ones,Cara Williams,FALSE
+1959,The Diary of Anne Frank,Shelley Winters ‡,TRUE
+1959,Room at the Top,Hermione Baddeley,FALSE
+1959,Imitation of Life,Susan Kohner,FALSE
+1959,Imitation of Life,Juanita Moore,FALSE
+1959,Pillow Talk,Thelma Ritter,FALSE
+1960,Elmer Gantry,Shirley Jones ‡,TRUE
+1960,The Sundowners,Glynis Johns,FALSE
+1960,The Dark at the Top of the Stairs,Shirley Knight,FALSE
+1960,Psycho,Janet Leigh,FALSE
+1960,Sons and Lovers,Mary Ure,FALSE
+1961,West Side Story,Rita Moreno ‡,TRUE
+1961,The Children's Hour,Fay Bainter,FALSE
+1961,Judgment at Nuremberg,Judy Garland,FALSE
+1961,The Roman Spring of Mrs. Stone,Lotte Lenya,FALSE
+1961,Summer and Smoke,Una Merkel,FALSE
+1962,The Miracle Worker,Patty Duke ‡,TRUE
+1962,To Kill a Mockingbird,Mary Badham,FALSE
+1962,Sweet Bird of Youth,Shirley Knight,FALSE
+1962,The Manchurian Candidate,Angela Lansbury,FALSE
+1962,Birdman of Alcatraz,Thelma Ritter,FALSE
+1963,The V.I.P.s,Margaret Rutherford ‡,TRUE
+1963,Tom Jones,Diane Cilento,FALSE
+1963,Tom Jones,Edith Evans,FALSE
+1963,Tom Jones,Joyce Redman,FALSE
+1963,Lilies of the Field,Lilia Skala,FALSE
+1964,Zorba the Greek,Lila Kedrova ‡,TRUE
+1964,My Fair Lady,Gladys Cooper,FALSE
+1964,The Chalk Garden,Edith Evans,FALSE
+1964,The Night of the Iguana,Grayson Hall,FALSE
+1964,"Hush...Hush, Sweet Charlotte",Agnes Moorehead,FALSE
+1965,A Patch of Blue,Shelley Winters ‡,TRUE
+1965,Inside Daisy Clover,Ruth Gordon,FALSE
+1965,Othello,Joyce Redman,FALSE
+1965,Othello,Maggie Smith,FALSE
+1965,The Sound of Music,Peggy Wood,FALSE
+1966,Who's Afraid of Virginia Woolf?,Sandy Dennis ‡,TRUE
+1966,A Man for All Seasons,Wendy Hiller,FALSE
+1966,Hawaii,Jocelyne LaGarde,FALSE
+1966,Alfie,Vivien Merchant,FALSE
+1966,You're a Big Boy Now,Geraldine Page,FALSE
+1967,Bonnie and Clyde,Estelle Parsons ‡,TRUE
+1967,Thoroughly Modern Millie,Carol Channing,FALSE
+1967,Barefoot in the Park,Mildred Natwick,FALSE
+1967,Guess Who's Coming to Dinner,Beah Richards,FALSE
+1967,The Graduate,Katharine Ross,FALSE
+1968,Rosemary's Baby,Ruth Gordon ‡,TRUE
+1968,Faces,Lynn Carlin,FALSE
+1968,The Heart Is a Lonely Hunter,Sondra Locke,FALSE
+1968,Funny Girl,Kay Medford,FALSE
+1968,"Rachel, Rachel",Estelle Parsons,FALSE
+1969,Cactus Flower,Goldie Hawn ‡,TRUE
+1969,Last Summer,Catherine Burns,FALSE
+1969,Bob & Carol & Ted & Alice,Dyan Cannon,FALSE
+1969,Midnight Cowboy,Sylvia Miles,FALSE
+1969,"They Shoot Horses, Don't They?",Susannah York,FALSE
+1970,Airport,Helen Hayes ‡,TRUE
+1970,Five Easy Pieces,Karen Black,FALSE
+1970,The Landlord,Lee Grant,FALSE
+1970,M*A*S*H,Sally Kellerman,FALSE
+1970,Airport,Maureen Stapleton,FALSE
+1971,The Last Picture Show,Cloris Leachman ‡,TRUE
+1971,Carnal Knowledge,Ann-Margret,FALSE
+1971,The Last Picture Show,Ellen Burstyn,FALSE
+1971,Who Is Harry Kellerman and Why Is He Saying Those Terrible Things About Me?,Barbara Harris,FALSE
+1971,The Go-Between,Margaret Leighton,FALSE
+1972,Butterflies Are Free,Eileen Heckart ‡,TRUE
+1972,The Heartbreak Kid,Jeannie Berlin,FALSE
+1972,Pete 'n' Tillie,Geraldine Page,FALSE
+1972,Fat City,Susan Tyrrell,FALSE
+1972,The Poseidon Adventure,Shelley Winters,FALSE
+1973,Paper Moon,Tatum O'Neal ‡,TRUE
+1973,The Exorcist,Linda Blair,FALSE
+1973,American Graffiti,Candy Clark,FALSE
+1973,Paper Moon,Madeline Kahn,FALSE
+1973,"Summer Wishes, Winter Dreams",Sylvia Sidney,FALSE
+1974,Murder on the Orient Express,Ingrid Bergman ‡,TRUE
+1974,Day for Night,Valentina Cortese,FALSE
+1974,Blazing Saddles,Madeline Kahn,FALSE
+1974,Alice Doesn't Live Here Anymore,Diane Ladd,FALSE
+1974,The Godfather Part II,Talia Shire,FALSE
+1975,Shampoo,Lee Grant ‡,TRUE
+1975,Nashville,Ronee Blakley,FALSE
+1975,"Farewell, My Lovely",Sylvia Miles,FALSE
+1975,Nashville,Lily Tomlin,FALSE
+1975,Once Is Not Enough,Brenda Vaccaro,FALSE
+1976,Network,Beatrice Straight ‡,TRUE
+1976,All the President's Men,Jane Alexander,FALSE
+1976,Taxi Driver,Jodie Foster,FALSE
+1976,Voyage of the Damned,Lee Grant,FALSE
+1976,Carrie,Piper Laurie,FALSE
+1977,Julia,Vanessa Redgrave ‡,TRUE
+1977,The Turning Point,Leslie Browne,FALSE
+1977,The Goodbye Girl,Quinn Cummings,FALSE
+1977,Close Encounters of the Third Kind,Melinda Dillon,FALSE
+1977,Looking for Mr. Goodbar,Tuesday Weld,FALSE
+1978,California Suite,Maggie Smith ‡,TRUE
+1978,Heaven Can Wait,Dyan Cannon,FALSE
+1978,Coming Home,Penelope Milford,FALSE
+1978,Interiors,Maureen Stapleton,FALSE
+1978,The Deer Hunter,Meryl Streep,FALSE
+1979,Kramer vs. Kramer,Meryl Streep ‡,TRUE
+1979,Kramer vs. Kramer,Jane Alexander,FALSE
+1979,Breaking Away,Barbara Barrie,FALSE
+1979,Starting Over,Candice Bergen,FALSE
+1979,Manhattan,Mariel Hemingway,FALSE
+1980,Melvin and Howard,Mary Steenburgen ‡,TRUE
+1980,Private Benjamin,Eileen Brennan,FALSE
+1980,Resurrection,Eva Le Gallienne,FALSE
+1980,Raging Bull,Cathy Moriarty,FALSE
+1980,Inside Moves,Diana Scarwid,FALSE
+1981,Reds,Maureen Stapleton ‡,TRUE
+1981,Absence of Malice,Melinda Dillon,FALSE
+1981,On Golden Pond,Jane Fonda,FALSE
+1981,Only When I Laugh,Joan Hackett,FALSE
+1981,Ragtime,Elizabeth McGovern,FALSE
+1982,Tootsie,Jessica Lange ‡,TRUE
+1982,The World According to Garp,Glenn Close,FALSE
+1982,Tootsie,Teri Garr,FALSE
+1982,Frances,Kim Stanley,FALSE
+1982,Victor/Victoria,Lesley Ann Warren,FALSE
+1983,The Year of Living Dangerously,Linda Hunt ‡,TRUE
+1983,Silkwood,Cher,FALSE
+1983,The Big Chill,Glenn Close,FALSE
+1983,Yentl,Amy Irving,FALSE
+1983,Cross Creek,Alfre Woodard,FALSE
+1984,A Passage to India,Peggy Ashcroft ‡,TRUE
+1984,The Natural,Glenn Close,FALSE
+1984,Places in the Heart,Lindsay Crouse,FALSE
+1984,Swing Shift,Christine Lahti,FALSE
+1984,The Pope of Greenwich Village,Geraldine Page,FALSE
+1985,Prizzi's Honor,Anjelica Huston ‡,TRUE
+1985,The Color Purple,Margaret Avery,FALSE
+1985,Twice in a Lifetime,Amy Madigan,FALSE
+1985,Agnes of God,Meg Tilly,FALSE
+1985,The Color Purple,Oprah Winfrey,FALSE
+1986,Hannah and Her Sisters,Dianne Wiest ‡,TRUE
+1986,Crimes of the Heart,Tess Harper,FALSE
+1986,Children of a Lesser God,Piper Laurie,FALSE
+1986,The Color of Money,Mary Elizabeth Mastrantonio,FALSE
+1986,A Room with a View,Maggie Smith,FALSE
+1987,Moonstruck,Olympia Dukakis ‡,TRUE
+1987,Gaby: A True Story,Norma Aleandro,FALSE
+1987,Fatal Attraction,Anne Archer,FALSE
+1987,Throw Momma from the Train,Anne Ramsey,FALSE
+1987,The Whales of August,Ann Sothern,FALSE
+1988,The Accidental Tourist,Geena Davis ‡,TRUE
+1988,Working Girl,Joan Cusack,FALSE
+1988,Mississippi Burning,Frances McDormand,FALSE
+1988,Dangerous Liaisons,Michelle Pfeiffer,FALSE
+1988,Working Girl,Sigourney Weaver,FALSE
+1989,My Left Foot,Brenda Fricker ‡,TRUE
+1989,"Enemies, A Love Story",Anjelica Huston,FALSE
+1989,"Enemies, A Love Story",Lena Olin,FALSE
+1989,Steel Magnolias,Julia Roberts,FALSE
+1989,Parenthood,Dianne Wiest,FALSE
+1990,Ghost,Whoopi Goldberg ‡,TRUE
+1990,The Grifters,Annette Bening,FALSE
+1990,GoodFellas,Lorraine Bracco,FALSE
+1990,Wild at Heart,Diane Ladd,FALSE
+1990,Dances with Wolves,Mary McDonnell,FALSE
+1991,The Fisher King,Mercedes Ruehl ‡,TRUE
+1991,Rambling Rose,Diane Ladd,FALSE
+1991,Cape Fear,Juliette Lewis,FALSE
+1991,The Prince of Tides,Kate Nelligan,FALSE
+1991,Fried Green Tomatoes,Jessica Tandy,FALSE
+1992,My Cousin Vinny,Marisa Tomei ‡,TRUE
+1992,Husbands and Wives,Judy Davis,FALSE
+1992,Enchanted April,Joan Plowright,FALSE
+1992,Howards End,Vanessa Redgrave,FALSE
+1992,Damage,Miranda Richardson,FALSE
+1993,The Piano,Anna Paquin ‡,TRUE
+1993,The Firm,Holly Hunter,FALSE
+1993,Fearless,Rosie Perez,FALSE
+1993,The Age of Innocence,Winona Ryder,FALSE
+1993,In the Name of the Father,Emma Thompson,FALSE
+1994,Bullets Over Broadway,Dianne Wiest ‡,TRUE
+1994,Tom & Viv,Rosemary Harris,FALSE
+1994,The Madness of King George,Helen Mirren,FALSE
+1994,Pulp Fiction,Uma Thurman,FALSE
+1994,Bullets Over Broadway,Jennifer Tilly,FALSE
+1995,Mighty Aphrodite,Mira Sorvino ‡,TRUE
+1995,Nixon,Joan Allen,FALSE
+1995,Apollo 13,Kathleen Quinlan,FALSE
+1995,Georgia,Mare Winningham,FALSE
+1995,Sense and Sensibility,Kate Winslet,FALSE
+1996,The English Patient,Juliette Binoche ‡,TRUE
+1996,The Crucible,Joan Allen,FALSE
+1996,The Mirror Has Two Faces,Lauren Bacall,FALSE
+1996,The Portrait of a Lady,Barbara Hershey,FALSE
+1996,Secrets & Lies,Marianne Jean-Baptiste,FALSE
+1997,L.A. Confidential,Kim Basinger ‡,TRUE
+1997,In & Out,Joan Cusack,FALSE
+1997,Good Will Hunting,Minnie Driver,FALSE
+1997,Boogie Nights,Julianne Moore,FALSE
+1997,Titanic,Gloria Stuart,FALSE
+1998,Shakespeare in Love,Judi Dench ‡,TRUE
+1998,Primary Colors,Kathy Bates,FALSE
+1998,Little Voice,Brenda Blethyn,FALSE
+1998,Hilary and Jackie,Rachel Griffiths,FALSE
+1998,Gods and Monsters,Lynn Redgrave,FALSE
+1999,"Girl, Interrupted",Angelina Jolie ‡,TRUE
+1999,The Sixth Sense,Toni Collette,FALSE
+1999,Being John Malkovich,Catherine Keener,FALSE
+1999,Sweet and Lowdown,Samantha Morton,FALSE
+1999,Boys Don't Cry,Chloë Sevigny,FALSE
+2000,Pollock,Marcia Gay Harden ‡,TRUE
+2000,Chocolat,Judi Dench,FALSE
+2000,Almost Famous,Kate Hudson,FALSE
+2000,Almost Famous,Frances McDormand,FALSE
+2000,Billy Elliot,Julie Walters,FALSE
+2001,A Beautiful Mind,Jennifer Connelly ‡,TRUE
+2001,Gosford Park,Helen Mirren,FALSE
+2001,Gosford Park,Maggie Smith,FALSE
+2001,In the Bedroom,Marisa Tomei,FALSE
+2001,Iris,Kate Winslet,FALSE
+2002,Chicago,Catherine Zeta-Jones ‡,TRUE
+2002,About Schmidt,Kathy Bates,FALSE
+2002,The Hours,Julianne Moore,FALSE
+2002,Chicago,Queen Latifah,FALSE
+2002,Adaptation.,Meryl Streep,FALSE
+2003,Cold Mountain,Renée Zellweger ‡,TRUE
+2003,House of Sand and Fog,Shohreh Aghdashloo,FALSE
+2003,Pieces of April,Patricia Clarkson,FALSE
+2003,Mystic River,Marcia Gay Harden,FALSE
+2003,Thirteen,Holly Hunter,FALSE
+2004,The Aviator,Cate Blanchett ‡,TRUE
+2004,Kinsey,Laura Linney,FALSE
+2004,Sideways,Virginia Madsen,FALSE
+2004,Hotel Rwanda,Sophie Okonedo,FALSE
+2004,Closer,Natalie Portman,FALSE
+2005,The Constant Gardener,Rachel Weisz ‡,TRUE
+2005,Junebug,Amy Adams,FALSE
+2005,Capote,Catherine Keener,FALSE
+2005,North Country,Frances McDormand,FALSE
+2005,Brokeback Mountain,Michelle Williams,FALSE
+2006,Dreamgirls,Jennifer Hudson ‡,TRUE
+2006,Babel,Adriana Barraza,FALSE
+2006,Notes on a Scandal,Cate Blanchett,FALSE
+2006,Little Miss Sunshine,Abigail Breslin,FALSE
+2006,Babel,Rinko Kikuchi,FALSE
+2007,Michael Clayton,Tilda Swinton ‡,TRUE
+2007,I'm Not There,Cate Blanchett,FALSE
+2007,American Gangster,Ruby Dee,FALSE
+2007,Atonement,Saoirse Ronan,FALSE
+2007,Gone Baby Gone,Amy Ryan,FALSE
+2008,Vicky Cristina Barcelona,Penélope Cruz ‡,TRUE
+2008,Doubt,Amy Adams,FALSE
+2008,Doubt,Viola Davis,FALSE
+2008,The Curious Case of Benjamin Button,Taraji P. Henson,FALSE
+2008,The Wrestler,Marisa Tomei,FALSE
+2009,Precious,Mo'Nique ‡,TRUE
+2009,Nine,Penélope Cruz,FALSE
+2009,Up in the Air,Vera Farmiga,FALSE
+2009,Crazy Heart,Maggie Gyllenhaal,FALSE
+2009,Up in the Air,Anna Kendrick,FALSE
+2010,The Fighter,Melissa Leo ‡,TRUE
+2010,The Fighter,Amy Adams,FALSE
+2010,The King's Speech,Helena Bonham Carter,FALSE
+2010,True Grit,Hailee Steinfeld,FALSE
+2010,Animal Kingdom,Jacki Weaver,FALSE
+2011,The Help,Octavia Spencer ‡,TRUE
+2011,The Artist,Bérénice Bejo,FALSE
+2011,The Help,Jessica Chastain,FALSE
+2011,Bridesmaids,Melissa McCarthy,FALSE
+2011,Albert Nobbs,Janet McTeer,FALSE
+2012,Les Misérables,Anne Hathaway ‡,TRUE
+2012,The Master,Amy Adams,FALSE
+2012,Lincoln,Sally Field,FALSE
+2012,The Sessions,Helen Hunt,FALSE
+2012,Silver Linings Playbook,Jacki Weaver,FALSE
+2013,12 Years a Slave,Lupita Nyong'o ‡,TRUE
+2013,Blue Jasmine,Sally Hawkins,FALSE
+2013,American Hustle,Jennifer Lawrence,FALSE
+2013,August: Osage County,Julia Roberts,FALSE
+2013,Nebraska,June Squibb,FALSE
+2014,Boyhood,Patricia Arquette ‡,TRUE
+2014,Wild,Laura Dern,FALSE
+2014,The Imitation Game,Keira Knightley,FALSE
+2014,Birdman,Emma Stone,FALSE
+2014,Into the Woods,Meryl Streep,FALSE
+2015,The Danish Girl,Alicia Vikander ‡,TRUE
+2015,The Hateful Eight,Jennifer Jason Leigh,FALSE
+2015,Carol,Rooney Mara,FALSE
+2015,Spotlight,Rachel McAdams,FALSE
+2015,Steve Jobs,Kate Winslet,FALSE
+2016,Fences,Viola Davis ‡,TRUE
+2016,Moonlight,Naomie Harris,FALSE
+2016,Lion,Nicole Kidman,FALSE
+2016,Hidden Figures,Octavia Spencer,FALSE
+2016,Manchester by the Sea,Michelle Williams,FALSE
+2017,"I, Tonya",Allison Janney ‡,TRUE
+2017,Mudbound,Mary J. Blige,FALSE
+2017,Phantom Thread,Lesley Manville,FALSE
+2017,Lady Bird,Laurie Metcalf,FALSE
+2017,The Shape of Water,Octavia Spencer,FALSE
+2018,If Beale Street Could Talk,Regina King ‡,TRUE
+2018,Vice,Amy Adams,FALSE
+2018,Roma,Marina de Tavira,FALSE
+2018,The Favourite,Emma Stone,FALSE
+2018,The Favourite,Rachel Weisz,FALSE
+2019,Marriage Story,Laura Dern ‡,TRUE
+2019,Richard Jewell,Kathy Bates,FALSE
+2019,Jojo Rabbit,Scarlett Johansson,FALSE
+2019,Little Women,Florence Pugh,FALSE
+2019,Bombshell,Margot Robbie,FALSE
+2020,Minari,Yuh-jung Youn ‡,TRUE
+2020,Borat Subsequent Moviefilm,Maria Bakalova,FALSE
+2020,Hillbilly Elegy,Glenn Close,FALSE
+2020,The Father,Olivia Colman,FALSE
+2020,Mank,Amanda Seyfried,FALSE
+2021,West Side Story,Ariana DeBose ‡,TRUE
+2021,The Lost Daughter,Jessie Buckley,FALSE
+2021,Belfast,Judi Dench,FALSE
+2021,The Power of the Dog,Kirsten Dunst,FALSE
+2021,King Richard,Aunjanue Ellis-Taylor,FALSE
+2022,Everything Everywhere All at Once,Jamie Lee Curtis ‡,TRUE
+2022,Black Panther: Wakanda Forever,Angela Bassett,FALSE
+2022,The Whale,Hong Chau,FALSE
+2022,The Banshees of Inisherin,Kerry Condon,FALSE
+2022,Everything Everywhere All at Once,Stephanie Hsu,FALSE
+2023,The Holdovers,Da'Vine Joy Randolph ‡,TRUE
+2023,Oppenheimer,Emily Blunt,FALSE
+2023,The Color Purple,Danielle Brooks,FALSE
+2023,Barbie,America Ferrera,FALSE
+2023,Nyad,Jodie Foster,FALSE
+2024,A Complete Unknown,Monica Barbaro,TRUE
+2024,Wicked,Ariana Grande,FALSE
+2024,The Brutalist,Felicity Jones,FALSE
+2024,Conclave,Isabella Rossellini,FALSE
+2024,Emilia Pérez,Zoe Saldaña,FALSE

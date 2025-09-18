@@ -5,6 +5,6 @@ date: 2024-04-23
 categories:
   - Python
   - R
-image: play-birdle-logo.png
+image: /assets/images/play-birdle-logo.png
 draft: true
 ---
