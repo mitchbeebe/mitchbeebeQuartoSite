@@ -31,7 +31,7 @@ format:
   html:
     theme: 
       - Flatly
-      - /assets/stylesheets/styles.scss
+      - assets/stylesheets/styles.scss
     page-layout: full
 
 editor: visual

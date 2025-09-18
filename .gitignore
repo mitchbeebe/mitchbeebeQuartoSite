@@ -7,3 +7,4 @@
 /.quarto/
 *.csv
 .DS_Store
+**/*.quarto_ipynb
