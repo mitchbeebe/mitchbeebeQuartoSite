@@ -26,17 +26,17 @@ website:
         target: _blank
   repo-url: https://github.com/mitchbeebe/mitchbeebeQuartoSite
   repo-actions: [source, issue]
-  favicon: "assets/favicon.svg"
+  favicon: /assets/images/favicon.svg
 format:
   html:
     theme: 
       - Flatly
-      - "assets/styles.scss"
+      - /assets/stylesheets/styles.scss
     page-layout: full
 
 editor: visual
 
 execute: 
-  freeze: auto
+  freeze: true
 
 link-external-newwindow: true

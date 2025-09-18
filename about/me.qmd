@@ -7,7 +7,7 @@ listing:
 ---
 
 ::: column-margin
-![](/assets/mitch.jpg){.pro-pic}
+![](/assets/images/mitch.jpg){.pro-pic}
 :::
 
 I am an experienced data scientist and team leader based in New York City. I'm at my best using data to answer business questions and solve problems.
