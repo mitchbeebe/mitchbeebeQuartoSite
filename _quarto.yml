@@ -4,7 +4,7 @@ project:
     port: 4947
 
 website:
-  title: "{{< fa chart-line >}} Mitch Beebe"
+  title: "<i class='fa-solid fa-chart-line' aria-label='chart-line'></i> Mitch Beebe"
   navbar:
     right:
       - text: "Home"
@@ -33,6 +33,7 @@ format:
       - Flatly
       - assets/stylesheets/styles.scss
     page-layout: full
+    html-math-method: mathjax
 
 editor: visual
 
