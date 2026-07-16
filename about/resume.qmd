@@ -1,0 +1,14 @@
+---
+title: "Resume"
+---
+
+
+[About](/about/me.qmd) <span aria-hidden="true">&gt;</span> Resume
+
+<div class="resume-container">
+  <iframe src="https://docs.google.com/document/d/e/2PACX-1vQEaxf9jDpFZp0P_LBu5dCFKz6L6dymagHDnfN7jvYflVEHwE-KyU6KjK4jc7GZxYGCfQsYk3aA4PiI/pub?embedded=true" title="Mitch Beebe's Resume" loading="lazy"></iframe>
+</div>
+
+<div class="center-button">
+  <a class="resume-download" href="https://docs.google.com/document/d/1reP4FFB97GyVzl7yzZio90ql7o4JdP3KfeKvyRMBo3s/export?format=pdf" target="_blank" rel="noopener">Download</a>
+</div>
