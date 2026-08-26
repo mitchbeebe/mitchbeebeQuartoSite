@@ -4,7 +4,7 @@ description: "Stuff I've created"
 listing:
   type: grid
   contents:
-    - birdle/birdle.yml
+    - "**/*.yml"
     - "*.qmd"
   sort-ui: true
   sort: "date desc"
