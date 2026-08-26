@@ -6,6 +6,4 @@ listing:
   contents:
     - "**/*.yml"
     - "*.qmd"
-  sort-ui: true
-  sort: "date desc"
 ---
