@@ -2,7 +2,6 @@
 title: "Taylor Swift and Data Science: An Unlikely Duo"
 description: "A blog post written for Flatiron School"
 date: 2024-01-24
-image: https://flatironschool.com/wp-content/uploads/2024/01/Screen-Shot-2024-01-23-at-11.14.48-AM-900x431.jpg.webp
 format:
   html:
     page-layout: full

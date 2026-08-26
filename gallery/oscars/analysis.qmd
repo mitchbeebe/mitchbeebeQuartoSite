@@ -2,7 +2,6 @@
 title: "The Data on Barbie, Greta Gerwig, and Best Director Snubs at the Oscars"
 description: "A blog post written for Flatiron School"
 date: 2024-03-02
-image: "https://flatironschool.com/wp-content/uploads/2024/03/Resized-blog-thumbnail-47-900x599.jpg.webp"
 format:
   html:
     page-layout: full
