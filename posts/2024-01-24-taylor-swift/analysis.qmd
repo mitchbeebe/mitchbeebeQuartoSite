@@ -2,6 +2,10 @@
 title: "Taylor Swift and Data Science: An Unlikely Duo"
 description: "A blog post written for Flatiron School"
 date: 2024-01-24
+image: thumbnail.jpg
+resources:
+  - top-5-annual-gross-revenue-1993-2023.webm
+  - top-5-annual-gross-revenue-1993-2023.mp4
 format:
   html:
     page-layout: full
@@ -34,7 +38,13 @@ This is a great example of data science in action. As data scientists we’re of
 
 Like Posit, we collected the data from the [List of highest-grossing concert tours page on Wikipedia](https://en.wikipedia.org/wiki/List_of_highest-grossing_concert_tours). Instead of a static chart, we created a bar chart race—a fun way to visualize data changing over time using animation. Below we have the highest single-year tours by gross revenue from 1993 to 2023.
 
-![Data source: Wikipedia](top-5-annual-gross-revenue-1993-2023-lowres.gif)
+<figure>
+<video autoplay loop muted playsinline controls style="width:100%;max-width:800px;height:auto;" aria-label="Bar chart race of the top 5 concert tours by annual gross revenue, 1993 to 2023">
+<source src="top-5-annual-gross-revenue-1993-2023.webm" type="video/webm">
+<source src="top-5-annual-gross-revenue-1993-2023.mp4" type="video/mp4">
+</video>
+<figcaption>Data source: Wikipedia</figcaption>
+</figure>
 
 The Rolling Stones and U2 tours held most of the top five spots for a majority of the past 30 years. That is, until the 2023 Eras Tour nearly doubled the \$617 million grossed by the A Bigger Bang Tour—the 17-year record-holder set by the Stones in 2006. Interestingly, Taylor Swift is the first female solo artist to crack the list since Madonna’s The MDNA Tour in 2012. With the Eras Tour projected to bring in another \$1 billion in 2024, it will likely be Taylor Swift in the top two spots come end of year.
 
