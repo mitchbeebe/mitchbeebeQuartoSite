@@ -10,30 +10,34 @@ listing:
 ![](/assets/images/mitch-v2.png){.pro-pic}
 :::
 
-I am an experienced data scientist and team leader based in New York City. I'm at my best answering business questions and solving problems with data. 
+I'm a data and engineering leader based in New York City, building production AI systems: RAG knowledge graphs, MCP servers, and LLM content pipelines. I've spent 10+ years turning data into shipped products, from predictive models to full-stack apps. At Flatiron School I led a data team of up to six and built a RAG knowledge graph and MCP server for the curriculum catalog, serving 100k+ queries a week to colleagues, Claude, ChatGPT, and internal agents.
 
 [View](/about/resume.qmd) or <a href="https://docs.google.com/document/d/1reP4FFB97GyVzl7yzZio90ql7o4JdP3KfeKvyRMBo3s/export?format=pdf" target="_blank" rel="noopener">download</a> my full resume.
 
 
 ## Experience
 
+| **Jessamine Labs**
+
+-   Founding Data & AI Engineer[*Oct 2026 to Present*]{.date}
+
 | **Flatiron School**
 
--   Director, Data Science & Analytics[*Mar 2022 to Present*]{style="float:right;"}
--   Senior Manager, Data Science & Analytics[*Jun 2021 to Mar 2022*]{style="float:right;"}
--   Manager, Data Science & Analytics[*Oct 2020 to Jun 2021*]{style="float:right;"}
--   Senior Data Scientist[*Aug 2019 to Oct 2020*]{style="float:right;"}
+-   Director, Data Science & Analytics[*Mar 2022 to Oct 2026*]{.date}
+-   Senior Manager, Data Science & Analytics[*Jun 2021 to Mar 2022*]{.date}
+-   Manager, Data Science & Analytics[*Oct 2020 to Jun 2021*]{.date}
+-   Senior Data Scientist[*Aug 2019 to Oct 2020*]{.date}
 
-**JPMorgan Chase & Co.** \| Data Scientist[*Feb 2018 to Aug 2019*]{style="float:right;"}
+**JPMorgan Chase & Co.** \| Data Scientist[*Feb 2018 to Aug 2019*]{.date}
 
-**Luxottica Retail** \| Senior Analyst[*Dec 2015 to Feb 2018*]{style="float:right;"}
+**Luxottica Retail** \| Senior Analyst[*Dec 2015 to Feb 2018*]{.date}
 
 ## Education
 
 | **Miami University** \| Oxford, OH
 
--   Master of Science in Statistics[*2014 - 2016*]{style="float:right;"}
--   Bachelor of Science in Mathematics & Statistics[*2011 - 2016*]{style="float:right;"}
+-   Master of Science in Statistics[*2014 - 2016*]{.date}
+-   Bachelor of Science in Mathematics & Statistics[*2011 - 2016*]{.date}
 
 ## Skills
 

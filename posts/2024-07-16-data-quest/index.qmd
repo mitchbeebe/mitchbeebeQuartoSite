@@ -2,7 +2,7 @@
 title: "Inaugural Mastery Quest - Summer Olympics"
 description: "Learn more on [Bletchley.org!](https://www.bletchley.org/blog/mastery-quest-the-summer-olympics-data-science)"
 date: "2024-07-16"
-image: https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w1460/f_auto/primary/ufimmifputd3kkkvdgmb
+image: olympics.jpg
 lightbox: auto
 ---
 
