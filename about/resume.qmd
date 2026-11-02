@@ -12,3 +12,13 @@ title: "Resume"
 <div class="center-button">
   <a class="resume-download" href="https://docs.google.com/document/d/1reP4FFB97GyVzl7yzZio90ql7o4JdP3KfeKvyRMBo3s/export?format=pdf" target="_blank" rel="noopener">Download</a>
 </div>
+
+<script>
+  // The Google Doc renders at a fixed letter-page width, so scale it to fit narrow screens.
+  (() => {
+    const container = document.querySelector(".resume-container");
+    const iframe = container.querySelector("iframe");
+    const fit = () => { iframe.style.zoom = Math.min(1, container.clientWidth / 816); };
+    new ResizeObserver(fit).observe(container);
+  })();
+</script>

@@ -1,11 +1,14 @@
-- skills: [R, SQL]
-  stars: 5
-    
-- skills: [Python, Airflow, 'AWS: Redshift, S3, Lambda, API Gateway, SageMaker, Glue']
-  stars: 4
+- area: AI & LLM systems
+  skills: [RAG, knowledge graphs, MCP servers, LLM evals, LangChain, agentic coding workflows]
 
-- skills: [Bash, Git, Hive, Impala]
-  stars: 3
-  
-- skills: [Django, JavaScript, HTML, CSS]
-  stars: 2
+- area: Data & backend
+  skills: [Python, SQL, R, FastAPI, PySpark, Postgres/Supabase, Airflow]
+
+- area: BI & dashboards
+  skills: [Looker, Tableau, Shiny, Streamlit]
+
+- area: Frontend
+  skills: [HTML/CSS, HTMX, Alpine.js]
+
+- area: Infrastructure
+  skills: ['AWS: Redshift, S3, Glue, Lambda, API Gateway, SageMaker', Fly.io, Vercel, Render, Docker, Git, CI/CD]

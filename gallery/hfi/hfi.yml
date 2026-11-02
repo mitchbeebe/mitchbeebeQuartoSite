@@ -1,0 +1,4 @@
+- title: "Is it HFI-friendly?"
+  description: "Check whether a food fits a hereditary fructose intolerance (HFI) diet. Type it, scan a barcode, or photograph the ingredient list."
+  image: /assets/images/hfi.png
+  path: https://is-it-hfi-friendly.fly.dev
